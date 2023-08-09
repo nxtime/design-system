@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+
+  &.row {
+    flex-direction: row;
+  }
+
+  &.container-lg {
+    min-width: 20vw;
+  }
+
+  &.center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rounded-box {
+    border-radius: var(--rounded-box);
+    padding: var(--spacing-md);
+  }
+}
+
+.group {
+  display: flex;
+
+  &-vertical {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.rounded-box > *:not(:first-child):not(:last-child),
+  &-vertical.rounded-box > *:not(:first-child):not(:last-child) {
+    border-radius: 0px;
+  }
+
+  &.rounded-box > *:first-child:not(:only-child) {
+    border-radius: var(--rounded-box) 0px 0px var(--rounded-box);
+  }
+  &.rounded-box > *:last-child:not(:only-child) {
+    border-radius: 0px var(--rounded-box) var(--rounded-box) 0px;
+  }
+
+  &-vertical.rounded-box > *:first-child:not(:only-child) {
+    border-radius: var(--rounded-box) var(--rounded-box) 0px 0px;
+  }
+  &-vertical.rounded-box > *:last-child:not(:only-child) {
+    border-radius: 0px 0px var(--rounded-box) var(--rounded-box);
+  }
+}
+
+.divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+
+  & > * {
+    position: relative;
+    background-color: inherit;
+    padding-inline: var(--spacing-xs);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 60%;
+    height: 1px;
+    width: calc(100%);
+    background-color: var(--text-disabled);
+  }
+}

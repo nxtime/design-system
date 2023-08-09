@@ -1,0 +1,84 @@
+label.btn,
+a.btn,
+span.btn {
+  display: flex;
+  align-items: center;
+}
+
+button[type="submit"] {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: calc(var(--spacing-xs) / 2);
+
+  & > svg {
+    display: none;
+  }
+
+  &:focus {
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
+  &:focus::before {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: inherit;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--rounded-box);
+  }
+    
+  &:focus::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: calc(50% - var(--spacing-md) / 2);
+    height: var(--spacing-sm);
+    width: var(--spacing-sm);
+    border-radius: var(--rounded-full);
+    border-top: 2px solid var(--text-content);
+    border-right: 2px solid var(--text-content);
+    animation: rotating 0.5s linear infinite;
+  }
+ }
+
+.btn {
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+
+  &.btn-icon,
+  &.btn-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+  }
+
+
+  &.btn-circle {
+    height: var(--spacing-lg);
+    width: var(--spacing-lg);
+    border-radius: var(--rounded-full);
+    padding: 0;
+  }
+
+  &:active {
+    transform: scale(0.925) perspective(1px);
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,121 @@
+form.invalid .textfield {
+  &:has(.input:invalid:not(:focus):not(:hover)) {
+    box-shadow: 0px 0px 0px 1px var(--danger);
+    
+    & > .required {
+      top: 100%;
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+.textfield {
+  position: relative;
+  transition: all ease 0.2s;
+  border-radius: var(--rounded-box);
+  display: flex;
+  background-color: inherit;
+  box-shadow: 0px 0px 0px 1px var(--text-disabled);
+  
+  &:hover {
+    box-shadow: 0px 0px 0px 1px var(--text-content);
+
+    & > svg {
+      opacity: 1;
+    }
+  }
+
+  &:focus-within {
+    box-shadow: 0px 0px 0px 1px var(--primary);
+
+    & > svg {
+      opacity: 0; 
+      left: 0;
+    }
+  }
+
+  &.textfield-password{
+    align-items: center;
+    justify-content: center;
+    padding-right: calc(var(--spacing-xs) / 2);
+  }
+  
+    & > .required {
+    position: absolute;
+    pointer-events: none;
+    top: 50%;
+    opacity: 0;
+    font-size: 0.75rem;
+    left: var(--spacing-xs);
+    color: var(--danger);
+    transform: scale(0.5);
+    transform-origin: left;
+    transition: all ease 0.2s;
+
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  &:has(>svg) {
+    align-items: center;
+    justify-content: center;
+    padding-left: calc(var(--spacing-sm));
+
+    &:focus-within {
+      padding-left: 0;
+    }
+
+    & > label {
+      left: var(--spacing-md);
+    }
+  }
+
+  & > svg {
+    position: absolute;
+    left: var(--spacing-xs);
+    opacity: 0.5;
+    transition: all ease 0.2s;
+  }
+
+  & > .input {
+    flex: 1;
+    width: auto;
+
+    &:hover,
+    &:focus {
+      background-color: transparent;
+    }
+  }
+
+  & > .input::placeholder {
+    color: transparent;
+  }
+
+  & > label {
+    content: '';
+    text-transform: capitalize;
+    border-radius: var(--spacing-xs) var(--spacing-xs) 0px 0px;
+    padding-inline: calc(var(--spacing-xs) / 2);
+    position: absolute;
+    color: var(--text-disabled);
+    pointer-events: none;
+    user-select: none;
+    transition: all ease-in-out 0.2s;
+    background-color: inherit;
+
+    top: calc(var(--spacing-md) / 3);
+    left: var(--spacing-sm);
+  }
+
+  &:focus-within > label,
+  &:has(.input:not(:placeholder-shown)) > label {
+    top: calc(var(--spacing-sm) * 0.875 - var(--spacing-md));
+    pointer-events: all;
+    font-size: 0.8rem;
+    left: var(--spacing-xs);
+    color: var(--text-content)80;
+  }
+}
+
