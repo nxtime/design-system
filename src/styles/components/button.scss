@@ -18,13 +18,13 @@ button[type="submit"] {
 
   &:focus {
     opacity: 0.75;
-    pointer-events: none;
+    // pointer-events: none;
   }
 
   &:focus::before {
     content: "";
     position: absolute;
-    pointer-events: none;
+    // pointer-events: none;
     z-index: 1;
     top: 0;
     left: 0;
@@ -33,7 +33,7 @@ button[type="submit"] {
     height: 100%;
     border-radius: var(--rounded-box);
   }
-    
+
   &:focus::after {
     content: "";
     position: absolute;
@@ -44,12 +44,16 @@ button[type="submit"] {
     border-radius: var(--rounded-full);
     border-top: 2px solid var(--text-content);
     border-right: 2px solid var(--text-content);
+    -webkit-animation: rotating 0.5s linear infinite;
     animation: rotating 0.5s linear infinite;
   }
- }
+}
 
 .btn {
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   font-weight: 500;
 
@@ -60,7 +64,6 @@ button[type="submit"] {
     justify-content: center;
     gap: var(--spacing-xs);
   }
-
 
   &.btn-circle {
     height: var(--spacing-lg);
@@ -74,10 +77,21 @@ button[type="submit"] {
   }
 }
 
+@-webkit-keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes rotating {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

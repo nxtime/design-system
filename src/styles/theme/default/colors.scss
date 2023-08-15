@@ -4,22 +4,25 @@ $colors: (
 
   secondary: #B63594,
   secondary-hover: #AE1E88,
-  
+
   neutral: #191D24,
   neutral-hover: #14171D,
-  
+
   base-200: #2A303C,
   base-200-hover: #242933,
-  
+
   base-300: #242933,
   base-300-hover: #191D24,
-  
+
   info: #4477CE,
   info-hover: #365fa5,
-  
+
   danger: #F24C3D,
   danger-info: #F57064,
-  
+
+  success: #68B984,
+  success-info: #49825c,
+
   warning: #F2BE22,
   warning-hover: #FD8D14,
 
@@ -28,7 +31,9 @@ $colors: (
 );
 
 :root {
-  @each $color, $value in $colors {
+
+  @each $color,
+  $value in $colors {
     --#{$color}: #{$value};
   }
 }

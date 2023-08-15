@@ -1,6 +1,6 @@
 $sizes: 0.5, 1, 1.5, 2, 2.5, 3, 3.5;
-$sizesLabels: 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
-$sizesTypes: 'spacing';
+$sizesLabels: "xs", "sm", "md", "lg", "xl", "2xl", "3xl";
+$sizesTypes: "spacing";
 
 $variablesMap: ();
 @each $label in $sizesLabels {
@@ -8,10 +8,15 @@ $variablesMap: ();
   $size: nth($sizes, $index);
 
   @each $type in $sizesTypes {
-    $variableName: '#{$type}-#{$label}';
+    $variableName: "#{$type}-#{$label}";
     $value: $size + rem;
 
-    $variablesMap: map-merge($variablesMap, ($variableName: $value));
+    $variablesMap: map-merge(
+      $variablesMap,
+      (
+        $variableName: $value,
+      )
+    );
   }
 }
 
@@ -21,7 +26,7 @@ $variablesMap: ();
     $size: nth($sizes, $index);
 
     @each $type in $sizesTypes {
-      $variableName: '#{$type}-#{$label}';
+      $variableName: "#{$type}-#{$label}";
       $value: $size + rem;
 
       --#{$variableName}: #{$value};
@@ -33,17 +38,25 @@ $variablesMap: ();
   height: 100vh;
 }
 
+.gap-xs {
+  gap: var(--spacing-xs) !important;
+}
+
 .w-screen {
   width: 100vw;
 }
 
 .w-full {
-    width: 100%;
+  width: 100%;
 }
 
 .flex {
-    display: flex;
-  }
+  display: flex;
+}
+
+.rounded-full {
+  border-radius: var(--rounded-full);
+}
 
 :root {
   @each $variable, $value in $variablesMap {

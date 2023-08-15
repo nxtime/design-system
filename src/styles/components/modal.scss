@@ -1,0 +1,86 @@
+#modal-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100vw;
+  height: 100vh;
+
+  &.closed {
+    .modal-overlay {
+      animation: fade-out linear 0.2s;
+    }
+
+    .modal-body {
+      animation: slide-out linear 0.2s;
+    }
+  }
+
+  &:not(:has(.modal)) {
+    display: none;
+  }
+
+  .modal {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+
+    &-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000000aa;
+      animation: fade-in linear 0.2s;
+    }
+
+    &-body {
+      position: relative;
+      animation: slide-in linear 0.2s;
+      gap: var(--spacing-xs);
+    }
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-80vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-80vh);
+    opacity: 0;
+  }
+}

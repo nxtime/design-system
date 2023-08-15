@@ -1,0 +1,59 @@
+$child-colors: lighten(blue, 10%), lighten(blue, 20%), lighten(blue, 30%),
+  lighten(red, 10%), lighten(red, 20%), lighten(red, 30%);
+
+.chart.line {
+  $child-count: length($child-colors);
+
+  &:hover {
+    cursor: crosshair;
+  }
+
+  text {
+    fill: var(--text-content);
+  }
+
+  line {
+    pointer-events: none;
+    transition: all ease 0.2s;
+  }
+
+  @for $i from 1 through $child-count {
+    g:nth-child(#{$i}n + 1) {
+      linearGradient {
+        stop:nth-child(1) {
+          stop-color: transparentize(nth($child-colors, $i), 0.4);
+        }
+
+        stop:nth-child(2) {
+          stop-color: transparent;
+        }
+      }
+      path.filled {
+        // fill: linear-gradient(to bottom, transparentize(nth($child-colors, $i), 0.8), transparentize(nth($child-colors, $i), 1));
+        fill: url("#lgrad-#{$i}");
+        transition: all ease 0.2s;
+
+        &:hover {
+          fill: transparentize(lighten(nth($child-colors, $i), 10%), 0.6);
+          z-index: 1;
+        }
+      }
+    }
+    g:nth-child(#{$i}n + 1) path {
+      stroke: nth($child-colors, $i);
+
+      &:hover {
+        stroke: lighten(nth($child-colors, $i), 10%);
+      }
+    }
+  }
+}
+
+.dashed-line {
+  position: absolute;
+  width: 1px;
+  top: -50vh;
+  padding: 0;
+  background-color: white;
+  height: 100vh;
+}

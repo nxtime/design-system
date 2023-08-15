@@ -1,0 +1,11 @@
+@import "bar.scss";
+@import "line.scss";
+
+.chart {
+  &-tooltip {
+    position: absolute;
+    pointer-events: none;
+    padding: calc(var(--spacing-sm) / 2) !important;
+    opacity: 0;
+  }
+}

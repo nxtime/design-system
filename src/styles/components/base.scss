@@ -1,14 +1,22 @@
 @import "../theme/default/colors.scss";
 @import "../theme/default/spacing.scss";
 
-$colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
-  info;
+$colorNames: primary, secondary, neutral, base-200, base-300, danger, warning, success,
+  info, text-disabled;
 
 @each $color in $colorNames {
   $colorState: "#{$color}-hover";
 
   .bg-#{$color} {
     background-color: map-get($colors, $color);
+  }
+
+  .fill-#{$color} {
+    fill: map-get($colors, $color)!important;
+
+    &:hover {
+      fill: lighten(map-get($colors, $color), 10)!important;
+    }
   }
 
   .ring {

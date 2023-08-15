@@ -6,7 +6,10 @@ interface IShowPasswordProps extends ITextfieldProps {
   defaultShow?: boolean;
 }
 
-const ShowPassword = ({ defaultShow = false, ...textfieldProps }: IShowPasswordProps) => {
+const ShowPassword = ({
+  defaultShow = false,
+  ...textfieldProps
+}: IShowPasswordProps) => {
   const [showPassword, changeShowPassword] = useState(defaultShow);
   return (
     <>
@@ -16,17 +19,17 @@ const ShowPassword = ({ defaultShow = false, ...textfieldProps }: IShowPasswordP
         type={showPassword ? "text" : "password"}
         autoComplete="new-password"
       >
-        <button 
-          type="button" 
+        <button
+          type="button"
           title="Show or hide the password"
-          className="btn btn-circle" 
-          onClick={() => changeShowPassword(s => !s)}
+          className="btn btn-circle btn-sm btn-ring-info"
+          onClick={() => changeShowPassword((s) => !s)}
         >
           <Icon icon={showPassword ? "ph:eye-slash" : "ph:eye-light"} />
         </button>
       </Textfield>
     </>
-  )
-}
+  );
+};
 
 export default ShowPassword;

@@ -1,0 +1,28 @@
+$child-colors: lighten(blue, 10%), lighten(blue, 20%), lighten(blue, 30%),
+  lighten(red, 10%), lighten(red, 20%), lighten(red, 30%);
+
+.chart.bar {
+  $child-count: length($child-colors);
+
+  text {
+    fill: var(--text-content);
+  }
+  g {
+    position: relative;
+    rect {
+      stroke: var(--text-content);
+      stroke-width: 2px;
+      transition: all ease 0.2s;
+    }
+  }
+
+  @for $i from 1 through $child-count {
+    g:nth-child(#{$i}n + 1) > rect {
+      fill: transparentize(nth($child-colors, $i), 0.3);
+
+      &:hover {
+        fill: lighten(nth($child-colors, $i), 10%);
+      }
+    }
+  }
+}
