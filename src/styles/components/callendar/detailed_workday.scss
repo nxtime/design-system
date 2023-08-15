@@ -1,0 +1,110 @@
+@import "../../theme/default/colors.scss";
+
+.detailed-workday {
+  flex: 1;
+  &--header {
+    justify-content: space-between;
+  }
+
+  &--container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    flex: 1;
+
+    .detailed-workday--item {
+      display: flex;
+      width: 100%;
+      padding-inline: var(--spacing-sm);
+
+      & .weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        justify-content: center;
+        flex: 1 0;
+        gap: var(--spacing-xs);
+
+        & > span {
+          text-align: center;
+        }
+      }
+
+      & > span {
+        width: 10rem;
+        text-align: center;
+        place-self: center;
+      }
+    }
+
+    .detailed-workday--period {
+      display: grid;
+      justify-content: center;
+      grid-template-columns: repeat(7, 1fr);
+      min-height: 10rem;
+      flex: 1 0;
+      gap: var(--spacing-xs);
+
+      & > .day {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        padding: calc(var(--spacing-xs));
+        background-color: var(--neutral);
+        border-radius: var(--rounded-box);
+        transition: all ease 0.2s;
+
+        &:hover {
+          background-color: lighten(map-get($colors, neutral), 5%);
+        }
+
+        & > span:first-child {
+          text-transform: capitalize;
+          font-size: 1.125rem;
+        }
+
+        & > .service {
+          background-color: var(--info);
+          width: 100%;
+          border-radius: calc(var(--spacing-xs) / 2);
+          padding-block: calc(var(--spacing-xs) / 2);
+          padding-inline: 0.25rem;
+        }
+
+        & > .description {
+          background-color: var(--danger);
+          border-radius: 0.125rem;
+          padding-inline: 0.25rem;
+        }
+
+        & > .service-time {
+          font-size: 0.7rem;
+          color: var(--text-disabled);
+        }
+
+        & > .breaks {
+          display: flex;
+          flex-direction: column;
+          gap: 0.125rem;
+
+          & .break-item {
+            display: flex;
+            justify-content: space-between;
+
+            &--label {
+              background-color: var(--warning);
+              border-radius: 0.125rem;
+              padding-inline: 0.25rem;
+              font-size: 0.875rem;
+            }
+
+            &--content {
+              display: flex;
+              font-size: 0.7rem;
+              color: var(--text-disabled);
+            }
+          }
+        }
+      }
+    }
+  }
+}

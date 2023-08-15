@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { ReactNode, useRef, useState } from "react";
+import { CSSProperties, ReactNode, useRef, useState } from "react";
 import { handleSelectKeyDown } from "./events";
 
 type TColorVariants =
@@ -22,6 +22,7 @@ interface ISelectProps<T> {
   currentSelected?: T;
   required?: boolean;
   name?: string;
+  showQty?: number;
   /**
    * Object key, for selecting what will show
    * after formSubmit
@@ -42,6 +43,7 @@ const Select = <T,>({
   currentSelected,
   selector,
   required = true,
+  showQty = 4,
   name = "",
   variant = "neutral",
   keyExtractor = (value) => value as string | number,
@@ -104,6 +106,7 @@ const Select = <T,>({
           className={`select-items${
             items.length > 4 ? " custom-scroll " : " "
           }bg-${variant} shadow-md`}
+          style={{ "--select-items": showQty } as CSSProperties}
         >
           {items.map((item, index) => {
             return (

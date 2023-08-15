@@ -39,7 +39,7 @@ const data = [
   },
 ];
 
-const timeData = [
+const timedata = [
   {
     period: [
       {
@@ -47,7 +47,7 @@ const timeData = [
         finish: moment(),
       },
     ],
-    Pausas: [
+    pausas: [
       {
         start: moment().subtract(1, "hour"),
         finish: moment(),
@@ -57,7 +57,7 @@ const timeData = [
         finish: moment().subtract(1.5, "hours"),
       },
     ],
-    Aderência: [
+    aderência: [
       {
         start: moment().subtract(8, "hours"),
         finish: moment().subtract(3, "hours"),
@@ -71,7 +71,7 @@ const timeData = [
         finish: moment(),
       },
     ],
-    Pausas: [
+    pausas: [
       {
         start: moment().subtract(1, "hour"),
         finish: moment(),
@@ -81,7 +81,7 @@ const timeData = [
         finish: moment().subtract(2.5, "hours"),
       },
     ],
-    Aderência: [
+    aderência: [
       {
         start: moment().subtract(6, "hours"),
         finish: moment().subtract(4, "hours"),
@@ -125,7 +125,8 @@ const UserChart = () => {
             <Time
               tooltipRef={tooltipRef}
               lineRef={lineRef}
-              data={timeData}
+              data={timedata}
+              translation={(v) => v}
               labels={["Ricardo", "José"]}
               theme={{
                 Pausas: "fill-danger",

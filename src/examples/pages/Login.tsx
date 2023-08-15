@@ -5,8 +5,7 @@ import Select from "../../components/molecule/select";
 import ShowPassword from "../../components/molecule/textfield/ShowPassword";
 import Textfield from "../../components/atom/textfield";
 import UserModal from "../components/modal/UserModal";
-import Chart from "../../components/atom/chart";
-import UserChart from "../components/chart/UserChart";
+// import UserChart from "../components/chart/UserChart";
 
 const items = [
   {
@@ -69,7 +68,7 @@ const Login = () => {
               id="test"
               name="test"
               defaultValue="Supreme"
-              className="input input-neutral"
+              className="input input-neutral input-ring-info"
             />
           </div>
           <Textfield icon="bxs:user" id="name" />
@@ -86,6 +85,7 @@ const Login = () => {
               items={items}
               name="user"
               selector="name"
+              showQty={items.length}
               keyExtractor={({ img, age, name }) => (
                 <div className="container row gap-xs">
                   <img
@@ -107,7 +107,7 @@ const Login = () => {
             <span>Sign in</span>
           </button>
         </form>
-        <UserChart />
+        {/* <UserChart /> */}
       </div>
       <div className="container row">
         <button

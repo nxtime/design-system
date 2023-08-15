@@ -1,3 +1,7 @@
+:root {
+  --select-items: 4;
+}
+
 .select {
   position: relative;
   display: flex;
@@ -19,6 +23,8 @@
     position: relative;
     align-items: center;
     justify-content: space-between;
+    gap: var(--spacing-xs);
+    min-width: 6rem;
 
     &:active {
       transform: scale(1);
@@ -43,7 +49,7 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
-    max-height: calc(var(--spacing-xl) * 4);
+    max-height: calc(var(--spacing-xl) * var(--select-items));
     overflow-y: auto;
     background-color: var(--neutral);
     border-radius: 0px 0px var(--rounded-box) var(--rounded-box);

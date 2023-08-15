@@ -12,6 +12,10 @@
     min-width: 20vw;
   }
 
+  &.spacing {
+    padding: var(--spacing-md);
+  }
+
   &.gap-sm {
     gap: var(--spacing-sm);
   }

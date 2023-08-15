@@ -38,6 +38,12 @@ ul {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 ::-moz-selection,
 ::selection {
   color: var(--text-content);

@@ -14,6 +14,7 @@ interface ITimeProps<T> {
   labels?: string[];
   tooltipRef: RefObject<HTMLDivElement>;
   theme?: Partial<Record<keyof T, TColors>>;
+  translation: (_keyName: keyof T) => string;
   maxItemValue?: number;
   lineRef?: RefObject<SVGLineElement>;
   iteration?: number;
@@ -24,12 +25,14 @@ type TKeyNames = {
   finish: Moment;
 }[];
 
+// TODO: identify which interval is less than the next one, so it shows as a proper layer;
 const TimeChart = <T extends Record<"period" | string, TKeyNames>>({
   data,
   width,
   height,
   labels,
   tooltipRef,
+  translation,
   theme,
   iteration = 0,
 }: ITimeProps<T>) => {
@@ -113,10 +116,15 @@ const TimeChart = <T extends Record<"period" | string, TKeyNames>>({
 
             const name = Object.keys(items)[index];
 
-            const label =
+            let label =
               duration / 3600 / 1000 < 1
                 ? moment.utc(duration).format("mm[m]")
                 : moment.utc(duration).format("HH[h]mm");
+
+            label =
+              label.substring(label.length - 2, label.length) === "00"
+                ? label.substring(0, label.length - 2)
+                : label;
 
             const labelWidth = (label.length + 0.5) * 4;
 
@@ -140,7 +148,7 @@ const TimeChart = <T extends Record<"period" | string, TKeyNames>>({
 
                   if (tooltipRef.current) {
                     tooltipRef.current.innerHTML = `
-                  <span>${name}</span>
+                  <span>${translation(name)}</span>
                   <span>${hoverDatetime.format(format)}</span>
                   <span>
                     Início: ${moment(item.start).format("HH[h]mm")}
@@ -183,6 +191,7 @@ const TimeChart = <T extends Record<"period" | string, TKeyNames>>({
         width={width + spacing}
         height={height}
         labels={labels}
+        translation={translation}
         tooltipRef={tooltipRef}
         iteration={iteration + 1}
         theme={theme}
