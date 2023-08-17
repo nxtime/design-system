@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Login from "./examples/pages/Login";
 import ChartsPresentation from "./examples/pages/ChartsPresentation";
+import TablePresentation from "./examples/pages/TablePresentation";
 
 function App() {
   useEffect(() => {
@@ -12,7 +13,9 @@ function App() {
   return (
     <>
       {/* <Login />*/}
-      <ChartsPresentation />
+      {/*<ChartsPresentation /> */}
+
+      <TablePresentation />
     </>
   );
 }

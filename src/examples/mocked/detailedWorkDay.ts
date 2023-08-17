@@ -66,6 +66,51 @@ const detailedData = [
       },
     ],
   },
+  {
+    agent: {
+      firstName: "Rinaldo",
+      lastName: "Guilherme",
+      baseUserId: "rinaldo.guilherme",
+    },
+    period: [
+      {
+        date: "2023-08-10T03:00:00.002Z",
+        start: "2023-08-10T06:24:32.532Z",
+        finish: "2023-08-10T14:58:32.532Z",
+        description: "Saída mais cedo",
+        breaks: [
+          {
+            start: "2023-09-08T09:24:32.532Z",
+            finish: "2023-09-08T09:54:32.532Z",
+            type: 206,
+          },
+          {
+            start: "2023-09-08T11:15:02.532Z",
+            finish: "2023-09-08T11:29:32.532Z",
+            type: 205,
+          },
+        ],
+      },
+      {
+        date: "2023-08-14T03:00:00.002Z",
+        start: "2023-08-14T06:24:32.532Z",
+        finish: "2023-08-14T14:58:32.532Z",
+        description: "Saída mais cedo",
+        breaks: [
+          {
+            start: "2023-09-08T09:24:32.532Z",
+            finish: "2023-09-08T09:54:32.532Z",
+            type: 206,
+          },
+          {
+            start: "2023-09-08T11:15:02.532Z",
+            finish: "2023-09-08T11:29:32.532Z",
+            type: 205,
+          },
+        ],
+      },
+    ],
+  },
 ] as const;
 
 export { detailedData };

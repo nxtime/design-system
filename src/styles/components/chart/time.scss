@@ -1,4 +1,18 @@
 .chart.time {
+  text {
+    fill: var(--text-content);
+  }
 
-  
+  g.interval {
+
+    line {
+      stroke-width: 0.25px;
+      stroke: #ffffff80;
+    }
+
+    &:nth-child(4n) > line {
+    stroke: #ffffffaa!important;
+      stroke-width: 0.5px!important;
+    }
+  }
 }

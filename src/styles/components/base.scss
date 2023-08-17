@@ -11,12 +11,20 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning, s
     background-color: map-get($colors, $color);
   }
 
+  .bg-transparent {
+    background-color: transparent;
+  }
+
   .fill-#{$color} {
     fill: map-get($colors, $color)!important;
 
     &:hover {
       fill: lighten(map-get($colors, $color), 10)!important;
     }
+  }
+
+  .fill-transparent {
+    fill: transparent!important;
   }
 
   .ring {

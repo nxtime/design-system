@@ -1,0 +1,26 @@
+.table {
+  background-color: var(--neutral);
+  border: none;
+  border-radius: var(--rounded-box);
+
+  & > thead,
+  & > tbody {
+    & > tr {
+      height: var(--spacing-xl);
+    }
+  }
+
+  & > tbody {
+    & > tr {
+      & > th {
+        border: none;
+      }
+    }
+    & > tr:nth-child(2n) {
+      background-color: var(--neutral);
+    }
+    & > tr:nth-child(1n) {
+      background-color: var(--base-300);
+    }
+  }
+}
