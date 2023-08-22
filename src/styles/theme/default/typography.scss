@@ -1,0 +1,15 @@
+$fontSizes: (
+  xs: "0.5rem",
+  sm: "0.75rem",
+  md: "0.825rem",
+  lg: "0.95rem",
+  xl: "1rem",
+  2xl: "1.125rem",
+  4xl: "1.25rem",
+);
+
+:root {
+  @each $font, $value in $fontSizes {
+    --text-#{$font}: #{$value};
+  }
+}

@@ -69,8 +69,14 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning, s
       }
     }
 
-    &-sm {
+    &.btn-sm,
+    &.input-sm {
       height: var(--spacing-lg);
+    }
+
+    &.btn-xs,
+    &.input-xs{
+      height: var(--spacing-sm);
     }
 
     &-ring {

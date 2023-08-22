@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  height: calc(100vh - var(--spacing-3xl));
+  padding: var(--spacing-xs);
+  overflow: auto;
+
+  &.custom-scroll {
+    position: relative;
+  }
+}

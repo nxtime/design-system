@@ -8,6 +8,10 @@
   flex-direction: column;
   border-radius: var(--rounded-box);
 
+  &:has(.not-selected) {
+    min-width: 26ch!important;
+  }
+
   & > .custom-scroll {
     &::-webkit-scrollbar-thumb {
       // background-color: var(--bg-base-200);
@@ -33,7 +37,7 @@
     &.active {
       border-radius: var(--rounded-box) var(--rounded-box) 0px 0px;
       background-color: var(--neutral);
-      z-index: 2;
+      z-index: 3;
     }
 
     &:focus:not(.active) {
@@ -42,16 +46,28 @@
     }
   }
 
+  &.bottom {
+    & > .btn-select.active {
+      border-radius: 0px 0px var(--rounded-box) var(--rounded-box);
+    }
+
+    & > .select-items {
+      top: auto;
+      bottom: 100%;
+      border-radius: var(--rounded-box) var(--rounded-box) 0px 0px;
+    }
+  }
+
   &-items {
     position: absolute;
     top: 100%;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     max-height: calc(var(--spacing-xl) * var(--select-items));
     overflow-y: auto;
-    background-color: var(--neutral);
+    // background-color: inherit;
     border-radius: 0px 0px var(--rounded-box) var(--rounded-box);
 
     &:not(.custom-scroll) {

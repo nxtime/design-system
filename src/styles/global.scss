@@ -8,8 +8,13 @@
   --spacing-box: var(--spacing-sm);
 }
 
+
+html{
+    overflow-y: overlay;
+}
+
 body {
-  background-color: map-get($colors, base-200);
+  background-color: var(--base-200);
   font-family:
     system-ui,
     -apple-system,
@@ -22,7 +27,12 @@ body {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
+  max-height: 100vh;
   overflow: hidden;
+}
+
+a {
+  text-decoration: none;
 }
 
 ul {
@@ -40,8 +50,13 @@ ul {
 
 #root {
   min-height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+#root.custom-scroll {
+  position: relative;
 }
 
 ::-moz-selection,
@@ -77,4 +92,12 @@ ul {
       background: var(--secondary);
     }
   }
+}
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
 }

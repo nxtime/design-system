@@ -1,0 +1,10 @@
+.header {
+  position: relative;
+  // height: var(--spacing-3xl);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  background-color: var(--neutral);
+  padding-inline: var(--spacing-sm);
+  justify-content: space-between;
+}

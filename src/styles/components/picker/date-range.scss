@@ -1,0 +1,121 @@
+.date-range-picker {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  & input {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+    }
+  }
+
+  & .dropdown {
+    position: absolute;
+    top: calc(100% + var(--spacing-sm));
+    width: calc(var(--spacing-lg) * 8);
+    z-index: 5;
+
+    & .container {
+      gap: var(--spacing-xs);
+      padding: var(--spacing-sm);
+    }
+
+    & .date-header {
+      &--actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    & .date-weekdays {
+      display: flex;
+
+      & > li {
+        display: flex;
+        justify-content: center;
+        flex: 1;
+      }
+
+      & span {
+        color: var(--text-disabled);
+      }
+    }
+
+    & .days-container {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+
+      &:has(.between) {
+        & > li {
+          & button.selected.start {
+            border-radius: var(--spacing-xs) 0px 0px var(--spacing-xs);
+          }
+          & button.selected.end {
+            border-radius: 0px var(--spacing-xs) var(--spacing-xs) 0px;
+          }
+        }
+      }
+
+      & > li {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+
+        & > button {
+          flex: 1;
+          border: none;
+          background-color: inherit;
+          height: var(--spacing-lg);
+          border-radius: var(--spacing-xs);
+          cursor: pointer;
+
+          &.selected {
+            background-color: var(--primary);
+
+            &:hover {
+              background-color: var(--secondary);
+            }
+          }
+
+          &.not-current,
+          &:disabled {
+            color: var(--text-disabled);
+          }
+
+          &.between {
+            background-color: var(--neutral);
+            border-radius: 0px;
+
+            &:hover {
+              background-color: var(--primary-hover);
+            }
+          }
+
+          &:not(:disabled):hover {
+            background-color: var(--neutral);
+          }
+        }
+      }
+    }
+  }
+}

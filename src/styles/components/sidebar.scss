@@ -1,0 +1,213 @@
+.sidebar {
+  position: relative;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  background-color: var(--neutral);
+  transition: all ease 0.2s;
+  max-height: calc(100vh - var(--spacing-3xl));
+
+  &-tooltip {
+    position: absolute;
+    opacity: 0;
+    top: 0px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    height: var(--spacing-2xl);
+    left: calc(100% + var(--spacing-xs));
+    justify-content: center;
+    background-color: var(--primary);
+    padding: var(--spacing-xs);
+    width: calc(var(--spacing-lg) * 4);
+    border-radius: var(--rounded-box);
+    transition: all ease 0.2s;
+    pointer-events: none;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: var(--spacing-xs);
+      height: var(--spacing-xs);
+      left: -4px;
+      transform: rotateZ(45deg);
+      border-color: var(--primary);
+      position: absolute;
+      border-style: solid;
+      border-width: 4px;
+      width: 0;
+      height: 0;
+      display: block;
+    }
+  }
+
+  &.closed {
+    width: 64px;
+
+    .sidebar-item--submenu-handler {
+      svg {
+        width: calc(var(--spacing-lg) / 1.75);
+      }
+    }
+  }
+
+  & > .btn {
+    height: var(--spacing-2xl);
+    width: var(--spacing-2xl);
+  }
+
+  &-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    & .sidebar-item--icon {
+      height: 100%;
+      width: 100%;
+      // display: flex;
+    }
+
+    & > .sidebar-item,
+    & .sidebar-submenu-item {
+      display: flex;
+      position: relative;
+      height: var(--spacing-2xl);
+      padding-inline: var(--spacing-sm);
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      border-radius: var(--rounded-box);
+      box-shadow: 0px 0px 0px 2px #00000000;
+      transition: box-shadow ease 0.2s;
+
+      &:focus-within {
+        box-shadow: 0px 0px 0px 2px var(--info);
+      }
+
+      & a {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: var(--spacing-xs);
+        text-decoration: none;
+        height: 100%;
+        width: 100%;
+        outline: none;
+
+        & > span {
+          animation: slideIn 0.2s linear;
+          // transition: all ease 0.2s;
+        }
+
+        &.group {
+          pointer-events: none;
+        }
+      }
+
+      & span {
+        transition: all ease 0.2s;
+      }
+
+      &:hover {
+        span {
+          color: var(--text-content);
+        }
+      }
+    }
+
+    & .sidebar-item {
+      &--submenu-handler {
+        display: flex;
+        align-items: center;
+      }
+
+      &--indicator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--text-sm);
+        border-radius: var(--rounded-full);
+        height: var(--spacing-sm);
+        width: var(--spacing-sm);
+        background-color: var(--base-200);
+      }
+    }
+
+    & .sidebar-submenu-item {
+      justify-content: start;
+      gap: var(--spacing-xs);
+    }
+
+    & .sidebar-submenu {
+      display: flex;
+      flex-direction: column;
+      // padding-left: var(--spacing-lg);
+      background-color: var(--base-300);
+      border-radius: var(--rounded-box);
+    }
+
+    & > .sidebar-selector {
+      position: absolute;
+      top: 0%;
+      width: 100%;
+      background-color: var(--neutral-hover);
+      height: var(--spacing-2xl);
+      padding-inline: var(--spacing-sm);
+      border-radius: var(--rounded-box);
+      transition: all ease-in-out 0.2s;
+
+      &.active {
+        background-color: var(--primary);
+      }
+    }
+  }
+
+  &-exit-action,
+  &-settings-action {
+    display: flex;
+    align-items: center;
+    padding-inline: var(--spacing-sm);
+    gap: var(--spacing-xs);
+    font-size: var(--text-lg);
+    border-radius: var(--rounded-box);
+    background-color: var(--danger);
+    height: var(--spacing-2xl);
+    border: none;
+    cursor: pointer;
+    outline: none;
+
+    & svg {
+      transition: all ease 0.2s;
+    }
+
+    &:hover {
+      background-color: var(--danger-hover);
+    }
+  }
+
+  &-settings-action {
+    background-color: var(--neutral);
+    margin-top: auto;
+
+    & > span {
+      animation: slideIn 0.2s linear;
+    }
+
+    &:hover {
+      background-color: var(--neutral-hover);
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    width: 0%;
+    opacity: 0;
+  }
+  to {
+    width: fit-content;
+    opacity: 1;
+  }
+}

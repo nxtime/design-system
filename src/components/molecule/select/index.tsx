@@ -22,7 +22,10 @@ interface ISelectProps<T> {
   currentSelected?: T;
   required?: boolean;
   name?: string;
+  position?: "top" | "bottom";
+  onChange?: (_index: number, _value?: T) => void;
   showQty?: number;
+  style?: CSSProperties;
   /**
    * Object key, for selecting what will show
    * after formSubmit
@@ -36,17 +39,31 @@ interface ISelectProps<T> {
    * A function to extract and format item visualization
    */
   keyExtractor?: (_item: T) => string | number | ReactNode;
+  labelExtractor?: (_item: T) => string | number | ReactNode;
 }
 
-const Select = <T,>({
+const defaultKeyExtractor = <T extends Record<string, string | number>>(
+  value: T,
+) => {
+  if (typeof value === "object") {
+    return Object.values(value)[0];
+  }
+  return value;
+};
+
+const Select = <T extends Record<string, string | number>>({
   items,
   currentSelected,
   selector,
+  onChange,
+  labelExtractor,
   required = true,
   showQty = 4,
+  style = {},
   name = "",
+  position = "top",
   variant = "neutral",
-  keyExtractor = (value) => value as string | number,
+  keyExtractor = defaultKeyExtractor<T>,
 }: ISelectProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [internalSelected, changeInternalSelected] = useState(
@@ -63,7 +80,11 @@ const Select = <T,>({
   const itemsRef = useRef<HTMLButtonElement[]>([]);
 
   return (
-    <div className={`select ${isOpen ? "shadow-md" : ""}`} onBlur={() => {}}>
+    <div
+      className={`select ${isOpen ? "shadow-md" : ""} ${position}`}
+      onBlur={() => {}}
+      style={style}
+    >
       <button
         type="button"
         className={`btn btn-${variant} btn-select ${isOpen ? "active" : ""}`}
@@ -79,10 +100,11 @@ const Select = <T,>({
         }}
       >
         {
-          <span>
+          <span className={internalSelected === -1 ? "not-selected" : ""}>
             {internalSelected === -1
               ? "Select one of the options"
-              : keyExtractor(items[internalSelected])}
+              : labelExtractor?.(items[internalSelected]) ??
+                keyExtractor(items[internalSelected])}
           </span>
         }
         <Icon icon="eva:arrow-down-fill" vFlip={isOpen} />
@@ -118,6 +140,9 @@ const Select = <T,>({
                   tabIndex={0}
                   onClick={() => {
                     changeInternalSelected(index);
+                    if (onChange !== undefined) {
+                      onChange(index, items[index]);
+                    }
                     if (inputRef.current && selector) {
                       inputRef.current.value = String(items[index][selector]);
                     }

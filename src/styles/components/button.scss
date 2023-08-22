@@ -57,6 +57,11 @@ button[type="submit"] {
   user-select: none;
   font-weight: 500;
 
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
   &.btn-icon,
   &.btn-circle {
     display: flex;
@@ -70,6 +75,26 @@ button[type="submit"] {
     width: var(--spacing-lg);
     border-radius: var(--rounded-full);
     padding: 0;
+  }
+
+  &.btn-vertical {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    flex-direction: column;
+    font-size: 0.625rem;
+  }
+
+  &.btn-square {
+    height: var(--spacing-lg);
+    width: var(--spacing-lg);
+    padding: 0;
+
+    &.btn-xs {
+      height: calc(var(--spacing-md) / 1.25);
+      width: calc(var(--spacing-md) / 1.25);
+    }
   }
 
   &:active {

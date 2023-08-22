@@ -37,9 +37,20 @@ $variablesMap: ();
 .h-screen {
   height: 100vh;
 }
+.no-gap {
+  gap: 0!important;
+}
 
 .gap-xs {
   gap: var(--spacing-xs) !important;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .w-screen {
