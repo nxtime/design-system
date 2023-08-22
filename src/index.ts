@@ -1,4 +1,8 @@
+export * from "./styles/global.scss";
 //  ** COMPONENTS **
+export * from "./components/organism/header";
+export * from "./components/organism/main";
+export * from "./components/organism/sidebar";
 // Atoms
 // Charts
 export * from "./components/atom/chart/index";
