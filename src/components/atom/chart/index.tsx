@@ -18,7 +18,7 @@ function debounce(func: any, timeout = 300) {
   return (...args: any[]) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      func.apply(this, args);
+      func.apply(this: any, args);
     }, timeout);
   };
 }
@@ -139,12 +139,15 @@ const Chart = <T extends Record<string, number>>({
 
             lineStyle.opacity = "1";
             if (snap) {
-              const centralize = currentSize.width / (data.length * 4); 
+              const centralize = currentSize.width / (data.length * 4);
               const cursorDistanceToPositions = Array.from({
                 length: data.length,
               }).map((_, index) => {
                 return Math.abs(
-                  x - left - centralize * index - (currentSize.width / data.length) * index,
+                  x -
+                    left -
+                    centralize * index -
+                    (currentSize.width / data.length) * index,
                 );
               });
 
