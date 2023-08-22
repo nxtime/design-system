@@ -37,7 +37,7 @@ const data = Array.from({ length: 4000 }, (_, index) =>
 
 const shuffledData = shuffleArray([...data]);
 
-const possibleValues = ["age", "name", "email"] as const;
+// const possibleValues = ["age", "name", "email"] as const;
 
 const TablePresentation = () => {
   return (

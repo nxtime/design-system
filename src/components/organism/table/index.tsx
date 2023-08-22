@@ -1,10 +1,8 @@
 import { ReactNode, useCallback, useRef, useState } from "react";
 import TableMode, { TKeyModes } from "./mode";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { debounce } from "@/utils/helpers/debounce";
 import TableConfigModal from "../modal/table/filter";
 import useModal from "@/stores/useModal";
-import Select from "@/components/molecule/select";
 import Column from "./column";
 import { sortByKey } from "./functions/sort";
 
@@ -40,19 +38,19 @@ const Table = <
 >({
   headers,
   data,
-  hideColumn = [],
+  // hideColumn = [],
   dataConfig,
   // headersConfig,
   mode = "pagination",
 }: ITableProps<T>) => {
-  const { openModal, closeModal } = useModal();
+  const { closeModal } = useModal();
   const translation = (v: string) => {
     if (Object.hasOwnProperty.call(translations, v)) {
       return translations[v as keyof typeof translations];
     }
     return v;
   };
-  const [currentMode, setCurrentMode] = useState<TKeyModes>(mode);
+  const [currentMode] = useState<TKeyModes>(mode);
   const [order, setOrder] = useState<number>(0);
   const orderedHeader = useRef<keyof (typeof data)[number] | null>(null);
   const tBodyRef = useRef<HTMLTableSectionElement>(null);
@@ -62,7 +60,7 @@ const Table = <
     endPosition: 0,
   });
 
-  const [currentFilter, changeCurrentFilter] = useState("");
+  const [currentFilter] = useState("");
 
   const filteredItems = useCallback(() => {
     return data.filter((row) => {
