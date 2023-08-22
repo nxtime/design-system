@@ -9,19 +9,12 @@ export default defineConfig({
   plugins: [react(), tsConfigPaths(), dts()],
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
-      name: "DesignSustem",
-      formats: ['es', "umd"],
-      fileName: "design-system",
+      entry: resolve("src", "index.ts"),
+      name: "DesignSystem",
+      formats: ["es", "umd"],
+      fileName: (format) => `design-system.${format}.js`,
     },
-    rollupOptions: {
-      external: ["react"],
-      output: {
-        globals: {
-          react: "React",
-        },
-      },
-    },
+    rollupOptions: {},
   },
   resolve: {
     alias: {

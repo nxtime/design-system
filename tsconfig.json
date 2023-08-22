@@ -6,11 +6,17 @@
     "module": "ESNext",
     "skipLibCheck": true,
     /* Access via root path */
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
+      "design-system": ["src/index.ts"]
     },
+    // "baseUrl": "./src",
+    // "paths": {
+    //   "@/*": ["*"]
+    // },
     /* Bundler mode */
+    "esModuleInterop": true,
+    "declarationMap": true,
     "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
