@@ -1,5 +1,4 @@
 import { RefObject } from "react";
-import { debounce } from "../../../utils/helpers/debounce";
 
 const makePath = (
   positions: Record<string, number[]>,
@@ -135,10 +134,10 @@ const LineChart = <T extends Record<string, number>>({
                     `;
                   }
 
-                  const closestPosition =
-                    closestPositionIndex === itemsPositions.length - 2
-                      ? itemsPositions[closestPositionIndex] - 5
-                      : itemsPositions[closestPositionIndex];
+                  // const closestPosition =
+                  //   closestPositionIndex === itemsPositions.length - 2
+                  //     ? itemsPositions[closestPositionIndex] - 5
+                  //     : itemsPositions[closestPositionIndex];
 
                   // lineRef.current.style.transform = `translate(${closestPosition}px, 0px)`;
                 }

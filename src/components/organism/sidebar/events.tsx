@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject } from "react";
+import { KeyboardEvent, MutableRefObject, RefObject } from "react";
 
 type TData = {
   label: string;
@@ -12,7 +12,7 @@ type TData = {
 };
 
 const onKeyDown = (
-  event: KeyboardEvent,
+  event: KeyboardEvent<HTMLElement>,
   currentFocusedMenu: MutableRefObject<number>,
 ) => {
   const sidebarRef = event.currentTarget as HTMLDivElement;

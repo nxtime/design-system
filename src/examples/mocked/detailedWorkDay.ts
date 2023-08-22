@@ -111,6 +111,6 @@ const detailedData = [
       },
     ],
   },
-] as const;
+] ;
 
 export { detailedData };

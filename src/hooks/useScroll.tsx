@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { debounce } from "../utils/helpers/debounce";
 
 const useScroll = (currentRoot?: Element | null) => {
-  const [root, setRoot] = useState<Element | null>(currentRoot);
+  const [root, setRoot] = useState<Element | null>(currentRoot ?? null);
   // root =
   //   root === undefined || root === null
   //     ? document.querySelector("#root")!

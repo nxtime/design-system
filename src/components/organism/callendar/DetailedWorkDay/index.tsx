@@ -67,7 +67,7 @@ const DetailedRow = ({
                 return (
                   <div className="break-item" key={breakIndex}>
                     <span className="break-item--label">
-                      {breakTypes[currentBreak.type]}
+                      {breakTypes[String(currentBreak.type) as "206"]}
                     </span>
                     <span className="break-item--content">
                       {startBreakTime} - {finishBreakTime}

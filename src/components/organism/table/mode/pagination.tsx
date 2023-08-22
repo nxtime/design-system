@@ -10,7 +10,7 @@ interface ITablePagination<T> {
 
 const possibleItemsPerPage = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
-const TablePagination = <T extends Record<string, number | string>>({
+const TablePagination = <T extends Record<string, string | number | Record<string, string | number>>>({
   children,
   data,
   itemsPerPage = 30,

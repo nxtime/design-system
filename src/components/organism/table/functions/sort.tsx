@@ -1,12 +1,8 @@
-const sortByKey = <T,>(
-  data: T[],
-  key: keyof T | null,
-  sortOrder = "asc",
-) => {
+const sortByKey = <T,>(data: T[], key: keyof T | null, sortOrder = "asc") => {
   if (sortOrder === "default" || key === null) return data;
   const orderMultiplier = sortOrder === "asc" ? 1 : -1;
 
-  return data.toSorted((a: T, b: T) => {
+  return data.slice().sort((a: T, b: T) => {
     const aValue = a[key];
     const bValue = b[key];
 

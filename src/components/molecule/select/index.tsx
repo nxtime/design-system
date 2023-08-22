@@ -42,16 +42,18 @@ interface ISelectProps<T> {
   labelExtractor?: (_item: T) => string | number | ReactNode;
 }
 
-const defaultKeyExtractor = <T extends Record<string, string | number>>(
+const defaultKeyExtractor = <
+  T extends number | string | Record<string, string | number>,
+>(
   value: T,
 ) => {
   if (typeof value === "object") {
-    return Object.values(value)[0];
+    return <span>Object.values(value)[0]</span>;
   }
-  return value;
+  return <span>value</span>;
 };
 
-const Select = <T extends Record<string, string | number>>({
+const Select = <T extends string | number | Record<string, string | number>>({
   items,
   currentSelected,
   selector,

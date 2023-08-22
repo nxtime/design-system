@@ -13,12 +13,20 @@ import BarChart from "./Bar";
 import TimeChart from "./Time";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-function debounce(func: any, timeout = 300) {
-  let timer: any;
-  return (...args: any[]) => {
+interface DebounceFunction<T extends (...args: any[]) => void> {
+  (this: ThisParameterType<T>, ...args: Parameters<T>): void;
+}
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+function debounce<T extends (...args: any[]) => void>(
+  func: T,
+  timeout = 300,
+): DebounceFunction<T> {
+  let timer: ReturnType<typeof setTimeout>;
+  return function (this: ThisParameterType<T>, ...args: Parameters<T>): void {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      func.apply(this: any, args);
+      func.apply(this, args);
     }, timeout);
   };
 }

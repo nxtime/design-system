@@ -16,6 +16,7 @@
   "files": [
     "styles",
     "styles/global.scss",
+    "src",
     "src/index.ts"
   ],
   "dependencies": {
