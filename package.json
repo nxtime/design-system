@@ -12,17 +12,14 @@
     "preview": "vite preview"
   },
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "import": "./dist/my-lib.js",
-      "require": "./dist/my-lib.umd.cjs"
-    }
+      "import": "./dist/design-system.js",
+      "require": "./dist/design-system.umd.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
-    "styles",
-    "styles/global.scss",
-    "src",
-    "src/index.ts"
+    "dist"
   ],
   "dependencies": {
     "@iconify/react": "^4.1.1",
