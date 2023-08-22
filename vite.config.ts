@@ -6,7 +6,13 @@ import dts from "vite-plugin-dts";
 import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
-  plugins: [react(), tsConfigPaths(), dts()],
+  plugins: [
+    react(),
+    tsConfigPaths(),
+    dts({
+      insertTypesEntry: true,
+    }),
+  ],
   build: {
     lib: {
       entry: resolve("src", "index.ts"),
@@ -14,7 +20,14 @@ export default defineConfig({
       formats: ["es", "umd"],
       fileName: (format) => `design-system.${format}.js`,
     },
-    rollupOptions: {},
+    rollupOptions: {
+      external: ["react"],
+      output: {
+        globals: {
+          react: "React",
+        },
+      },
+    },
   },
   resolve: {
     alias: {
