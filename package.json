@@ -1,9 +1,10 @@
 {
   "name": "design-system",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.2",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/design-system.umd.cjs",
+  "module": "dist/design-system.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,7 +12,11 @@
     "preview": "vite preview"
   },
   "exports": {
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/my-lib.js",
+      "require": "./dist/my-lib.umd.cjs"
+    }
   },
   "files": [
     "styles",
