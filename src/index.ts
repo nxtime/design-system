@@ -1,9 +1,6 @@
 //  ** COMPONENTS **
 // Atoms
 // Charts
-export * from "./components/atom/chart/Bar";
-export * from "./components/atom/chart/Line";
-export * from "./components/atom/chart/Time";
 export * from "./components/atom/chart/index";
 
 // Textfields
