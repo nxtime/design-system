@@ -31,7 +31,7 @@ input {
   font-size: 0.9125rem;
   transition: all ease 0.2s;
 
-  &-ghost {
+  &-ghost:hover {
     background-color: var(--neutral-hover);
   }
 

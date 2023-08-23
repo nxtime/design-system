@@ -21,10 +21,11 @@ export default defineConfig({
       fileName: (format) => `design-system.${format}.js`,
     },
     rollupOptions: {
-      external: ["react"],
+      external: ["react", "moment"],
       output: {
         globals: {
           react: "React",
+          moment: "moment",
         },
       },
     },
