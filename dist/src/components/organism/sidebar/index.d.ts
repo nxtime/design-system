@@ -11,6 +11,7 @@ interface ISidebarProps {
         }[];
     }[];
     onLogout?: () => void;
+    pathname: string;
     itemLink: (_item: {
         icon: string;
         label: string;
@@ -22,6 +23,6 @@ interface ISidebarProps {
         };
     }) => ReactNode;
 }
-declare const Sidebar: ({ data, itemLink, onLogout }: ISidebarProps) => import("react/jsx-runtime").JSX.Element;
+declare const Sidebar: ({ data, itemLink, onLogout, pathname, }: ISidebarProps) => import("react/jsx-runtime").JSX.Element;
 export default Sidebar;
 //# sourceMappingURL=index.d.ts.map

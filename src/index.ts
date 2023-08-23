@@ -20,7 +20,6 @@ import DetailedWorkDay from "./components/organism/callendar/DetailedWorkDay";
 
 // Layout
 import Header from "./components/organism/header";
-import Main from "./components/organism/main";
 import Sidebar from "./components/organism/sidebar";
 import Modal from "./components/organism/modal";
 
@@ -46,7 +45,6 @@ export {
   Select,
   DetailedWorkDay,
   Header,
-  Main,
   Sidebar,
   Modal,
   Table,

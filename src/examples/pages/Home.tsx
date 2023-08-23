@@ -1,4 +1,3 @@
-import Main from "../../components/organism/main";
 import TablePresentation from "./TablePresentation";
 import DateRangerPicker from "../../components/molecule/picker/date-range";
 import moment from "moment";
@@ -6,7 +5,7 @@ import moment from "moment";
 const HomePage = () => {
   // const { openModal, closeModal } = useModal();
   return (
-    <Main>
+    <div>
       <header className="container row justify-between items-center">
         <h2 className="">Products</h2>
         <DateRangerPicker
@@ -39,7 +38,7 @@ const HomePage = () => {
         </DateRangerPicker>
       </header>
       <TablePresentation />
-    </Main>
+    </div>
   );
 };
 
