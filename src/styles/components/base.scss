@@ -1,87 +1,76 @@
 @import "../theme/default/colors.scss";
 @import "../theme/default/spacing.scss";
 
-$colorNames: primary, secondary, neutral, base-200, base-300, danger, warning, success,
-  info, text-disabled;
+.bg-transparent {
+  background-color: transparent;
+}
 
-@mixin set-color($color, $theme) {
-  $theme-color: map-get($colors, $color);
-  $colorState: "#{$color}-hover";
-  $theme-color-hover: map-get($colors, $colorState);
+.fill-transparent {
+  fill: transparent !important;
+}
 
-  .#{$theme} .bg-#{$color} {
-    --color: $theme-color;
-    background-color: var(--color);
+$colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
+  success, info, text-disabled;
+
+@function get-color($color, $theme) {
+  @if $theme == "dark" {
+    @return map-get($colors-dark, $color);
+  } @else if $theme == "light" {
+    @return map-get($colors-light, $color);
+  } @else {
+    @error "Invalid theme: #{$theme}. Use 'dark' or 'light'.";
   }
+}
 
-  .#{$theme} .bg-transparent {
-    background-color: transparent;
-  }
+@mixin apply-theme($theme) {
+  .#{$theme} {
+    $colorStatePostfix: "-hover";
 
-  .#{$theme} .fill-#{$color} {
-    --color: $theme-color;
-    fill: var(--color) !important;
+    @each $color in $colorNames {
+      .bg-#{$color} {
+        --color: get-color($color, $theme);
+        background-color: var(--color);
+      }
 
-    &:hover {
-      fill: color-mix(in srgb, var(--color), #fff 15%) !important;
-    }
-  }
+      .fill-#{$color} {
+        --color: get-color($color, $theme);
+        fill: var(--color);
+      }
 
-  .#{$theme} .fill-transparent {
-    fill: transparent !important;
-  }
+      .ring {
+        --color: get-color($color, $theme);
+        box-shadow: 0px 0px 0px 2px var(--info) 0;
 
-  .#{$theme} .ring {
-    --color: $theme-color;
-    box-shadow: 0px 0px 0px 2px var(--info) 0;
+        &:focus {
+          box-shadow: 0px 0px 0px 2px var(--info);
+        }
 
-    &:focus {
-      box-shadow: 0px 0px 0px 2px var(--info);
-    }
+        &-#{$color}:focus {
+          box-shadow: 0px 0px 0px 2px var(--color);
+        }
+      }
 
-    &-#{$color}:focus {
-      box-shadow: 0px 0px 0px 2px var(--color);
+      .btn-ring,
+      &.input-ring {
+        box-shadow: 0px 0px 0px 2px var(--info) 0;
+
+        &:focus {
+          box-shadow: 0px 0px 0px 2px var(--info);
+        }
+
+        &-#{$color} {
+          --color: get-color($color, $theme);
+          background-color: var(--color);
+        }
+      }
     }
   }
 }
 
-@each $color in $colorNames {
-  @include set-color($color, dark);
-  @include set-color($color, light);
+.dark {
+  @include apply-theme(dark);
+}
 
-  .btn,
-  .input {
-    height: var(--spacing-xl);
-    background-color: transparent;
-    border-radius: var(--rounded-box);
-    border: none;
-    outline: none;
-    padding-inline: var(--spacing-box);
-    font-size: 0.9125rem;
-    transition: all ease 0.2s;
-
-    @include set-color($color, dark);
-    @include set-color($color, light);
-
-    &.btn-sm,
-    &.input-sm {
-      height: var(--spacing-lg);
-    }
-
-    &.btn-xs,
-    &.input-xs {
-      height: var(--spacing-sm);
-    }
-
-    &-ring {
-      box-shadow: 0px 0px 0px 2px var(--info) 0;
-
-      &:focus {
-        box-shadow: 0px 0px 0px 2px var(--info);
-      }
-
-      @include set-color($color, dark);
-      @include set-color($color, light);
-    }
-  }
+.light {
+  @include apply-theme(light);
 }
