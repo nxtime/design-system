@@ -18,7 +18,7 @@ const TableConfigModal = ({
           </div>
         );
       })}
-      <button className="btn btn-primary btn-ring-info" onClick={closeModal}>
+      <button className="btn btn-primary ring-info" onClick={closeModal}>
         Save
       </button>
     </Modal>

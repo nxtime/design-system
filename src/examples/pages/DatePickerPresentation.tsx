@@ -24,14 +24,14 @@ const DatePickerPresentation = () => {
               <input
                 {...startDateProps}
                 name="startDate"
-                className="input input-base-200 input-ring-info"
+                className="input input-base-200 ring-info"
                 placeholder="Start date (dd/mm/yyyy)"
                 required
               />
               <input
                 {...endDateProps}
                 name="endDate"
-                className="input input-base-200 input-ring-info"
+                className="input input-base-200 ring-info"
                 placeholder="End date (dd/mm/yyyy)"
                 required
               />

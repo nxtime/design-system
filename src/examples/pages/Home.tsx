@@ -23,14 +23,14 @@ const HomePage = () => {
               <input
                 {...startDateProps}
                 name="startDate"
-                className="input input-neutral input-ring-info"
+                className="input input-neutral ring-info"
                 placeholder="Start date (dd/mm/yyyy)"
                 required
               />
               <input
                 {...endDateProps}
                 name="endDate"
-                className="input input-neutral input-ring-info"
+                className="input input-neutral ring-info"
                 placeholder="End date (dd/mm/yyyy)"
                 required
               />

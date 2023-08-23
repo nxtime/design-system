@@ -37,7 +37,7 @@ const TablePagination = <T extends Record<string, string | number | Record<strin
       </div>
       <footer className="table-footer">
         <button
-          className="btn btn-icon btn-square btn-sm btn-ring-info"
+          className="btn btn-icon btn-square btn-sm ring-info"
           title="First Page"
           disabled={page === 1}
           onClick={() => changePage(1)}
@@ -45,7 +45,7 @@ const TablePagination = <T extends Record<string, string | number | Record<strin
           <Icon hFlip={true} icon="ic:round-fast-forward" />
         </button>
         <button
-          className="btn btn-icon btn-square btn-sm btn-ring-info"
+          className="btn btn-icon btn-square btn-sm ring-info"
           title="Previous Page"
           disabled={page === 1}
           onClick={() => changePage((p) => p - 1)}
@@ -87,7 +87,7 @@ const TablePagination = <T extends Record<string, string | number | Record<strin
           }}
         />
         <button
-          className="btn btn-icon btn-square btn-sm btn-ring-info"
+          className="btn btn-icon btn-square btn-sm ring-info"
           title="Next Page"
           disabled={Math.ceil(dataLength() / currentItemsPerPage) === page}
           onClick={() => changePage((p) => p + 1)}
@@ -95,7 +95,7 @@ const TablePagination = <T extends Record<string, string | number | Record<strin
           <Icon icon="ic:round-skip-next" />
         </button>
         <button
-          className="btn btn-icon btn-square btn-sm btn-ring-info"
+          className="btn btn-icon btn-square btn-sm ring-info"
           disabled={Math.ceil(dataLength() / currentItemsPerPage) === page}
           onClick={() =>
             changePage(Math.ceil(dataLength() / currentItemsPerPage))

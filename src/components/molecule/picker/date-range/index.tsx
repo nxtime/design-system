@@ -84,7 +84,7 @@ const DateRangerPicker = ({
       >
         <div className="group rounded-box">
           {children({ startDateProps, endDateProps })}
-          <button className="btn btn-primary btn-ring-info">Search</button>
+          <button className="btn btn-primary ring-info">Search</button>
         </div>
         {showDropdown && (
           <DateDropdown

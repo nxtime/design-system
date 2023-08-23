@@ -45,7 +45,7 @@ const Sidebar = ({ data, itemLink, onLogout }: ISidebarProps) => {
     >
       <button
         type="button"
-        className="btn btn-square btn-ghost btn-ring-info"
+        className="btn btn-square btn-ghost ring-info"
         onClick={() => {
           if (sidebarRef.current === null) return;
           setIsOpen((s) => !s);
@@ -159,11 +159,11 @@ const Sidebar = ({ data, itemLink, onLogout }: ISidebarProps) => {
           );
         })}
       </ul>
-      <button type="button" className="sidebar-settings-action btn-ring-info" onClick={onLogout}>
+      <button type="button" className="sidebar-settings-action ring-info" onClick={onLogout}>
         <Icon icon="ph:gear-six-fill" height={16} />
         {isOpen && <span>Settings</span>}
       </button>
-      <button type="button" className="sidebar-exit-action btn-ring-warning" onClick={onLogout}>
+      <button type="button" className="sidebar-exit-action ring-warning" onClick={onLogout}>
         <Icon icon="mingcute:exit-fill" height={16} />
         {isOpen && <span>Logout</span>}
       </button>

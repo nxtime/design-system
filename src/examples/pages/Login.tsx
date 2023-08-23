@@ -68,7 +68,7 @@ const Login = () => {
               id="test"
               name="test"
               defaultValue="Supreme"
-              className="input input-neutral input-ring-info"
+              className="input input-neutral ring-info"
             />
           </div>
           <Textfield icon="bxs:user" id="name" />

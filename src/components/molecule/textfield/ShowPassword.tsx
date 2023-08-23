@@ -22,7 +22,7 @@ const ShowPassword = ({
         <button
           type="button"
           title="Show or hide the password"
-          className="btn btn-circle btn-sm btn-ring-info"
+          className="btn btn-circle btn-sm ring-info"
           onClick={() => changeShowPassword((s) => !s)}
         >
           <Icon icon={showPassword ? "ph:eye-slash" : "ph:eye-light"} />
