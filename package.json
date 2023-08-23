@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "main": "./dist/design-system.umd.cjs",
+  "main": "./dist/design-system.umd.js",
   "module": "./dist/design-system.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -15,9 +15,10 @@
   "exports": {
     ".": {
       "import": "./dist/design-system.js",
-      "require": "./dist/design-system.umd.cjs"
+      "require": "./dist/design-system.umd.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./style.css": "./dist/style.css"
   },
   "files": [
     "dist",
