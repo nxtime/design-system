@@ -14,9 +14,9 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
 
 @function get-color($color, $theme) {
   @if $theme == "dark" {
-    @return map-get($colors-dark, $color);
+    @return map-get($dark, $color);
   } @else if $theme == "light" {
-    @return map-get($colors-light, $color);
+    @return map-get($light, $color);
   } @else {
     @error "Invalid theme: #{$theme}. Use 'dark' or 'light'.";
   }
