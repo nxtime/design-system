@@ -8,7 +8,7 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning, s
   $colorState: "#{$color}-hover";
 
   .bg-#{$color} {
-    background-color: map-get($colors, $color);
+    background-color: var(--#{$color});
   }
 
   .bg-transparent {
@@ -16,10 +16,10 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning, s
   }
 
   .fill-#{$color} {
-    fill: map-get($colors, $color)!important;
+    fill: var(--#{$color})!important;
 
     &:hover {
-      fill: lighten(map-get($colors, $color), 10)!important;
+      fill: color-mix(in srgb, var(--#{$color}), #fff 15%)!important;
     }
   }
 
@@ -35,7 +35,7 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning, s
     }
 
     &-#{$color}:focus {
-      box-shadow: 0px 0px 0px 2px map-get($colors, $color);
+      box-shadow: 0px 0px 0px 2px var(--#{$color});
     }
   }
 }
@@ -60,12 +60,12 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning, s
     }
 
     &-#{$color} {
-      background-color: map-get($colors, $color) !important;
+      background-color: var(--#{$color})!important;
 
       &:hover,
       &:active,
       &[type="text"]:focus {
-        background-color: map-get($colors, #{$color}-hover) !important;
+        background-color: var(--#{$color})!important;
       }
     }
 
@@ -87,7 +87,7 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning, s
       }
 
       &-#{$color}:focus {
-        box-shadow: 0px 0px 0px 2px map-get($colors, $color);
+        box-shadow: 0px 0px 0px 2px var(--#{$color});
       }
     }
   }
