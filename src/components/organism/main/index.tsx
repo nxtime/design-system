@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import Header from "../header";
 import Sidebar from "../sidebar";
 import { ReactNode } from "react";
-import Select from "@/components/molecule/select";
+import Select from "../../molecule/select";
 
 const sidebarData = [
   {

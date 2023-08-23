@@ -1,4 +1,4 @@
-import DateRangerPicker from "@/components/molecule/picker/date-range";
+import DateRangerPicker from "../../components/molecule/picker/date-range";
 import moment from "moment";
 
 const DatePickerPresentation = () => {

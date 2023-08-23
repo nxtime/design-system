@@ -1,6 +1,6 @@
-import Main from "@/components/organism/main";
+import Main from "../../components/organism/main";
 import TablePresentation from "./TablePresentation";
-import DateRangerPicker from "@/components/molecule/picker/date-range";
+import DateRangerPicker from "../../components/molecule/picker/date-range";
 import moment from "moment";
 
 const HomePage = () => {

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, ReactNode, RefObject } from "react";
-import useScroll from "@/hooks/useScroll";
+import useScroll from "../../../../hooks/useScroll";
 
 interface ITableScroll<T> {
   children: (_options: { data: T[] }) => ReactNode;

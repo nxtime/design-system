@@ -2,7 +2,7 @@ import { ReactNode, useCallback, useRef, useState } from "react";
 import TableMode, { TKeyModes } from "./mode";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import TableConfigModal from "../modal/table/filter";
-import useModal from "@/stores/useModal";
+import useModal from "../../../stores/useModal";
 import Column from "./column";
 import { sortByKey } from "./functions/sort";
 

@@ -2,19 +2,20 @@
   "compilerOptions": {
     "target": "ES2022",
     "useDefineForClassFields": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Access via root path */
-    // "baseUrl": ".",
-    // "paths": {
-    //   "design-system": ["src/index.ts"]
-    // },
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
+      "design-system": [
+        "src/index.ts"
+      ]
     },
-    /* Bundler mode */
     "esModuleInterop": true,
     "declaration": true,
     "declarationMap": true,
@@ -31,7 +32,11 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "package.json", "vite.config.ts"],
+  "include": [
+    "src",
+    "package.json",
+    "vite.config.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

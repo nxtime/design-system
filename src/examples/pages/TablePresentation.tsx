@@ -1,4 +1,4 @@
-import Table from "@/components/organism/table";
+import Table from "../../components/organism/table";
 import { addressesMocked } from "../mocked/addresses";
 
 function shuffleArray<T>(array: T[]) {

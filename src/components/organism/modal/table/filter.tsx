@@ -1,4 +1,4 @@
-import Select from "@/components/molecule/select";
+import Select from "../../../molecule/select";
 import Modal from "..";
 
 const TableConfigModal = ({

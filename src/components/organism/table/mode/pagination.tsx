@@ -1,4 +1,4 @@
-import Select from "@/components/molecule/select";
+import Select from "../../../molecule/select";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode, useCallback, useState } from "react";
 
