@@ -9,6 +9,28 @@
   fill: transparent !important;
 }
 
+.btn,
+.input {
+  height: var(--spacing-xl);
+  background-color: transparent;
+  border-radius: var(--rounded-box);
+  border: none;
+  outline: none;
+  padding-inline: var(--spacing-box);
+  font-size: 0.9125rem;
+  transition: all ease 0.2s;
+
+  &.btn-sm,
+  &.input-sm {
+    height: var(--spacing-lg);
+  }
+
+  &.btn-xs,
+  &.input-xs {
+    height: var(--spacing-sm);
+  }
+}
+
 $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
   success, info, text-disabled;
 
@@ -23,45 +45,53 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
 }
 
 @mixin apply-theme($theme) {
-  .#{$theme} {
-    $colorStatePostfix: "-hover";
+  $colorStatePostfix: "-hover";
 
-    @each $color in $colorNames {
-      .bg-#{$color} {
-        --color: get-color($color, $theme);
+  @each $color in $colorNames {
+    .bg-#{$color} {
+      --color: #{get-color($color, $theme)};
+      background-color: var(--color);
+    }
+
+    .fill-#{$color} {
+      --color: #{get-color($color, $theme)};
+      fill: var(--color);
+    }
+
+    .ring {
+      --color: #{get-color($color, $theme)};
+      box-shadow: 0px 0px 0px 2px var(--info) 0;
+
+      &:focus {
+        box-shadow: 0px 0px 0px 2px var(--info);
+      }
+
+      &-#{$color}:focus {
+        box-shadow: 0px 0px 0px 2px var(--color);
+      }
+    }
+
+    .btn-#{$color} {
+      --color: #{get-color($color, $theme)};
+      background-color: var(--color);
+
+      &:hover {
+        --color: #{get-color(#{$color}-hover, $theme)};
         background-color: var(--color);
       }
+    }
 
-      .fill-#{$color} {
-        --color: get-color($color, $theme);
-        fill: var(--color);
+    .btn-ring,
+    &.input-ring {
+      box-shadow: 0px 0px 0px 2px var(--info) 0;
+
+      &:focus {
+        box-shadow: 0px 0px 0px 2px var(--info);
       }
 
-      .ring {
-        --color: get-color($color, $theme);
-        box-shadow: 0px 0px 0px 2px var(--info) 0;
-
-        &:focus {
-          box-shadow: 0px 0px 0px 2px var(--info);
-        }
-
-        &-#{$color}:focus {
-          box-shadow: 0px 0px 0px 2px var(--color);
-        }
-      }
-
-      .btn-ring,
-      &.input-ring {
-        box-shadow: 0px 0px 0px 2px var(--info) 0;
-
-        &:focus {
-          box-shadow: 0px 0px 0px 2px var(--info);
-        }
-
-        &-#{$color} {
-          --color: get-color($color, $theme);
-          background-color: var(--color);
-        }
+      &-#{$color} {
+        --color: #{get-color($color, $theme)};
+        background-color: var(--color);
       }
     }
   }

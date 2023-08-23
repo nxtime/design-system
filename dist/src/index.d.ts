@@ -1,4 +1,3 @@
-export * from "./styles/global.scss";
 export * from "./components/organism/header";
 export * from "./components/organism/main";
 export * from "./components/organism/sidebar";

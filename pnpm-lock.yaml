@@ -82,6 +82,9 @@ devDependencies:
   vite-plugin-dts:
     specifier: ^3.5.2
     version: 3.5.2(typescript@5.1.6)(vite@4.4.9)
+  vite-plugin-sass:
+    specifier: ^0.1.0
+    version: 0.1.0
 
 packages:
 
@@ -3641,6 +3644,10 @@ packages:
       - '@types/node'
       - rollup
       - supports-color
+    dev: true
+
+  /vite-plugin-sass@0.1.0:
+    resolution: {integrity: sha512-gLwvs3ozfDAOZCqs+PepkTd4078m8tfq50IlmTW/OphlWsW95uP7lQ5A3NezfUfTZDTCOA4nFlYnOWRpsKYOqw==}
     dev: true
 
   /vite-tsconfig-paths@4.2.0(typescript@5.1.6)(vite@4.4.9):

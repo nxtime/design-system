@@ -20,7 +20,8 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "dist/style.css"
   ],
   "dependencies": {
     "@iconify/react": "^4.1.1",
@@ -49,6 +50,7 @@
     "prettier": "3.0.1",
     "typescript": "^5.1.6",
     "vite": "^4.4.5",
-    "vite-plugin-dts": "^3.5.2"
+    "vite-plugin-dts": "^3.5.2",
+    "vite-plugin-sass": "^0.1.0"
   }
 }

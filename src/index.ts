@@ -1,4 +1,4 @@
-export * from "./styles/global.scss";
+import "./styles/global.scss";
 //  ** COMPONENTS **
 export * from "./components/organism/header";
 export * from "./components/organism/main";
