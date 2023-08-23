@@ -1,43 +1,56 @@
 import "./styles/global.scss";
-//  ** COMPONENTS **
-export * from "./components/organism/header";
-export * from "./components/organism/main";
-export * from "./components/organism/sidebar";
 // Atoms
 // Charts
-export * from "./components/atom/chart/index";
+import Chart from "./components/atom/chart/index";
 
 // Textfields
-export * from "./components/atom/textfield";
-export * from "./components/molecule/textfield/ShowPassword";
+import Textfield from "./components/atom/textfield";
+import ShowPassword from "./components/molecule/textfield/ShowPassword";
 
 // Molecules
 // Pickers
-export * from "./components/molecule/picker/date-range";
+import DateRangePicker from "./components/molecule/picker/date-range";
 
 // Select
-export * from "./components/molecule/select";
+import Select from "./components/molecule/select";
 
 // Organisms
 // Callendar
-export * from "./components/organism/callendar/DetailedWorkDay";
+import DetailedWorkDay from "./components/organism/callendar/DetailedWorkDay";
 
 // Layout
-export * from "./components/organism/header";
-export * from "./components/organism/main";
-export * from "./components/organism/sidebar";
-export * from "./components/organism/modal";
+import Header from "./components/organism/header";
+import Main from "./components/organism/main";
+import Sidebar from "./components/organism/sidebar";
+import Modal from "./components/organism/modal";
 
 // Table
-export * from "./components/organism/table";
+import Table from "./components/organism/table";
 
 // ** HOOKS **
 // Scroll hook
-export * from "./hooks/useScroll";
+import useScroll from "./hooks/useScroll";
 
 // ** STORES **
 // Modal Store
-export * from "./stores/useModal";
+import useModal from "./stores/useModal";
 
 // ** UTILS **
-export * from "./utils/helpers/debounce";
+import { debounce } from "./utils/helpers/debounce";
+
+export {
+  Chart,
+  Textfield,
+  ShowPassword,
+  DateRangePicker,
+  Select,
+  DetailedWorkDay,
+  Header,
+  Main,
+  Sidebar,
+  Modal,
+  Table,
+  useScroll,
+  useModal,
+  debounce,
+};
