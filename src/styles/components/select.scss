@@ -71,11 +71,6 @@
     border-radius: 0px 0px var(--rounded-box) var(--rounded-box);
 
     &:not(.custom-scroll) {
-      & > .item:first-child {
-        & > button {
-          border-radius: var(--rounded-box) var(--rounded-box) 0px 0px;
-        }
-      }
       & > .item:last-child {
         & > button {
           border-radius: 0px 0px var(--rounded-box) var(--rounded-box);
