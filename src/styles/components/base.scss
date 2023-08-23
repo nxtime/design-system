@@ -34,73 +34,45 @@
 $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
   success, info, text-disabled;
 
-@function get-color($color, $theme) {
-  @if $theme == "dark" {
-    @return map-get($dark, $color);
-  } @else if $theme == "light" {
-    @return map-get($light, $color);
-  } @else {
-    @error "Invalid theme: #{$theme}. Use 'dark' or 'light'.";
+@each $color in $colorNames {
+  .bg-#{$color} {
+    background-color: var(--#{$color});
   }
-}
 
-@mixin apply-theme($theme) {
-  $colorStatePostfix: "-hover";
+  .fill-#{$color} {
+    fill: var(--#{$color});
+  }
 
-  @each $color in $colorNames {
-    .bg-#{$color} {
-      --color: #{get-color($color, $theme)};
-      background-color: var(--color);
+  .ring {
+    box-shadow: 0px 0px 0px 2px var(--info) 0;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 2px var(--info);
     }
 
-    .fill-#{$color} {
-      --color: #{get-color($color, $theme)};
-      fill: var(--color);
+    &-#{$color}:focus {
+      box-shadow: 0px 0px 0px 2px var(--#{$color});
     }
+  }
 
-    .ring {
-      --color: #{get-color($color, $theme)};
-      box-shadow: 0px 0px 0px 2px var(--info) 0;
+  .btn-#{$color} {
+    background-color: var(--#{$color});
 
-      &:focus {
-        box-shadow: 0px 0px 0px 2px var(--info);
-      }
-
-      &-#{$color}:focus {
-        box-shadow: 0px 0px 0px 2px var(--color);
-      }
+    &:hover {
+      background-color: var(--#{$color}-hover);
     }
+  }
 
-    .btn-#{$color} {
-      --color: #{get-color($color, $theme)};
-      background-color: var(--color);
+  .btn-ring,
+  .input-ring {
+    box-shadow: 0px 0px 0px 2px var(--info) 0;
 
-      &:hover {
-        --color: #{get-color(#{$color}-hover, $theme)};
-        background-color: var(--color);
-      }
-    }
-
-    .btn-ring,
-    &.input-ring {
-      box-shadow: 0px 0px 0px 2px var(--info) 0;
-
-      &:focus {
-        box-shadow: 0px 0px 0px 2px var(--info);
-      }
+    &:focus {
+      box-shadow: 0px 0px 0px 2px var(--info);
 
       &-#{$color} {
-        --color: #{get-color($color, $theme)};
-        background-color: var(--color);
+        box-shadow: 0px 0px 0px 2px var(--#{$color});
       }
     }
   }
-}
-
-.dark {
-  @include apply-theme(dark);
-}
-
-.light {
-  @include apply-theme(light);
 }
