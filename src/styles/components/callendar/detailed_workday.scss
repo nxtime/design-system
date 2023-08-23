@@ -51,10 +51,11 @@
         padding: calc(var(--spacing-xs));
         background-color: var(--neutral);
         border-radius: var(--rounded-box);
+        filter: brightness(1);
         transition: all ease 0.2s;
 
         &:hover {
-          background-color: lighten(map-get($colors, neutral), 5%);
+          filter: brightness(1.1);
         }
 
         & > span:first-child {

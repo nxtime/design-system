@@ -43,7 +43,7 @@ ul {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: map-get($colors, text-content);
+  color: var(--text-content);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: subpixel-antialiased;
 }
