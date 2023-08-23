@@ -25,17 +25,19 @@
     "dist",
     "dist/style.css"
   ],
-  "dependencies": {
+  "peerDependencies": {
     "@iconify/react": "^4.1.1",
+    "moment": "^2.29.4",
+    "zustand": "^4.4.1",
+    "sass": "^1.64.2"
+  },
+  "dependencies": {
     "@storybook/react": "^7.2.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.64.2",
-    "vite-tsconfig-paths": "^4.2.0",
-    "zustand": "^4.4.1"
+    "vite-tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

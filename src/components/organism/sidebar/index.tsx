@@ -14,6 +14,7 @@ interface ISidebarProps {
     }[];
   }[];
   onLogout?: () => void;
+  pathname: string;
   itemLink: (_item: {
     icon: string;
     label: string;
@@ -21,13 +22,17 @@ interface ISidebarProps {
     route: string;
     props: {
       className: string;
-      onClick?: () => void
+      onClick?: () => void;
     };
   }) => ReactNode;
 }
 
-const Sidebar = ({ data, itemLink, onLogout }: ISidebarProps) => {
-  const pathName = "/scales";
+const Sidebar = ({
+  data,
+  itemLink,
+  onLogout,
+  pathname = "",
+}: ISidebarProps) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const itemHandlerRef = useRef<HTMLSpanElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -60,7 +65,7 @@ const Sidebar = ({ data, itemLink, onLogout }: ISidebarProps) => {
           onMenuOut(
             itemHandlerRef,
             tooltipRef,
-            pathName,
+            pathname,
             isOpen,
             data,
             currentOpenSubmenus,
@@ -78,7 +83,7 @@ const Sidebar = ({ data, itemLink, onLogout }: ISidebarProps) => {
                   onMenuOver(
                     itemHandlerRef,
                     tooltipRef,
-                    pathName,
+                    pathname,
                     item,
                     currentOpenSubmenus !== null && index > currentOpenSubmenus
                       ? index + data[currentOpenSubmenus].submenus!.length
@@ -135,7 +140,7 @@ const Sidebar = ({ data, itemLink, onLogout }: ISidebarProps) => {
                           onMenuOver(
                             itemHandlerRef,
                             tooltipRef,
-                            pathName,
+                            pathname,
                             submenu,
                             index,
                             submenuIndex + 1,
@@ -159,11 +164,19 @@ const Sidebar = ({ data, itemLink, onLogout }: ISidebarProps) => {
           );
         })}
       </ul>
-      <button type="button" className="sidebar-settings-action ring-info" onClick={onLogout}>
+      <button
+        type="button"
+        className="sidebar-settings-action ring-info"
+        onClick={onLogout}
+      >
         <Icon icon="ph:gear-six-fill" height={16} />
         {isOpen && <span>Settings</span>}
       </button>
-      <button type="button" className="sidebar-exit-action ring-warning" onClick={onLogout}>
+      <button
+        type="button"
+        className="sidebar-exit-action ring-warning"
+        onClick={onLogout}
+      >
         <Icon icon="mingcute:exit-fill" height={16} />
         {isOpen && <span>Logout</span>}
       </button>
