@@ -100,7 +100,7 @@ const Table = <
           Find
         </label>
         <input
-          className="input input-neutral input-ring-info"
+          className="input input-neutral ring-info"
           id="find-all-table"
           placeholder="Type here to filter..."
           style={{ flex: "1" }}
