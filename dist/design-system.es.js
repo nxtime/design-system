@@ -5164,9 +5164,9 @@ const YA = {
   }
 }, sx = (i, u, c, p, m, E = 0, g) => {
   i.current === null || u.current === null || (p.route === c && i.current.classList.add("active"), i.current.classList.contains("active") && p.route !== c && i.current.classList.remove("active"), g || (u.current.innerHTML = `
-    <div className="sidebar-tooltip-container">
-      <span>${p.label}</span>
-    </div>
+      <div className="sidebar-tooltip-container">
+        <span>${p.label}</span>
+      </div>
     `, u.current.style.opacity = "1", u.current.style.top = `calc(48px * ${m + E})`), i.current.style.top = `calc(48px * ${m + E})`);
 }, BA = (i, u, c, p, m, E) => {
   var g;
@@ -5176,7 +5176,7 @@ const YA = {
     let R = -1;
     p || (u.current.innerHTML = "", u.current.style.opacity = "0"), m.forEach((b, D) => {
       b.route === c && (R = D), Object.hasOwnProperty.call(b, "submenus") && b.submenus.forEach((z, U) => {
-        z.route === c && (E === D ? R = D + U + 1 : R = D);
+        `${b.route}${z.route}` === c && (E === D ? R = D + U + 1 : R = D);
       });
     }), (g = document.activeElement) == null || g.blur(), R > -1 && (i.current.style.top = `calc(48px * ${R})`, i.current.classList.add("active"));
   }
@@ -5248,7 +5248,7 @@ const YA = {
                         props: {
                           className: A != null && A.submenus ? "group" : "",
                           onClick: () => {
-                            R.current = Q + 2;
+                            R.current = Q + 2, E.current && E.current.classList.toggle("active");
                           }
                         }
                       }) }),

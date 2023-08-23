@@ -88,6 +88,9 @@
 
       & a {
         display: flex;
+        position: absolute;
+        left: 0;
+        padding-inline: var(--spacing-sm);
         align-items: center;
         justify-content: start;
         gap: var(--spacing-xs);

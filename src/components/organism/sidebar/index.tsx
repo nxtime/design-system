@@ -110,6 +110,8 @@ const Sidebar = ({
                       className: item?.submenus ? "group" : "",
                       onClick: () => {
                         currentFocusedMenu.current = index + 2;
+                        if (itemHandlerRef.current)
+                          itemHandlerRef.current.classList.toggle("active");
                       },
                     },
                   })}

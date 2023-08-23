@@ -73,9 +73,9 @@ const onMenuOver = (
   }
   if (!isOpen) {
     tooltipRef.current.innerHTML = `
-    <div className="sidebar-tooltip-container">
-      <span>${item.label}</span>
-    </div>
+      <div className="sidebar-tooltip-container">
+        <span>${item.label}</span>
+      </div>
     `;
     tooltipRef.current.style.opacity = "1";
     tooltipRef.current.style.top = `calc(48px * ${index + submenuIndex})`;
@@ -108,7 +108,7 @@ const onMenuOut = (
       if (!Object.hasOwnProperty.call(item, "submenus")) return;
 
       item.submenus!.forEach((submenu, submenuIndex) => {
-        if (submenu.route === pathName) {
+        if (`${item.route}${submenu.route}` === pathName) {
           if (currentOpenSubmenus === index) {
             menuIndex = index + submenuIndex + 1;
           } else {
