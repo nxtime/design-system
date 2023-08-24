@@ -9,6 +9,10 @@
   transition: all ease 0.2s;
   max-height: calc(100vh - var(--spacing-3xl));
 
+  & * {
+    color: var(--text-neutral-content);
+  }
+
   &-tooltip {
     position: absolute;
     opacity: 0;

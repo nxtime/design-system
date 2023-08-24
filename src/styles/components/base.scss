@@ -52,6 +52,10 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
 @each $color in $colorNames {
   .bg-#{$color} {
     background-color: var(--#{$color});
+
+    & * {
+      color: var(--text-content);
+    }
   }
 
   .fill-#{$color} {
@@ -83,5 +87,11 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
     &:hover {
       background-color: var(--#{$color}-hover);
     }
+  }
+}
+
+.bg-neutral {
+  & * {
+    color: var(--text-neutral-content);
   }
 }
