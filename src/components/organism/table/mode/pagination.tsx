@@ -63,6 +63,7 @@ const TablePagination = <T extends Record<string, string | number | Record<strin
           currentSelected={itemsPerPage}
           labelExtractor={(item) => `Per page ${item}`}
           showQty={3}
+          position="bottom"
           onChange={(_, perPage) => {
             const possibleMaxPage = Math.ceil(dataLength() / perPage! ?? 1);
 

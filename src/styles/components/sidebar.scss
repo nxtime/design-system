@@ -153,6 +153,10 @@
       // padding-left: var(--spacing-lg);
       background-color: var(--base-300);
       border-radius: var(--rounded-box);
+
+      & * {
+        color: var(--text-content);
+      }
     }
 
     & > .sidebar-selector {

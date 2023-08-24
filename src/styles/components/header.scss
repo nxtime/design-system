@@ -7,4 +7,8 @@
   background-color: var(--neutral);
   padding-inline: var(--spacing-sm);
   justify-content: space-between;
+
+  & * {
+    color: var(--text-neutral-content);
+  }
 }

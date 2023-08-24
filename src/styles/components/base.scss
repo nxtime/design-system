@@ -90,7 +90,8 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
   }
 }
 
-.bg-neutral {
+.bg-neutral,
+.bg-primary {
   & * {
     color: var(--text-neutral-content);
   }

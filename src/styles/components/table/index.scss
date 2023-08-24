@@ -67,6 +67,10 @@ th {
         height: 100%;
         background-color: var(--neutral);
 
+        & * {
+          color: var(--text-neutral-content);
+        }
+
         & .table-column {
           position: relative;
           display: flex;
@@ -178,6 +182,10 @@ th {
     border-radius: 0 0 var(--rounded-box) var(--rounded-box);
     height: var(--spacing-2xl);
 
+    & * {
+      color: var(--text-neutral-content);
+    }
+
     & .page {
       font-weight: 700;
     }
@@ -203,6 +211,10 @@ th {
       flex-direction: column;
       background-color: var(--neutral);
       border-radius: var(--rounded-box);
+
+      & * {
+        color: var(--text-neutral-content);
+      }
 
       & li {
         text-align: left;
