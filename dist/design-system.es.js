@@ -25223,6 +25223,7 @@ const _x = (i) => {
           currentSelected: c,
           labelExtractor: (D) => `Per page ${D}`,
           showQty: 3,
+          position: "bottom",
           onChange: (D, z) => {
             const U = Math.ceil(p() / z), A = m * g, P = (m > U ? U * z : m * z) / A, te = P !== 1 ? Math.floor(m / P) : m;
             m > U ? E(U) : E(te < 1 ? 1 : te), R(z);
