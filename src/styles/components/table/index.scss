@@ -170,7 +170,7 @@ th {
     & > tr:nth-child(even) {
       background-color: var(--base-300);
 
-      &:hover {
+      & > td:hover {
         background-color: var(--base-300-hover);
       }
     }

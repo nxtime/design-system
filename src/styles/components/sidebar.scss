@@ -140,6 +140,7 @@
     & .sidebar-submenu-item {
       justify-content: start;
       gap: var(--spacing-xs);
+      transition: color ease 0.2s;
 
       &:hover * {
         color: var(--text-neutral-content);

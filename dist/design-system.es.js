@@ -5175,7 +5175,7 @@ const YA = {
       return;
     let R = -1;
     p || (u.current.innerHTML = "", u.current.style.opacity = "0"), m.forEach((b, D) => {
-      b.route === c && (R = D), Object.hasOwnProperty.call(b, "submenus") && b.submenus.forEach((z, U) => {
+      b.route === c && (R = D), E !== null && (R += m[E].submenus.length), Object.hasOwnProperty.call(b, "submenus") && b.submenus.forEach((z, U) => {
         `${b.route}${z.route}` === c && (E === D ? R = D + U + 1 : R = D);
       });
     }), (g = document.activeElement) == null || g.blur(), R > -1 && (i.current.style.top = `calc(48px * ${R})`, i.current.classList.add("active"));

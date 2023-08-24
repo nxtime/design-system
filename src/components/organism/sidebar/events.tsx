@@ -105,6 +105,10 @@ const onMenuOut = (
     data.forEach((item, index) => {
       if (item.route === pathName) menuIndex = index;
 
+      if (currentOpenSubmenus !== null) {
+        menuIndex += data[currentOpenSubmenus].submenus!.length
+      }
+
       if (!Object.hasOwnProperty.call(item, "submenus")) return;
 
       item.submenus!.forEach((submenu, submenuIndex) => {
