@@ -6,6 +6,11 @@
   "main": "./dist/design-system.umd.js",
   "module": "./dist/design-system.es.js",
   "types": "./dist/index.d.ts",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm build && git add -A ."
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

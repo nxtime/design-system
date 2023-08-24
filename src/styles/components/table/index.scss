@@ -163,13 +163,16 @@ th {
       }
 
       & > td:hover {
-        background-color: inherit;
-        filter: brightness(1.15);
+        background-color: var(--base-200-hover);
       }
     }
 
-    & > tr:nth-child(odd) {
+    & > tr:nth-child(even) {
       background-color: var(--base-300);
+
+      &:hover {
+        background-color: var(--base-300-hover);
+      }
     }
   }
 
