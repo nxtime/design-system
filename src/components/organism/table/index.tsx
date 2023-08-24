@@ -19,6 +19,7 @@ interface ITableProps<T> {
     [K in keyof T]?: (_value: T[K]) => ReactNode | string | number;
   };
   mode?: TKeyModes;
+  action?: (item: T, index: number) => ReactNode;
 }
 
 const translations = {
@@ -43,6 +44,7 @@ const Table = <
   // hideColumn = [],
   dataConfig,
   // headersConfig,
+  action,
   mode = "pagination",
 }: ITableProps<T>) => {
   const { closeModal, openModal } = useModal();
@@ -157,6 +159,7 @@ const Table = <
                         />
                       );
                     })}
+                  {action && <th>Ação</th>}
                 </tr>
               </thead>
               <tbody ref={tBodyRef}>
@@ -247,6 +250,7 @@ const Table = <
                           </td>
                         );
                       })}
+                      {action && action(row, rowIndex)}
                     </tr>
                   );
                 })}

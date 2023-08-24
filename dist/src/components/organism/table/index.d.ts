@@ -11,7 +11,8 @@ interface ITableProps<T> {
         [K in keyof T]?: (_value: T[K]) => ReactNode | string | number;
     };
     mode?: TKeyModes;
+    action?: (item: T, index: number) => ReactNode;
 }
-declare const Table: <T extends Record<string, string | number | Record<string, string | number>>>({ headers, data, dataConfig, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Table: <T extends Record<string, string | number | Record<string, string | number>>>({ headers, data, dataConfig, action, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Table;
 //# sourceMappingURL=index.d.ts.map

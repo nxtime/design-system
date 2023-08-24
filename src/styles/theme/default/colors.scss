@@ -18,6 +18,7 @@
   @each $color, $value in $light {
     --#{$color}: #{$value};
   }
+  --rounded-box: 0.25rem;
 }
 
 .coffe {

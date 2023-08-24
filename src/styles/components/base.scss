@@ -81,7 +81,7 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
   }
 
   .btn.btn-#{$color},
-  .btn.input-#{$color} {
+  .input.input-#{$color} {
     background-color: var(--#{$color});
     transition: background-color ease 0.2s;
 
@@ -100,6 +100,8 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
 
 .bg-neutral,
 .bg-primary {
+  color: var(--text-neutral-content);
+
   & * {
     color: var(--text-neutral-content);
   }
