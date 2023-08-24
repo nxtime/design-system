@@ -90,12 +90,15 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
   }
 }
 
-.bg-neutral,
-.bg-primary,
 .btn-neutral,
 .btn-primary,
 .input-primary,
 .input-neutral {
+  color: var(--text-neutral-content);
+}
+
+.bg-neutral,
+.bg-primary {
   & * {
     color: var(--text-neutral-content);
   }

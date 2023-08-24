@@ -10,7 +10,9 @@ interface ITablePagination<T> {
 
 const possibleItemsPerPage = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
-const TablePagination = <T extends Record<string, string | number | Record<string, string | number>>>({
+const TablePagination = <
+  T extends Record<string, string | number | Record<string, string | number>>,
+>({
   children,
   data,
   itemsPerPage = 30,
@@ -31,7 +33,7 @@ const TablePagination = <T extends Record<string, string | number | Record<strin
   }, [data, page, currentItemsPerPage]);
 
   return (
-    <div className="table-container pagination">
+    <div className="table-full">
       <div className="table-content custom-scroll">
         {children({ data: dataToRender() })}
       </div>
@@ -53,7 +55,7 @@ const TablePagination = <T extends Record<string, string | number | Record<strin
           <Icon hFlip={true} icon="ic:round-skip-next" />
         </button>
         <span>
-          Page <span className="page">{page}</span> of{" "}
+          Página <span className="page">{page}</span> de{" "}
           <span className="page">
             {Math.ceil(dataLength() / currentItemsPerPage)}
           </span>
@@ -61,7 +63,8 @@ const TablePagination = <T extends Record<string, string | number | Record<strin
         <Select
           items={possibleItemsPerPage}
           currentSelected={itemsPerPage}
-          labelExtractor={(item) => `Per page ${item}`}
+          labelExtractor={(item) => `Por página ${item}`}
+          keyExtractor={(item) => item}
           showQty={3}
           position="bottom"
           onChange={(_, perPage) => {
@@ -105,7 +108,7 @@ const TablePagination = <T extends Record<string, string | number | Record<strin
         >
           <Icon icon="ic:round-fast-forward" />
         </button>
-        <span>{dataLength()} items</span>
+        <span>{dataLength()} itens</span>
       </footer>
     </div>
   );

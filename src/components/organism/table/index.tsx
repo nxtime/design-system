@@ -5,6 +5,8 @@ import TableConfigModal from "../modal/table/filter";
 import useModal from "../../../stores/useModal";
 import Column from "./column";
 import { sortByKey } from "./functions/sort";
+// import Select from "src/components/molecule/select";
+import { debounce } from "src/utils/helpers/debounce";
 
 interface ITableProps<T> {
   headers?: Record<keyof T, string>[];
@@ -43,7 +45,7 @@ const Table = <
   // headersConfig,
   mode = "pagination",
 }: ITableProps<T>) => {
-  const { closeModal } = useModal();
+  const { closeModal, openModal } = useModal();
   const translation = (v: string) => {
     if (Object.hasOwnProperty.call(translations, v)) {
       return translations[v as keyof typeof translations];
@@ -60,7 +62,7 @@ const Table = <
     endPosition: 0,
   });
 
-  const [currentFilter] = useState("");
+  const [currentFilter, changeCurrentFilter] = useState("");
 
   const filteredItems = useCallback(() => {
     return data.filter((row) => {
@@ -94,8 +96,8 @@ const Table = <
   }, [order, filteredItems, orderedHeader]);
 
   return (
-    <>
-      {/*<div className="group rounded-box no-print">
+    <div>
+      <div className="group rounded-box no-print">
         <label className="bg-primary" htmlFor="find-all-table">
           Find
         </label>
@@ -115,15 +117,15 @@ const Table = <
         >
           <Icon icon="mdi:filter" />
         </button>
-        <Select
+        {/*<Select
           items={["scroll", "pagination"]}
           currentSelected={mode}
           onChange={(_, item) => {
             if (item === undefined) return;
             setCurrentMode(item as TKeyModes);
           }}
-        />
-      </div>  */}
+        /> */}
+      </div>
       <TableMode mode={currentMode} data={orderedItems()}>
         {({ data }) => {
           if (data.length === 0) return null;
@@ -254,7 +256,7 @@ const Table = <
         }}
       </TableMode>
       <TableConfigModal config={Object.keys(data[0])} closeModal={closeModal} />
-    </>
+    </div>
   );
 };
 

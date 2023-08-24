@@ -14,6 +14,7 @@ interface ISidebarProps {
     }[];
   }[];
   onLogout?: () => void;
+  onSettings?: () => void;
   pathname: string;
   itemLink: (_item: {
     icon: string;
@@ -30,6 +31,7 @@ interface ISidebarProps {
 const Sidebar = ({
   data,
   itemLink,
+  onSettings,
   onLogout,
   pathname = "",
 }: ISidebarProps) => {
@@ -166,22 +168,26 @@ const Sidebar = ({
           );
         })}
       </ul>
-      <button
-        type="button"
-        className="sidebar-settings-action ring-info"
-        onClick={onLogout}
-      >
-        <Icon icon="ph:gear-six-fill" height={16} />
-        {isOpen && <span>Settings</span>}
-      </button>
-      <button
-        type="button"
-        className="sidebar-exit-action ring-warning"
-        onClick={onLogout}
-      >
-        <Icon icon="mingcute:exit-fill" height={16} />
-        {isOpen && <span>Logout</span>}
-      </button>
+      {onSettings && (
+        <button
+          type="button"
+          className="sidebar-settings-action ring-info"
+          onClick={onLogout}
+        >
+          <Icon icon="ph:gear-six-fill" height={16} />
+          {isOpen && <span>Settings</span>}
+        </button>
+      )}
+      {onLogout && (
+        <button
+          type="button"
+          className="sidebar-exit-action ring-warning"
+          onClick={onLogout}
+        >
+          <Icon icon="mingcute:exit-fill" height={16} />
+          {isOpen && <span>Logout</span>}
+        </button>
+      )}
     </aside>
   );
 };
