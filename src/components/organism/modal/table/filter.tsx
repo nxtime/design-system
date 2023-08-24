@@ -12,9 +12,12 @@ const TableConfigModal = ({
     <Modal currentName="table-config-modal">
       {config.map((item) => {
         return (
-          <div className="container row center" key={item}>
+          <div className="container row between-center" key={item}>
             <span>{item}</span>
-            <Select variant="base-300" items={["Expected", "Overhelmed", "Below Expectation"]} />
+            <Select
+              variant="base-300"
+              items={["Expected", "Overhelmed", "Below Expectation"]}
+            />
           </div>
         );
       })}

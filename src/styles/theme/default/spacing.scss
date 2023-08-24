@@ -38,7 +38,7 @@ $variablesMap: ();
   height: 100vh;
 }
 .no-gap {
-  gap: 0!important;
+  gap: 0 !important;
 }
 
 .gap-xs {
@@ -51,6 +51,11 @@ $variablesMap: ();
 
 .items-center {
   align-items: center;
+}
+
+.between-center {
+  align-items: center;
+  justify-content: space-between;
 }
 
 .w-screen {

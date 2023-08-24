@@ -25332,9 +25332,15 @@ const _x = (i) => {
   closeModal: i,
   config: u
 }) => /* @__PURE__ */ P.jsxs(uj, { currentName: "table-config-modal", children: [
-  u.map((c) => /* @__PURE__ */ P.jsxs("div", { className: "container row center", children: [
+  u.map((c) => /* @__PURE__ */ P.jsxs("div", { className: "container row between-center", children: [
     /* @__PURE__ */ P.jsx("span", { children: c }),
-    /* @__PURE__ */ P.jsx(IE, { variant: "base-300", items: ["Expected", "Overhelmed", "Below Expectation"] })
+    /* @__PURE__ */ P.jsx(
+      IE,
+      {
+        variant: "base-300",
+        items: ["Expected", "Overhelmed", "Below Expectation"]
+      }
+    )
   ] }, c)),
   /* @__PURE__ */ P.jsx("button", { className: "btn btn-primary ring-info", onClick: i, children: "Save" })
 ] }), mj = ({
