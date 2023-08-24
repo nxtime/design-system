@@ -33,7 +33,7 @@ const TablePagination = <
   }, [data, page, currentItemsPerPage]);
 
   return (
-    <div className="table-full">
+    <>
       <div className="table-content custom-scroll">
         {children({ data: dataToRender() })}
       </div>
@@ -110,7 +110,7 @@ const TablePagination = <
         </button>
         <span>{dataLength()} itens</span>
       </footer>
-    </div>
+    </>
   );
 };
 

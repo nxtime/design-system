@@ -96,7 +96,7 @@ const Table = <
   }, [order, filteredItems, orderedHeader]);
 
   return (
-    <div>
+    <div className="table-full">
       <div className="group rounded-box no-print">
         <label className="bg-primary" htmlFor="find-all-table">
           Find
