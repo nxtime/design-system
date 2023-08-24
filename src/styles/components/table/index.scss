@@ -11,7 +11,7 @@ th {
   & > .table-content {
     overflow: auto;
     flex: 1;
-    background-color: var(--base-300);
+    background-color: var(--base-200);
 
     & > .table {
       width: 100%;
@@ -148,7 +148,7 @@ th {
     & > tr {
       outline: none;
       z-index: 0;
-      background-color: var(--neutral);
+      background-color: var(--base-200);
 
       & > td {
         height: inherit;
