@@ -25470,13 +25470,13 @@ const _x = (i) => {
   }), [$, u, c]), ke = dc(() => yj(ne(), z.current, Cx[b]), [b, ne, z]);
   return /* @__PURE__ */ P.jsxs("div", { className: "table-full", children: [
     /* @__PURE__ */ P.jsxs("div", { className: "group rounded-box no-print", children: [
-      /* @__PURE__ */ P.jsx("label", { className: "bg-primary", htmlFor: "find-all-table", children: "Find" }),
+      /* @__PURE__ */ P.jsx("label", { className: "bg-primary", htmlFor: "find-all-table", children: "Buscar" }),
       /* @__PURE__ */ P.jsx(
         "input",
         {
           className: "input input-neutral ring-info",
           id: "find-all-table",
-          placeholder: "Type here to filter...",
+          placeholder: "Filtrar por....",
           style: { flex: "1" },
           onChange: Ab((Te) => {
             Y(Te.target.value);

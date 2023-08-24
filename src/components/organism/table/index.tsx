@@ -99,12 +99,12 @@ const Table = <
     <div className="table-full">
       <div className="group rounded-box no-print">
         <label className="bg-primary" htmlFor="find-all-table">
-          Find
+          Buscar
         </label>
         <input
           className="input input-neutral ring-info"
           id="find-all-table"
-          placeholder="Type here to filter..."
+          placeholder="Filtrar por...."
           style={{ flex: "1" }}
           onChange={debounce((e) => {
             changeCurrentFilter(e.target.value);
