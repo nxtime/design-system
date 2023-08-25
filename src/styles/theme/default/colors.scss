@@ -1,28 +1,19 @@
 @import "../dark.scss";
 @import "../light.scss";
 @import "../coffe.scss";
+@import "../forest.scss";
 
-// :root {
-//   @each $color, $value in $colors {
-//     --#{$color}: #{$value};
-//   }
-// }
+$themes: (
+  coffe: $coffe,
+  light: $light,
+  dark: $dark,
+  forest: $forest,
+);
 
-.dark {
-  @each $color, $value in $dark {
-    --#{$color}: #{$value};
-  }
-}
-
-.light {
-  @each $color, $value in $light {
-    --#{$color}: #{$value};
-  }
-  --rounded-box: 0.25rem;
-}
-
-.coffe {
-  @each $color, $value in $coffe {
-    --#{$color}: #{$value};
+@each $name, $theme in $themes {
+  .#{$name} {
+    @each $color, $value in $theme {
+      --#{$color}: #{$value};
+    }
   }
 }
