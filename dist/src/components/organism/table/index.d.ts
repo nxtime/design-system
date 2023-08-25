@@ -4,8 +4,11 @@ interface ITableProps<T> {
     headers?: Record<keyof T, string>[];
     data: T[];
     hideColumn?: (keyof T)[];
+    showObject?: {
+        [K in keyof T]: boolean;
+    };
     dataConfig?: {
-        [K in keyof T]?: (_value: T[K]) => ReactNode | string | number;
+        [K in keyof T]?: (_value: T[K], _row: T) => ReactNode | string | number;
     };
     headersConfig?: {
         [K in keyof T]?: (_value: T[K]) => ReactNode | string | number;
@@ -18,6 +21,6 @@ export type TTableConstraints<T> = {
         [S in keyof T[K]]: string | number;
     } | Record<string, string | number>[];
 };
-declare const Table: <T extends TTableConstraints<T>>({ headers, data, hideColumn, dataConfig, action, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Table: <T extends TTableConstraints<T>>({ headers, data, hideColumn, dataConfig, showObject, action, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Table;
 //# sourceMappingURL=index.d.ts.map

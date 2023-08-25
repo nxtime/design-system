@@ -17,8 +17,9 @@ interface ITableProps<T> {
   headers?: Record<keyof T, string>[];
   data: T[];
   hideColumn?: (keyof T)[];
+  showObject?: { [K in keyof T]: boolean };
   dataConfig?: {
-    [K in keyof T]?: (_value: T[K]) => ReactNode | string | number;
+    [K in keyof T]?: (_value: T[K], _row: T) => ReactNode | string | number;
   };
   headersConfig?: {
     [K in keyof T]?: (_value: T[K]) => ReactNode | string | number;
@@ -54,6 +55,7 @@ const Table = <T extends TTableConstraints<T>>({
   data,
   hideColumn = [],
   dataConfig,
+  showObject,
   // headersConfig,
   action,
   mode = "pagination",
@@ -85,11 +87,12 @@ const Table = <T extends TTableConstraints<T>>({
 
       const rowIncludes = Object.entries(row).some(([keyName, item]) => {
         if (hideColumn.includes(keyName as keyof T)) return false;
+
         if (
           typeof item === "object" &&
           Object.hasOwnProperty.call(dataConfig, keyName)
         ) {
-          return String(dataConfig?.[keyName as keyof T]?.(item as T[keyof T]))
+          return String(dataConfig?.[keyName as keyof T]?.(item as T[keyof T], row))
             .toLowerCase()
             .includes(filter);
         }
@@ -205,7 +208,10 @@ const Table = <T extends TTableConstraints<T>>({
                         } else if (
                           Object.hasOwnProperty.call(dataConfig ?? {}, column)
                         ) {
-                          value = dataConfig?.[column]?.(item as T[keyof T]);
+                          value = dataConfig?.[column]?.(
+                            item as T[keyof T],
+                            row,
+                          );
                         } else {
                           value = item as string | number;
                         }
@@ -216,13 +222,13 @@ const Table = <T extends TTableConstraints<T>>({
                             key={itemIndex}
                             style={{ width: "auto" }}
                           >
-                            {(item as unknown as Array<string>)?.length ===
-                              undefined && typeof item !== "object" ? (
+                            {typeof item !== "object" ||
+                              !showObject?.[column] ? (
                               value
                             ) : (
                               <div className="cell-container">
                                 <div className="cell-container--header">
-                                  <span>{value}</span>
+                                  {value}
                                   <button
                                     className="btn btn-primary btn-icon btn-xs btn-square"
                                     onClick={(e) => {

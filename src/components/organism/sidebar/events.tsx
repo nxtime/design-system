@@ -105,7 +105,7 @@ const onMenuOut = (
     data.forEach((item, index) => {
       if (item.route === pathName) {
         menuIndex = index;
-        if (currentOpenSubmenus !== null) {
+        if (currentOpenSubmenus !== null && index >= currentOpenSubmenus) {
           menuIndex += data[currentOpenSubmenus].submenus!.length;
         }
       }
