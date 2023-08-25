@@ -15,7 +15,7 @@ interface ITableModeProps<T> {
   data: T[];
 }
 
-const TableMode = <T extends Record<string, string | number | Record<string, string | number>>>({
+const TableMode = <T extends Record<string, string | number | Record<string, string | number> | Array<string | number>>>({
   mode,
   children,
   data,

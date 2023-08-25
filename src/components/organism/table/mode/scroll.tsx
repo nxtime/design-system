@@ -7,7 +7,7 @@ interface ITableScroll<T> {
   tableContainerRef: RefObject<HTMLDivElement>;
 }
 
-const TableScroll = <T extends Record<string, string | number | Record<string, string | number>>>({
+const TableScroll = <T extends Record<string, string | number | Record<string, string | number> | Array<string | number>>>({
   children,
   data,
   tableContainerRef,

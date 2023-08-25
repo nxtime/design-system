@@ -15,7 +15,7 @@ const TableConfigModal = ({
           <div className="container row between-center" key={item}>
             <span>{item}</span>
             <Select
-              variant="base-300"
+              variant="neutral"
               items={["Expected", "Overhelmed", "Below Expectation"]}
             />
           </div>

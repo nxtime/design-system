@@ -6,6 +6,6 @@ interface ITablePagination<T> {
     data: T[];
     itemsPerPage?: number;
 }
-declare const TablePagination: <T extends Record<string, string | number | Record<string, string | number>>>({ children, data, itemsPerPage, }: ITablePagination<T>) => import("react/jsx-runtime").JSX.Element;
+declare const TablePagination: <T extends Record<string, string | number | (string | number)[] | Record<string, string | number>>>({ children, data, itemsPerPage, }: ITablePagination<T>) => import("react/jsx-runtime").JSX.Element;
 export default TablePagination;
 //# sourceMappingURL=pagination.d.ts.map

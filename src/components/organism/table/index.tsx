@@ -1,4 +1,10 @@
-import { ReactNode, useCallback, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  ReactNode,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import TableMode, { TKeyModes } from "./mode";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import TableConfigModal from "../modal/table/filter";
@@ -37,7 +43,10 @@ const translations = {
 const ordersType = ["default", "asc", "desc"] as const;
 
 const Table = <
-  T extends Record<string, number | string | Record<string, number | string>>,
+  T extends Record<
+    string,
+    number | string | Record<string, number | string> | Array<string | number>
+  >,
 >({
   headers,
   data,
@@ -92,7 +101,7 @@ const Table = <
 
       return rowIncludes;
     });
-  }, [currentFilter, data, dataConfig]);
+  }, [currentFilter, hideColumn, data, dataConfig]);
 
   const orderedItems = useCallback(() => {
     return sortByKey(filteredItems(), orderedHeader.current, ordersType[order]);
@@ -132,6 +141,7 @@ const Table = <
       <TableMode mode={currentMode} data={orderedItems()}>
         {({ data }) => {
           if (data.length === 0) return null;
+          let columnIndex = 0;
           return (
             <table className="table">
               <thead>
@@ -139,23 +149,27 @@ const Table = <
                   {headers &&
                     headers.map((column, columnIndex) => {
                       if (hideColumn.includes(column as string)) return null;
+                      columnIndex++;
                       return (
                         <th key={columnIndex}>{column as unknown as string}</th>
                       );
                     })}
                   {headers === undefined &&
-                    Object.keys(data[0]).map((column, columnIndex) => {
+                    Object.keys(data[0]).map((column) => {
                       if (hideColumn.includes(column)) return null;
+                      columnIndex++;
                       return (
                         <Column
-                          key={columnIndex}
+                          key={columnIndex - 1}
                           tBodyRef={tBodyRef}
                           mousePosition={mousePosition}
-                          orderedHeader={orderedHeader}
+                          orderedHeader={
+                            orderedHeader as MutableRefObject<string | null>
+                          }
                           order={order}
                           setOrder={setOrder}
                           column={column}
-                          index={columnIndex}
+                          index={columnIndex - 1}
                           columns={Object.keys(data[0])}
                           ordersType={ordersType}
                           translation={translation}
@@ -181,7 +195,8 @@ const Table = <
 
                         if (
                           typeof item === "object" &&
-                          dataConfig?.[column] === undefined
+                          dataConfig?.[column] === undefined &&
+                          item?.length === undefined
                         ) {
                           value = Object.values(item)[0];
                         } else if (
@@ -198,7 +213,8 @@ const Table = <
                             key={itemIndex}
                             style={{ width: "auto" }}
                           >
-                            {typeof item !== "object" ? (
+                            {(item as unknown as Array<string>)?.length ===
+                              undefined && typeof item !== "object" ? (
                               value
                             ) : (
                               <div className="cell-container">
