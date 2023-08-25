@@ -48,9 +48,9 @@ const defaultKeyExtractor = <
   value: T,
 ) => {
   if (typeof value === "object") {
-    return <span>Object.values(value)[0]</span>;
+    return <span>{Object.values(value)[0]}</span>;
   }
-  return <span>value</span>;
+  return <span>{value}</span>;
 };
 
 const Select = <T extends string | number | Record<string, string | number>>({
@@ -84,7 +84,7 @@ const Select = <T extends string | number | Record<string, string | number>>({
   return (
     <div
       className={`select ${isOpen ? "shadow-md" : ""} ${position}`}
-      onBlur={() => {}}
+      onBlur={() => { }}
       style={style}
     >
       <button
@@ -106,7 +106,7 @@ const Select = <T extends string | number | Record<string, string | number>>({
             {internalSelected === -1
               ? "Select one of the options"
               : labelExtractor?.(items[internalSelected]) ??
-                keyExtractor(items[internalSelected])}
+              keyExtractor(items[internalSelected])}
           </span>
         }
         <Icon icon="eva:arrow-down-fill" vFlip={isOpen} />
@@ -127,9 +127,8 @@ const Select = <T extends string | number | Record<string, string | number>>({
       />
       {isOpen && (
         <ul
-          className={`select-items${
-            items.length > 4 ? " custom-scroll " : " "
-          }bg-${variant} shadow-md`}
+          className={`select-items${items.length > 4 ? " custom-scroll " : " "
+            }bg-${variant} shadow-md`}
           style={{ "--select-items": showQty } as CSSProperties}
         >
           {items.map((item, index) => {

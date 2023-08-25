@@ -42,7 +42,8 @@ input {
 
   &.btn-xs,
   &.input-xs {
-    height: var(--spacing-sm);
+    height: var(--spacing-md);
+    padding-inline: var(--spacing-xs);
   }
 }
 

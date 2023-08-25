@@ -41,7 +41,7 @@ const Table = <
 >({
   headers,
   data,
-  // hideColumn = [],
+  hideColumn = [],
   dataConfig,
   // headersConfig,
   action,
@@ -73,6 +73,7 @@ const Table = <
       const filter = currentFilter.toLowerCase().trim();
 
       const rowIncludes = Object.entries(row).some(([keyName, item]) => {
+        if (hideColumn.includes(keyName)) return false;
         if (
           typeof item === "object" &&
           Object.hasOwnProperty.call(dataConfig, keyName)
@@ -137,12 +138,14 @@ const Table = <
                 <tr>
                   {headers &&
                     headers.map((column, columnIndex) => {
+                      if (hideColumn.includes(column as string)) return null;
                       return (
                         <th key={columnIndex}>{column as unknown as string}</th>
                       );
                     })}
                   {headers === undefined &&
                     Object.keys(data[0]).map((column, columnIndex) => {
+                      if (hideColumn.includes(column)) return null;
                       return (
                         <Column
                           key={columnIndex}
@@ -173,6 +176,8 @@ const Table = <
                         ][]
                       ).map(([column, item], itemIndex) => {
                         let value: ReactNode | string | number;
+
+                        if (hideColumn.includes(column)) return null;
 
                         if (
                           typeof item === "object" &&
