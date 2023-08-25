@@ -1,4 +1,5 @@
 import { ReactNode, RefObject } from "react";
+import { TTableConstraints } from "..";
 interface ITableScroll<T> {
     children: (_options: {
         data: T[];
@@ -6,6 +7,6 @@ interface ITableScroll<T> {
     data: T[];
     tableContainerRef: RefObject<HTMLDivElement>;
 }
-declare const TableScroll: <T extends Record<string, string | number | (string | number)[] | Record<string, string | number>>>({ children, data, tableContainerRef, }: ITableScroll<T>) => ReactNode;
+declare const TableScroll: <T extends TTableConstraints<T>>({ children, data, tableContainerRef, }: ITableScroll<T>) => ReactNode;
 export default TableScroll;
 //# sourceMappingURL=scroll.d.ts.map

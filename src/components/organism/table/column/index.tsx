@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Dispatch, MutableRefObject, RefObject, SetStateAction } from "react";
+import { TTableConstraints } from "..";
 
 interface IColumnProps<T> {
   index: number;
@@ -18,9 +19,7 @@ interface IColumnProps<T> {
   }>;
 }
 
-const Column = <
-  T extends Record<string, number | string | Record<string, number | string>>,
->({
+const Column = <T extends TTableConstraints<T>>({
   index,
   columns,
   translation,
@@ -38,31 +37,29 @@ const Column = <
         <span>{translation(column)}</span>
         <div className="group-vertical rounded-box no-print">
           <button
-            className={`btn btn-square btn-xs ${
-              ordersType[order] === "asc" && orderedHeader.current === column
+            className={`btn btn-square btn-xs ${ordersType[order] === "asc" && orderedHeader.current === column
                 ? "active"
                 : ""
-            }`}
+              }`}
             onClick={() => {
               setOrder((p) =>
                 p === 1 && orderedHeader.current === column ? 0 : 1,
               );
-              orderedHeader.current = column;
+              orderedHeader.current = column as keyof T;
             }}
           >
             <Icon icon="eva:arrow-up-fill" />
           </button>
           <button
-            className={`btn btn-square btn-xs ${
-              ordersType[order] === "desc" && orderedHeader.current === column
+            className={`btn btn-square btn-xs ${ordersType[order] === "desc" && orderedHeader.current === column
                 ? "active"
                 : ""
-            }`}
+              }`}
             onClick={() => {
               setOrder((p) =>
                 p === 2 && orderedHeader.current === column ? 0 : 2,
               );
-              orderedHeader.current = column;
+              orderedHeader.current = column as keyof T;
             }}
           >
             <Icon icon="eva:arrow-down-fill" />

@@ -1,6 +1,7 @@
 import { ReactNode, useRef } from "react";
 import TablePagination from "./pagination";
 import TableScroll from "./scroll";
+import { TTableConstraints } from "..";
 
 const modes = {
   scroll: TableScroll,
@@ -15,7 +16,7 @@ interface ITableModeProps<T> {
   data: T[];
 }
 
-const TableMode = <T extends Record<string, string | number | Record<string, string | number> | Array<string | number>>>({
+const TableMode = <T extends TTableConstraints<T>>({
   mode,
   children,
   data,
@@ -25,10 +26,7 @@ const TableMode = <T extends Record<string, string | number | Record<string, str
   const SelectedMode = modes[mode];
 
   return (
-    <div
-      className={`table-container ${mode}`}
-      ref={tableContainerRef}
-    >
+    <div className={`table-container ${mode}`} ref={tableContainerRef}>
       <SelectedMode tableContainerRef={tableContainerRef} data={data}>
         {children}
       </SelectedMode>

@@ -1,4 +1,5 @@
 import { Dispatch, MutableRefObject, RefObject, SetStateAction } from "react";
+import { TTableConstraints } from "..";
 interface IColumnProps<T> {
     index: number;
     column: string;
@@ -15,6 +16,6 @@ interface IColumnProps<T> {
         endPosition: number;
     }>;
 }
-declare const Column: <T extends Record<string, string | number | Record<string, string | number>>>({ index, columns, translation, column, ordersType, orderedHeader, order, setOrder, tBodyRef, mousePosition, }: IColumnProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Column: <T extends TTableConstraints<T>>({ index, columns, translation, column, ordersType, orderedHeader, order, setOrder, tBodyRef, mousePosition, }: IColumnProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Column;
 //# sourceMappingURL=index.d.ts.map

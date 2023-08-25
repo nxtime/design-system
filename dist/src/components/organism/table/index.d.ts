@@ -13,6 +13,11 @@ interface ITableProps<T> {
     mode?: TKeyModes;
     action?: (item: T, index: number) => ReactNode;
 }
-declare const Table: <T extends Record<string, string | number | (string | number)[] | Record<string, string | number>>>({ headers, data, hideColumn, dataConfig, action, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
+export type TTableConstraints<T> = {
+    [K in keyof T]: string | number | {
+        [S in keyof T[K]]: string | number;
+    } | Record<string, string | number>[];
+};
+declare const Table: <T extends TTableConstraints<T>>({ headers, data, hideColumn, dataConfig, action, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Table;
 //# sourceMappingURL=index.d.ts.map

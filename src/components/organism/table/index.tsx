@@ -11,7 +11,6 @@ import TableConfigModal from "../modal/table/filter";
 import useModal from "../../../stores/useModal";
 import Column from "./column";
 import { sortByKey } from "./functions/sort";
-// import Select from "src/components/molecule/select";
 import { debounce } from "src/utils/helpers/debounce";
 
 interface ITableProps<T> {
@@ -42,12 +41,15 @@ const translations = {
 };
 const ordersType = ["default", "asc", "desc"] as const;
 
-const Table = <
-  T extends Record<
-    string,
-    number | string | Record<string, number | string> | Array<string | number>
-  >,
->({
+export type TTableConstraints<T> = {
+  [K in keyof T]:
+  | string
+  | number
+  | { [S in keyof T[K]]: string | number }
+  | Record<string, string | number>[];
+};
+
+const Table = <T extends TTableConstraints<T>>({
   headers,
   data,
   hideColumn = [],
@@ -82,18 +84,20 @@ const Table = <
       const filter = currentFilter.toLowerCase().trim();
 
       const rowIncludes = Object.entries(row).some(([keyName, item]) => {
-        if (hideColumn.includes(keyName)) return false;
+        if (hideColumn.includes(keyName as keyof T)) return false;
         if (
           typeof item === "object" &&
           Object.hasOwnProperty.call(dataConfig, keyName)
         ) {
-          return String(dataConfig?.[keyName]?.(item as T[string]))
+          return String(dataConfig?.[keyName as keyof T]?.(item as T[keyof T]))
             .toLowerCase()
             .includes(filter);
         }
 
         if (typeof item === "object") {
-          return String(Object.values(item)[0]).toLowerCase().includes(filter);
+          return String(Object.values(item as T[keyof T])[0])
+            .toLowerCase()
+            .includes(filter);
         }
 
         return String(item).toLowerCase().includes(filter);
@@ -148,7 +152,7 @@ const Table = <
                 <tr>
                   {headers &&
                     headers.map((column, columnIndex) => {
-                      if (hideColumn.includes(column as string)) return null;
+                      if (hideColumn.includes(column as keyof T)) return null;
                       columnIndex++;
                       return (
                         <th key={columnIndex}>{column as unknown as string}</th>
@@ -156,7 +160,7 @@ const Table = <
                     })}
                   {headers === undefined &&
                     Object.keys(data[0]).map((column) => {
-                      if (hideColumn.includes(column)) return null;
+                      if (hideColumn.includes(column as keyof T)) return null;
                       columnIndex++;
                       return (
                         <Column
@@ -195,8 +199,7 @@ const Table = <
 
                         if (
                           typeof item === "object" &&
-                          dataConfig?.[column] === undefined &&
-                          item?.length === undefined
+                          dataConfig?.[column] === undefined
                         ) {
                           value = Object.values(item)[0];
                         } else if (

@@ -1,6 +1,7 @@
 import Select from "../../../molecule/select";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode, useCallback, useState } from "react";
+import { TTableConstraints } from "..";
 
 interface ITablePagination<T> {
   children: (_options: { data: T[] }) => ReactNode;
@@ -10,9 +11,7 @@ interface ITablePagination<T> {
 
 const possibleItemsPerPage = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
-const TablePagination = <
-  T extends Record<string, string | number | Record<string, string | number> | Array<string | number>>,
->({
+const TablePagination = <T extends TTableConstraints<T>>({
   children,
   data,
   itemsPerPage = 30,

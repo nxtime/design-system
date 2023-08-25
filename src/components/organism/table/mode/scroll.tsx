@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, ReactNode, RefObject } from "react";
 import useScroll from "../../../../hooks/useScroll";
+import { TTableConstraints } from "..";
 
 interface ITableScroll<T> {
   children: (_options: { data: T[] }) => ReactNode;
@@ -7,7 +8,7 @@ interface ITableScroll<T> {
   tableContainerRef: RefObject<HTMLDivElement>;
 }
 
-const TableScroll = <T extends Record<string, string | number | Record<string, string | number> | Array<string | number>>>({
+const TableScroll = <T extends TTableConstraints<T>>({
   children,
   data,
   tableContainerRef,
@@ -32,8 +33,7 @@ const TableScroll = <T extends Record<string, string | number | Record<string, s
 
     currentItemsRef.current = getItemSize();
 
-    return () => {
-    };
+    return () => { };
   }, [getItemSize, tableContainerRef, root, setRoot, changeScrollData]);
 
   const dataToRender = useCallback(() => {
