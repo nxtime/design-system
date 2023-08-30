@@ -15,6 +15,6 @@ declare const onMenuOver: (itemHandlerRef: RefObject<HTMLSpanElement>, tooltipRe
     route: string;
     label: string;
 }, index: number, submenuIndex: number | undefined, isOpen: boolean) => void;
-declare const onMenuOut: (itemHandlerRef: RefObject<HTMLSpanElement>, tooltipRef: RefObject<HTMLDivElement>, pathName: string, isOpen: boolean, data: TData[], currentOpenSubmenus: number | null) => void;
+declare const onMenuOut: (prefix: string, itemHandlerRef: RefObject<HTMLSpanElement>, tooltipRef: RefObject<HTMLDivElement>, pathName: string, isOpen: boolean, data: TData[], currentOpenSubmenus: number | null) => void;
 export { onMenuOver, onMenuOut, onKeyDown };
 //# sourceMappingURL=events.d.ts.map

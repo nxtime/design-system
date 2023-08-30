@@ -85,6 +85,7 @@ const onMenuOver = (
 };
 
 const onMenuOut = (
+  prefix: string,
   itemHandlerRef: RefObject<HTMLSpanElement>,
   tooltipRef: RefObject<HTMLDivElement>,
   pathName: string,
@@ -103,7 +104,7 @@ const onMenuOut = (
     }
 
     data.forEach((item, index) => {
-      if (item.route === pathName) {
+      if (prefix + item.route === pathName) {
         menuIndex = index;
         if (currentOpenSubmenus !== null && index >= currentOpenSubmenus) {
           menuIndex += data[currentOpenSubmenus].submenus!.length;
@@ -113,7 +114,7 @@ const onMenuOut = (
       if (!Object.hasOwnProperty.call(item, "submenus")) return;
 
       item.submenus!.forEach((submenu, submenuIndex) => {
-        if (`${item.route}${submenu.route}` === pathName) {
+        if (`${prefix}${item.route}${submenu.route}` === pathName) {
           if (currentOpenSubmenus === index) {
             menuIndex = index + submenuIndex + 1;
           } else {

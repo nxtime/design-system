@@ -6,10 +6,12 @@ const Modal = ({
   children,
   currentName,
   variant = "neutral",
+  onClose = () => { },
 }: {
   children: ReactNode;
   currentName: string;
   variant?: string;
+  onClose?: () => void;
 }) => {
   const { isOpen, current, closeModal } = useModal();
 
@@ -31,11 +33,20 @@ const Modal = ({
         tabIndex={0}
         ref={modalContentRef}
         onKeyDown={(e) => {
-          if (e.key === "Escape") closeModal();
+          if (e.key === "Escape") {
+            onClose();
+            closeModal();
+          }
         }}
         className="modal"
       >
-        <div className="modal-overlay" onClick={closeModal} />
+        <div
+          className="modal-overlay"
+          onClick={() => {
+            onClose();
+            closeModal();
+          }}
+        />
         <div className={`modal-body container rounded-box bg-${variant}`}>
           {children}
         </div>

@@ -16,6 +16,7 @@ interface ISidebarProps {
   onLogout?: () => void;
   onSettings?: () => void;
   pathname: string;
+  prefix?: string;
   itemLink: (_item: {
     icon: string;
     label: string;
@@ -33,6 +34,7 @@ const Sidebar = ({
   itemLink,
   onSettings,
   onLogout,
+  prefix = "",
   pathname = "",
 }: ISidebarProps) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -65,6 +67,7 @@ const Sidebar = ({
         className="sidebar-container"
         onMouseLeave={() =>
           onMenuOut(
+            prefix,
             itemHandlerRef,
             tooltipRef,
             pathname,

@@ -13,6 +13,7 @@ interface ISidebarProps {
     onLogout?: () => void;
     onSettings?: () => void;
     pathname: string;
+    prefix?: string;
     itemLink: (_item: {
         icon: string;
         label: string;
@@ -24,6 +25,6 @@ interface ISidebarProps {
         };
     }) => ReactNode;
 }
-declare const Sidebar: ({ data, itemLink, onSettings, onLogout, pathname, }: ISidebarProps) => import("react/jsx-runtime").JSX.Element;
+declare const Sidebar: ({ data, itemLink, onSettings, onLogout, prefix, pathname, }: ISidebarProps) => import("react/jsx-runtime").JSX.Element;
 export default Sidebar;
 //# sourceMappingURL=index.d.ts.map

@@ -13,9 +13,6 @@
   }
 
   & > .custom-scroll {
-    &::-webkit-scrollbar-thumb {
-      // background-color: var(--bg-base-200);
-    }
     &::-webkit-scrollbar-track {
       border-radius: 0px var(--rounded-box) var(--rounded-box) 0px;
     }
@@ -78,6 +75,7 @@
       }
 
       & > .item {
+        position: relative;
         & > button {
           border-radius: 0px;
         }
