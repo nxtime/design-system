@@ -26457,7 +26457,7 @@ const ob = (i) => {
                     onClick: () => {
                       S(), T();
                     },
-                    children: /* @__PURE__ */ I.jsx(n3, { icon: "mingcute:close-fill" })
+                    children: /* @__PURE__ */ I.jsx(n3, { icon: "mingcute:close-fill", height: 16 })
                   }
                 ),
                 i

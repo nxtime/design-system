@@ -64,7 +64,7 @@ const Modal = ({
                 closeModal();
               }}
             >
-              <Icon icon="mingcute:close-fill" />
+              <Icon icon="mingcute:close-fill" height={16} />
             </button>
           )}
           {children}

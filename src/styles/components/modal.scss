@@ -42,7 +42,7 @@
       animation: slide-in linear 0.2s;
       gap: var(--spacing-xs);
 
-      &-fill {
+      &.fill {
         height: 90%;
         width: 90%;
       }
@@ -53,9 +53,10 @@
         right: var(--spacing-sm);
         opacity: 1;
         transition: opacity ease 0.2s;
+        cursor: pointer;
 
         &:hover {
-          opacity: 0.6;
+          opacity: 0.8;
         }
       }
     }
