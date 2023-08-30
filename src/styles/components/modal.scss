@@ -41,6 +41,23 @@
       position: relative;
       animation: slide-in linear 0.2s;
       gap: var(--spacing-xs);
+
+      &-fill {
+        height: 90%;
+        width: 90%;
+      }
+
+      & .close-btn {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        opacity: 1;
+        transition: opacity ease 0.2s;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
     }
   }
 }
