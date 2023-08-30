@@ -1,7 +1,7 @@
 import { HTMLProps, ReactNode, useRef, useState } from "react";
 import { handleEndDateFocus, handleStartDateFocus } from "./functions";
 import DateDropdown from "./dropdown";
-import { Moment } from "moment";
+import moment, { Moment } from "moment";
 
 type TChildrenResponse = {
   startDateProps: HTMLProps<HTMLInputElement>;
@@ -9,8 +9,8 @@ type TChildrenResponse = {
 };
 
 type TSearchResponse = {
-  start: string;
-  end: string;
+  start: Moment;
+  end: Moment;
 };
 
 interface IDateRangerPickerProps {
@@ -44,6 +44,7 @@ const DateRangerPicker = ({
   const startDateProps: HTMLProps<HTMLInputElement> = {
     ref: startDateRef,
     type: "date",
+    name: "start",
     onFocus: handleStartDateFocus,
     onClick: () => {
       changeShowDropdown((s) => !s);
@@ -57,6 +58,7 @@ const DateRangerPicker = ({
   const endDateProps: HTMLProps<HTMLInputElement> = {
     ref: endDateRef,
     type: "date",
+    name: "end",
     onFocus: handleEndDateFocus,
     onClick: () => {
       changeShowDropdown((s) => !s);
@@ -75,11 +77,17 @@ const DateRangerPicker = ({
           e.preventDefault();
           const formData = new FormData(e.target as HTMLFormElement);
 
-          const data = Object.fromEntries(
-            formData.entries(),
-          ) as TSearchResponse;
+          const data = Object.fromEntries(formData.entries()) as {
+            start: string;
+            end: string;
+          };
 
-          onSearch?.(data);
+          const transformedData = {
+            start: moment(data.start, "YYYY-MM-DD"),
+            end: moment(data.end, "YYYY-MM-DD"),
+          };
+
+          onSearch?.(transformedData);
         }}
       >
         <div className="group rounded-box">

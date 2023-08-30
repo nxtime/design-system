@@ -5,8 +5,8 @@ type TChildrenResponse = {
     endDateProps: HTMLProps<HTMLInputElement>;
 };
 type TSearchResponse = {
-    start: string;
-    end: string;
+    start: Moment;
+    end: Moment;
 };
 interface IDateRangerPickerProps {
     defaultSelected?: {
