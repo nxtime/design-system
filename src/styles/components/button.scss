@@ -97,7 +97,7 @@ button[type="submit"] {
     }
   }
 
-  &:active {
+  &:active:not(.no-bounce) {
     transform: scale(0.925) perspective(1px);
   }
 }

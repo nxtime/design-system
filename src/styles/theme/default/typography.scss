@@ -8,6 +8,14 @@ $fontSizes: (
   4xl: "1.25rem",
 );
 
+.title {
+  font-size: 2rem;
+}
+
+.subtitle {
+  font-size: 1.625rem;
+}
+
 :root {
   @each $font, $value in $fontSizes {
     --text-#{$font}: #{$value};
