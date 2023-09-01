@@ -1,1 +1,1 @@
-{"version":3,"file":"useModal.d.ts","sourceRoot":"","sources":["../../../src/stores/useModal.tsx"],"names":[],"mappings":"AAGA,QAAA,MAAM,QAAQ;;;sBAMU,MAAM;;GAwB7B,CAAC;AAEF,eAAe,QAAQ,CAAC"}
+{"version":3,"file":"useModal.d.ts","sourceRoot":"","sources":["../../../src/stores/useModal.tsx"],"names":[],"mappings":"AAGA,QAAA,MAAM,QAAQ;;;sBAMU,MAAM;;;GAmC7B,CAAC;AAEF,eAAe,QAAQ,CAAC"}

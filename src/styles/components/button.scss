@@ -56,6 +56,7 @@ button[type="submit"] {
   -ms-user-select: none;
   user-select: none;
   font-weight: 500;
+  transition: all ease 0.2s;
 
   &:disabled {
     pointer-events: none;
@@ -98,7 +99,7 @@ button[type="submit"] {
   }
 
   &:active:not(.no-bounce) {
-    transform: scale(0.925) perspective(1px);
+    transform: scale(0.95) perspective(1px);
   }
 }
 

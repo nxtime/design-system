@@ -7,12 +7,14 @@
   height: 100vh;
 
   &.closed {
-    .modal-overlay {
-      animation: fade-out linear 0.2s;
-    }
+    .modal:last-of-type {
+      .modal-overlay {
+        animation: fade-out linear 0.2s;
+      }
 
-    .modal-body {
-      animation: slide-out linear 0.2s;
+      .modal-body {
+        animation: slide-out linear 0.2s;
+      }
     }
   }
 

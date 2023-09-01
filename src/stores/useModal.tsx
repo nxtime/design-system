@@ -29,6 +29,17 @@ const useModal = create(
           set({ currentOpen: currentOpenModals });
         }, 190);
       },
+      closeAllModals: () => {
+        const modalRoot = document.querySelector("#modal-root");
+        if (!modalRoot) return;
+
+        modalRoot.classList.add("closed");
+
+        setTimeout(() => {
+          modalRoot.classList.remove("closed");
+          set({ currentOpen: [] });
+        }, 190);
+      },
     }),
   ),
 );
