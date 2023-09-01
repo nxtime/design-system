@@ -33,6 +33,7 @@ import useScroll from "./hooks/useScroll";
 // ** STORES **
 // Modal Store
 import useModal from "./stores/useModal";
+import useToast from "./stores/useToast";
 
 // ** UTILS **
 import { debounce } from "./utils/helpers/debounce";
@@ -50,5 +51,6 @@ export {
   Table,
   useScroll,
   useModal,
+  useToast,
   debounce,
 };

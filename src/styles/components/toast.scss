@@ -1,0 +1,120 @@
+#toast-root {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: end;
+  z-index: 50;
+  width: 20rem;
+  padding: var(--spacing-sm);
+  height: fit-content;
+  margin-left: calc(100% - 20rem);
+
+  &:not(:has(.toast)) {
+    display: none;
+  }
+
+  .toast {
+    --toast-size: 8rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: var(--toast-size);
+    width: 18rem;
+    justify-content: center;
+
+    &.closed {
+      animation: toast-slide-out linear 0.2s forwards;
+    }
+
+    &-body {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      animation: toast-slide-in linear 0.2s;
+      gap: var(--spacing-xs);
+      overflow: hidden;
+
+      &.fill {
+        height: 90%;
+        width: 90%;
+      }
+
+      & .close-btn {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        opacity: 1;
+        transition: opacity ease 0.2s;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      .fill-bar {
+        --fill-color: var(--primary);
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        height: var(--spacing-sm);
+        border-radius: 0 0.25rem 0.25rem 0;
+        background-color: var(--fill-color);
+        animation: empty-fill 3s steps(10, end) forwards;
+      }
+    }
+  }
+}
+
+@keyframes empty-fill {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes toast-slide-in {
+  from {
+    transform: translateX(40rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-slide-out {
+  from {
+    transform: translateX(0);
+    height: var(--toast-size);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(40rem);
+    height: 0rem;
+    opacity: 0;
+  }
+}

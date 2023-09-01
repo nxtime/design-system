@@ -11,7 +11,7 @@ import TableConfigModal from "../modal/table/filter";
 import useModal from "../../../stores/useModal";
 import Column from "./column";
 import { sortByKey } from "./functions/sort";
-import { debounce } from "src/utils/helpers/debounce";
+import { debounce } from "../../../utils/helpers/debounce.tsx";
 
 interface ITableProps<T> {
   headers?: Record<keyof T, string>[];

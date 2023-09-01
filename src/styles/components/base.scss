@@ -94,12 +94,18 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
 
 .btn-neutral,
 .btn-primary,
+.btn-danger,
+.btn-info,
+.btn-warning,
 .input-primary,
 .input-neutral {
   color: var(--text-neutral-content);
 }
 
 .bg-neutral,
+.bg-danger,
+.bg-info,
+.bg-warning,
 .bg-primary {
   color: var(--text-neutral-content);
 

@@ -1,6 +1,7 @@
 {
   "name": "design-system",
   "version": "0.0.1",
+  "private": "true",
   "type": "module",
   "main": "./dist/design-system.umd.js",
   "module": "./dist/design-system.es.js",
@@ -11,7 +12,7 @@
     }
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "SHOW_ALL_COMPONENT_DEMOS=true vite serve docs",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -36,12 +37,16 @@
     "zustand": "^4.4.1"
   },
   "dependencies": {
+    "@mdx-js/react": "^2.3.0",
     "@storybook/react": "^7.3.2",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "vite-pages-theme-doc": "^4.1.6",
+    "vite-plugin-react-pages": "^4.1.4",
     "vite-tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
