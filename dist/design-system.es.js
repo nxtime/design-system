@@ -26405,13 +26405,16 @@ const ob = (i) => {
       currentOpen: []
     },
     (i, o) => ({
-      openModal: (c) => i({ currentOpen: [...o().currentOpen, c] }),
+      openModal: (c) => {
+        const d = [...o().currentOpen, c];
+        console.log("Updated openModal: ", d), i({ currentOpen: d });
+      },
       closeModal: () => {
         const c = document.querySelector("#modal-root");
         c && (c.classList.add("closed"), setTimeout(() => {
           c.classList.remove("closed");
-          const d = o().currentOpen.slice(0, length - 2);
-          i({ currentOpen: d });
+          const d = o().currentOpen.slice(0, o().currentOpen.length - 2);
+          console.log("Updated openModal: ", d), i({ currentOpen: d });
         }, 190));
       }
     })
