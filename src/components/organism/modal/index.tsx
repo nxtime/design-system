@@ -18,19 +18,19 @@ const Modal = ({
   closeButton?: boolean;
   size?: "normal" | "fill";
 }) => {
-  const { isOpen, current, closeModal } = useModal();
+  const { currentOpen, closeModal } = useModal();
 
   const modalRoot = document.querySelector("#modal-root");
 
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isOpen && modalContentRef.current) {
+    if (currentOpen.length > 0 && modalContentRef.current) {
       modalContentRef.current.focus();
     }
-  }, [isOpen]);
+  }, [currentOpen]);
 
-  if (!isOpen || currentName !== current) return null;
+  if (!currentOpen.includes(currentName)) return null;
 
   return modalRoot
     ? createPortal(

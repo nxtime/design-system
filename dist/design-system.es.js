@@ -26402,15 +26402,16 @@ const ob = (i) => {
 }, d3 = (i) => i ? ob(i) : ob, p3 = (i, o) => (...c) => Object.assign({}, i, o(...c)), FR = d3(
   p3(
     {
-      isOpen: !1,
-      current: ""
+      currentOpen: []
     },
-    (i) => ({
-      openModal: (o) => i({ isOpen: !0, current: o }),
+    (i, o) => ({
+      openModal: (c) => i({ currentOpen: [...o().currentOpen, c] }),
       closeModal: () => {
-        const o = document.querySelector("#modal-root");
-        o && (o.classList.add("closed"), setTimeout(() => {
-          o.classList.remove("closed"), i({ isOpen: !1, current: "" });
+        const c = document.querySelector("#modal-root");
+        c && (c.classList.add("closed"), setTimeout(() => {
+          c.classList.remove("closed");
+          const d = o().currentOpen.slice(0, length - 2);
+          i({ currentOpen: d });
         }, 190));
       }
     })
@@ -26424,17 +26425,17 @@ const ob = (i) => {
   onClose: S = () => {
   }
 }) => {
-  const { isOpen: m, current: C, closeModal: T } = FR(), R = document.querySelector("#modal-root"), k = tr(null);
+  const { currentOpen: m, closeModal: C } = FR(), T = document.querySelector("#modal-root"), R = tr(null);
   return Cg(() => {
-    m && k.current && k.current.focus();
-  }, [m]), !m || o !== C ? null : R ? Jj.createPortal(
+    m.length > 0 && R.current && R.current.focus();
+  }, [m]), m.includes(o) && T ? Jj.createPortal(
     /* @__PURE__ */ I.jsxs(
       "div",
       {
         tabIndex: 0,
-        ref: k,
-        onKeyDown: (O) => {
-          O.key === "Escape" && (S(), T());
+        ref: R,
+        onKeyDown: (k) => {
+          k.key === "Escape" && (S(), C());
         },
         className: "modal",
         children: [
@@ -26443,7 +26444,7 @@ const ob = (i) => {
             {
               className: "modal-overlay",
               onClick: () => {
-                S(), T();
+                S(), C();
               }
             }
           ),
@@ -26458,7 +26459,7 @@ const ob = (i) => {
                     type: "button",
                     className: "close-btn",
                     onClick: () => {
-                      S(), T();
+                      S(), C();
                     },
                     children: /* @__PURE__ */ I.jsx(n3, { icon: "mingcute:close-fill", height: 16 })
                   }
@@ -26470,7 +26471,7 @@ const ob = (i) => {
         ]
       }
     ),
-    R
+    T
   ) : null;
 }, v3 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100], m3 = ({
   children: i,

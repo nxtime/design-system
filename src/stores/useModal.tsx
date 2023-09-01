@@ -4,11 +4,11 @@ import { combine } from "zustand/middleware";
 const useModal = create(
   combine(
     {
-      isOpen: false,
-      current: "",
+      currentOpen: [] as string[],
     },
-    (set) => ({
-      openModal: (name: string) => set({ isOpen: true, current: name }),
+    (set, get) => ({
+      openModal: (name: string) =>
+        set({ currentOpen: [...get().currentOpen, name] }),
       closeModal: () => {
         const modalRoot = document.querySelector("#modal-root");
         if (!modalRoot) return;
@@ -17,7 +17,8 @@ const useModal = create(
 
         setTimeout(() => {
           modalRoot.classList.remove("closed");
-          set({ isOpen: false, current: "" });
+          const currentOpenModals = get().currentOpen.slice(0, length - 2);
+          set({ currentOpen: currentOpenModals });
         }, 190);
       },
     }),

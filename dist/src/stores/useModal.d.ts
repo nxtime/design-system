@@ -1,6 +1,5 @@
 declare const useModal: import("zustand").UseBoundStore<import("zustand").StoreApi<Omit<{
-    isOpen: boolean;
-    current: string;
+    currentOpen: string[];
 }, "openModal" | "closeModal"> & {
     openModal: (name: string) => void;
     closeModal: () => void;
