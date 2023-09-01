@@ -26406,6 +26406,8 @@ const ob = (i) => {
     },
     (i, o) => ({
       openModal: (c) => {
+        if (o().currentOpen.includes(c))
+          return;
         const d = [...o().currentOpen, c];
         console.log("Updated openModal: ", d), i({ currentOpen: d });
       },
@@ -26413,7 +26415,10 @@ const ob = (i) => {
         const c = document.querySelector("#modal-root");
         c && (c.classList.add("closed"), setTimeout(() => {
           c.classList.remove("closed");
-          const d = o().currentOpen.slice(0, o().currentOpen.length - 2);
+          const d = o().currentOpen.slice(
+            0,
+            o().currentOpen.length - 1
+          );
           console.log("Updated openModal: ", d), i({ currentOpen: d });
         }, 190));
       }
