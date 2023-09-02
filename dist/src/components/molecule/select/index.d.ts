@@ -7,6 +7,7 @@ interface ISelectProps<T> {
      * along with keyExtractor for visualization
      */
     items: T[];
+    selected?: number;
     currentSelected?: T;
     required?: boolean;
     name?: string;
@@ -29,6 +30,6 @@ interface ISelectProps<T> {
     keyExtractor?: (_item: T) => string | number | ReactNode;
     labelExtractor?: (_item: T) => string | number | ReactNode;
 }
-declare const Select: <T extends string | number | Record<string, string | number>>({ items, currentSelected, selector, onChange, labelExtractor, required, showQty, style, name, position, variant, keyExtractor, }: ISelectProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Select: <T extends string | number | Record<string, string | number>>({ items, selected, currentSelected, selector, onChange, labelExtractor, required, showQty, style, name, position, variant, keyExtractor, }: ISelectProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Select;
 //# sourceMappingURL=index.d.ts.map
