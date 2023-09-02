@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
-export type TToastType = "danger" | "warning" | "info" | "base-200" | "neutral";
+export type TToastType = "danger" | "success" | "warning" | "info" | "base-200" | "neutral";
 
 const toastSize = {
   small: "4rem",
-  medium: "8rem",
-  large: "12rem",
+  medium: "6rem",
+  large: "8rem",
 };
 
 const useToast = create(

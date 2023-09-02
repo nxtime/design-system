@@ -26880,8 +26880,8 @@ const lb = (i) => {
   ] });
 }, x3 = {
   small: "4rem",
-  medium: "8rem",
-  large: "12rem"
+  medium: "6rem",
+  large: "8rem"
 }, z3 = jR(
   FR(
     {

@@ -100,6 +100,10 @@ $colorNames: primary, secondary, neutral, base-200, base-300, danger, warning,
 .input-primary,
 .input-neutral {
   color: var(--text-neutral-content);
+
+  & * {
+    color: var(--text-neutral-content);
+  }
 }
 
 .bg-neutral,

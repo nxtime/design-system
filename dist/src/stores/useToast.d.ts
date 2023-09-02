@@ -1,4 +1,4 @@
-export type TToastType = "danger" | "warning" | "info" | "base-200" | "neutral";
+export type TToastType = "danger" | "success" | "warning" | "info" | "base-200" | "neutral";
 declare const useToast: import("zustand").UseBoundStore<import("zustand").StoreApi<Omit<{
     currentOpen: {
         type: TToastType;

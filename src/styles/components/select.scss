@@ -26,6 +26,7 @@
     justify-content: space-between;
     gap: var(--spacing-xs);
     min-width: 6rem;
+    color: var(--text-neutral-content);
 
     &:active {
       transform: scale(1);
