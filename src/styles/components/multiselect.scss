@@ -1,0 +1,9 @@
+.multiselect {
+  .item {
+    button {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+  }
+}

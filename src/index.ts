@@ -13,6 +13,7 @@ import DateRangePicker from "./components/molecule/picker/date-range";
 
 // Select
 import Select from "./components/molecule/select";
+import MultiSelect from "./components/molecule/multiselect";
 
 // Organisms
 // Callendar
@@ -44,6 +45,7 @@ export {
   ShowPassword,
   DateRangePicker,
   Select,
+  MultiSelect,
   DetailedWorkDay,
   Header,
   Sidebar,

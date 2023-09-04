@@ -14,17 +14,49 @@ import { sortByKey } from "./functions/sort";
 import { debounce } from "../../../utils/helpers/debounce.tsx";
 
 interface ITableProps<T> {
-  headers?: Record<keyof T, string>[];
+  /*
+   * Default show headers, for each column
+   */
+  headers?: Record<keyof T, string>[] | string[];
+  /*
+   * A generic array of objects
+   * Each key is a header by default
+   */
   data: T[];
+  /*
+   * If a key from data is specified,
+   * the whole column is going to be hidden
+   */
   hideColumn?: (keyof T)[];
+  /*
+   * If property of a key is an object,
+   * it's going to be destructured to be shown
+   */
   showObject?: { [K in keyof T]: boolean };
+  /*
+   * Default config for the "td" display of the table
+   */
   dataConfig?: {
     [K in keyof T]?: (_value: T[K], _row: T) => ReactNode | string | number;
   };
+  /*
+   * Will put a loading state
+   */
+  loading?: boolean;
+  /*
+   * Default config for the "th" display of the table
+   */
   headersConfig?: {
     [K in keyof T]?: (_value: T[K]) => ReactNode | string | number;
   };
+  /*
+   * Defines the mode which the table is going to be rendered
+   */
   mode?: TKeyModes;
+  /*
+   * Defines as the last column,
+   * for custom actions, it receives a component as a child
+   */
   action?: (item: T, index: number) => ReactNode;
 }
 
@@ -42,22 +74,26 @@ const translations = {
 };
 const ordersType = ["default", "asc", "desc"] as const;
 
+type TGenericRecord = Record<string, string | number>;
+type TGenericRecordWArray = Record<string, string | number | TGenericRecord[]>;
+
 export type TTableConstraints<T> = {
   [K in keyof T]:
   | string
   | number
   | { [S in keyof T[K]]: string | number }
-  | Record<string, string | number>[];
+  | Record<string, string | number | TGenericRecord | TGenericRecordWArray>;
 };
 
 const Table = <T extends TTableConstraints<T>>({
   headers,
   data,
-  hideColumn = [],
   dataConfig,
   showObject,
   // headersConfig,
   action,
+  loading = false,
+  hideColumn = [],
   mode = "pagination",
 }: ITableProps<T>) => {
   const { closeModal, openModal } = useModal();
@@ -80,6 +116,7 @@ const Table = <T extends TTableConstraints<T>>({
   const [currentFilter, changeCurrentFilter] = useState("");
 
   const filteredItems = useCallback(() => {
+    if (loading) return [];
     return data.filter((row) => {
       if (currentFilter.trim() === "") return data;
 
@@ -92,7 +129,9 @@ const Table = <T extends TTableConstraints<T>>({
           typeof item === "object" &&
           Object.hasOwnProperty.call(dataConfig, keyName)
         ) {
-          return String(dataConfig?.[keyName as keyof T]?.(item as T[keyof T], row))
+          return String(
+            dataConfig?.[keyName as keyof T]?.(item as T[keyof T], row),
+          )
             .toLowerCase()
             .includes(filter);
         }
@@ -108,7 +147,7 @@ const Table = <T extends TTableConstraints<T>>({
 
       return rowIncludes;
     });
-  }, [currentFilter, hideColumn, data, dataConfig]);
+  }, [currentFilter, hideColumn, data, dataConfig, loading]);
 
   const orderedItems = useCallback(() => {
     return sortByKey(filteredItems(), orderedHeader.current, ordersType[order]);
@@ -147,7 +186,6 @@ const Table = <T extends TTableConstraints<T>>({
       </div>
       <TableMode mode={currentMode} data={orderedItems()}>
         {({ data }) => {
-          if (data.length === 0) return null;
           let columnIndex = 0;
           return (
             <table className="table">
@@ -162,6 +200,7 @@ const Table = <T extends TTableConstraints<T>>({
                       );
                     })}
                   {headers === undefined &&
+                    data.length > 0 &&
                     Object.keys(data[0]).map((column) => {
                       if (hideColumn.includes(column as keyof T)) return null;
                       columnIndex++;
@@ -183,10 +222,12 @@ const Table = <T extends TTableConstraints<T>>({
                         />
                       );
                     })}
+                    {loading && (<th />)}
                   {action && <th>Ação</th>}
                 </tr>
               </thead>
               <tbody ref={tBodyRef}>
+                {loading && <h2 className="subtitle" style={{ margin: "auto", marginTop: "1rem", width: "fit-content"}}>Carregando...</h2>}
                 {data.map((row, rowIndex) => {
                   return (
                     <tr tabIndex={0} key={rowIndex}>

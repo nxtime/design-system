@@ -1,0 +1,71 @@
+.checkbox {
+  position: relative;
+  height: var(--spacing-sm);
+  width: var(--spacing-sm);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  appearance: none;
+
+  &:hover::before {
+    background-color: var(--neutral-hover);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    background-color: var(--neutral);
+    transition: all ease 0.2s;
+  }
+
+  &:checked::after {
+    height: 55%;
+    opacity: 1;
+    width: 55%;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    margin: auto;
+    opacity: 0;
+    height: 0%;
+    width: 0%;
+    border-radius: 4px;
+    background-color: var(--neutral);
+    transition: all ease 0.2s;
+  }
+
+  &-base-200 {
+    &::before {
+      background-color: var(--base-200);
+    }
+    &:hover::before {
+      background-color: var(--base-200-hover);
+    }
+  }
+
+  &-primary {
+    &::before {
+      background-color: var(--primary);
+    }
+
+    &:hover::before {
+      background-color: var(--primary-hover);
+    }
+  }
+
+  &-secondary{
+    &::before {
+      background-color: var(--secondary);
+    }
+
+    &:hover::before {
+      background-color: var(--secondary-hover);
+    }
+  }
+}

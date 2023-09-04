@@ -20,15 +20,20 @@ const Modal = ({
 }) => {
   const { currentOpen, closeModal } = useModal();
 
-  const modalRoot = document.querySelector("#modal-root");
+  const modalRoot = document.querySelector("#modal-root") as HTMLDivElement;
 
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (currentOpen.length > 0 && modalContentRef.current) {
       modalContentRef.current.focus();
+      modalRoot.style.display = "block";
     }
-  }, [currentOpen]);
+    if (currentOpen.length === 0) {
+      modalRoot.style.display = "none";
+    }
+  }, [currentOpen, modalRoot]);
+
 
   if (!currentOpen.includes(currentName)) return null;
 

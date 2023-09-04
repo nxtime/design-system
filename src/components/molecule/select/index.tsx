@@ -113,7 +113,7 @@ const Select = <T extends string | number | Record<string, string | number>>({
         {
           <span className={internalSelected === -1 ? "not-selected" : ""}>
             {internalSelected === -1
-              ? "Select one of the options"
+              ? "Selecione uma das opções"
               : labelExtractor?.(items[internalSelected]) ??
                 keyExtractor(items[internalSelected])}
           </span>

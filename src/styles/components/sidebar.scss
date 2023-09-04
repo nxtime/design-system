@@ -3,6 +3,7 @@
   width: 300px;
   display: flex;
   flex-direction: column;
+  height: 100%;
   gap: var(--spacing-xs);
   padding: var(--spacing-xs);
   background-color: var(--neutral);
@@ -53,6 +54,8 @@
 
     .sidebar-item--submenu-handler {
       svg {
+        position: absolute;
+        right: 0;
         width: calc(var(--spacing-lg) / 1.75);
       }
     }
@@ -71,7 +74,6 @@
     & .sidebar-item--icon {
       height: 100%;
       width: 100%;
-      // display: flex;
     }
 
     & > .sidebar-item,
@@ -98,14 +100,14 @@
         padding-inline: var(--spacing-sm);
         align-items: center;
         justify-content: start;
-        gap: var(--spacing-xs);
+        // gap: var(--spacing-xs);
         text-decoration: none;
         height: 100%;
         width: 100%;
         outline: none;
 
         & > span {
-          animation: slideIn 0.2s linear;
+          animation: label-slide-in 0.2s linear forwards;
           // transition: all ease 0.2s;
         }
 
@@ -115,7 +117,8 @@
       }
 
       & span {
-        transition: all ease 0.2s;
+        transition: all ease 0.3s;
+        white-space: nowrap;
       }
     }
 
@@ -135,6 +138,7 @@
         width: var(--spacing-sm);
         background-color: var(--base-200);
         color: var(--text-content);
+        animation: slideIn 0.175s linear;
       }
     }
 
@@ -181,7 +185,6 @@
     display: flex;
     align-items: center;
     padding-inline: var(--spacing-sm);
-    gap: var(--spacing-xs);
     font-size: var(--text-lg);
     border-radius: var(--rounded-box);
     background-color: var(--danger);
@@ -189,6 +192,10 @@
     border: none;
     cursor: pointer;
     outline: none;
+
+    & > span {
+      animation: label-slide-in 0.2s linear forwards;
+    }
 
     & svg {
       transition: all ease 0.2s;
@@ -203,13 +210,22 @@
     background-color: var(--neutral);
     margin-top: auto;
 
-    & > span {
-      animation: slideIn 0.2s linear;
-    }
-
     &:hover {
       background-color: var(--neutral-hover);
     }
+  }
+}
+
+@keyframes label-slide-in {
+  from {
+    width: 0%;
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+  to {
+    width: fit-content;
+    opacity: 1;
+    transform: translateX(var(--spacing-xs));
   }
 }
 

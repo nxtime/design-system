@@ -3,6 +3,10 @@ import { Fragment, ReactNode, useRef, useState } from "react";
 import { onKeyDown, onMenuOut, onMenuOver } from "./events";
 
 interface ISidebarProps {
+  /*
+   * Sidebar data, expects a couple of props
+   * To better experience it it should fullfill all of them
+   */
   data: {
     label: string;
     icon: string;
@@ -13,10 +17,27 @@ interface ISidebarProps {
       icon: string;
     }[];
   }[];
+  /*
+   * If provided, will show a leave button at the bottom
+   */
   onLogout?: () => void;
+  /*
+   * If provided, will show a settings button at the bottom
+   */
   onSettings?: () => void;
+  /*
+   * Updated url pathname
+   */
   pathname: string;
+  /*
+   * If there's a prefix,
+   * Ex:. (Current App): /wfm
+   */
   prefix?: string;
+  /*
+   * Custom ReactNode for the link on container
+   * it receives a couple of props to better custom it
+   */
   itemLink: (_item: {
     icon: string;
     label: string;
