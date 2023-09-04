@@ -35,7 +35,14 @@ const MultiSelectComponent = () => {
       <h2 className="title">
         Current selected Animal: {animals[currentSelected].name}
       </h2>
-      <MultiSelect items={animals} selector="name" />
+      <MultiSelect
+        items={animals}
+        selector="name"
+        onChange={(_index, _item, selected) => {
+          console.log(_index, _item);
+          console.log(animals.filter((_, index) => selected?.includes(index)));
+        }}
+      />
       <button className="btn btn-primary" onClick={() => changeSelected(2)}>
         Dog
       </button>

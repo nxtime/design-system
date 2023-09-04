@@ -10,7 +10,8 @@ interface IMultiSelectProps<T> {
     selected?: number[];
     currentSelected?: T;
     position?: "top" | "bottom";
-    onChange?: (_index: number, _value?: T) => void;
+    onChange?: (_index: number, _value?: T, _list?: number[]) => void;
+    onAllChange?: (_state: boolean) => void;
     showQty?: number;
     style?: CSSProperties;
     /**
@@ -28,6 +29,6 @@ interface IMultiSelectProps<T> {
     keyExtractor?: (_item: T) => string | number | ReactNode;
     labelExtractor?: (_item: number[]) => string | number | ReactNode;
 }
-declare const MultiSelect: <T extends string | number | Record<string, string | number>>({ items, selected, selector, onChange, labelExtractor, showQty, style, position, variant, keyExtractor, }: IMultiSelectProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const MultiSelect: <T extends string | number | Record<string, string | number>>({ items, selected, selector, onChange, labelExtractor, onAllChange, showQty, style, position, variant, keyExtractor, }: IMultiSelectProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default MultiSelect;
 //# sourceMappingURL=index.d.ts.map

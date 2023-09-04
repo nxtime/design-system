@@ -45,7 +45,8 @@ interface IMultiSelectProps<T> {
   selected?: number[];
   currentSelected?: T;
   position?: "top" | "bottom";
-  onChange?: (_index: number, _value?: T) => void;
+  onChange?: (_index: number, _value?: T, _list?: number[]) => void;
+  onAllChange?: (_state: boolean) => void;
   showQty?: number;
   style?: CSSProperties;
   /**
@@ -83,6 +84,7 @@ const MultiSelect = <
   selector,
   onChange,
   labelExtractor,
+  onAllChange = () => { },
   showQty = 10,
   style = {},
   position = "top",
@@ -111,8 +113,6 @@ const MultiSelect = <
         : String(items[i]);
 
       const foundFilter = currentItem.toLowerCase().includes(filter);
-
-      console.log(currentItem, filter, foundFilter);
 
       if (!foundFilter) continue;
 
@@ -203,6 +203,7 @@ const MultiSelect = <
                 (e.target as HTMLButtonElement).focus();
               }}
               onClick={() => {
+                onAllChange(internalSelected.length !== items.length);
                 if (internalSelected.length === items.length) {
                   changeInternalSelected([]);
                 } else {
@@ -225,6 +226,7 @@ const MultiSelect = <
                 type="checkbox"
                 className="checkbox checkbox-secondary"
                 onChange={() => {
+                  onAllChange(internalSelected.length !== items.length);
                   if (internalSelected.length === items.length) {
                     changeInternalSelected([]);
                   } else {
@@ -239,7 +241,7 @@ const MultiSelect = <
 
           {items.length === 0 ||
             (filteredItems().length === 0 && (
-              <li className="item" style={{ padding: "var(--spacing-xs)"}}>
+              <li className="item" style={{ padding: "var(--spacing-xs)" }}>
                 <span>Nenhum item foi encontrado</span>
               </li>
             ))}
