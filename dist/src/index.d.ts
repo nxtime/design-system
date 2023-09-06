@@ -13,5 +13,6 @@ import useScroll from "./hooks/useScroll";
 import useModal from "./stores/useModal";
 import useToast from "./stores/useToast";
 import { debounce } from "./utils/helpers/debounce";
-export { Chart, Textfield, ShowPassword, DateRangePicker, Select, MultiSelect, DetailedWorkDay, Header, Sidebar, Modal, Table, useScroll, useModal, useToast, debounce, };
+import { changeDesignLanguage, initDesignTranslator } from "./utils/translator";
+export { Chart, Textfield, ShowPassword, DateRangePicker, Select, MultiSelect, DetailedWorkDay, Header, Sidebar, Modal, Table, useScroll, useModal, useToast, debounce, changeDesignLanguage, initDesignTranslator, };
 //# sourceMappingURL=index.d.ts.map

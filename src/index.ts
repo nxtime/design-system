@@ -38,6 +38,7 @@ import useToast from "./stores/useToast";
 
 // ** UTILS **
 import { debounce } from "./utils/helpers/debounce";
+import { changeDesignLanguage, initDesignTranslator } from "./utils/translator";
 
 export {
   Chart,
@@ -55,4 +56,6 @@ export {
   useModal,
   useToast,
   debounce,
+  changeDesignLanguage,
+  initDesignTranslator,
 };
