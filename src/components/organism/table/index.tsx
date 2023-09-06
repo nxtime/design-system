@@ -12,6 +12,7 @@ import useModal from "../../../stores/useModal";
 import Column from "./column";
 import { sortByKey } from "./functions/sort";
 import { debounce } from "../../../utils/helpers/debounce.tsx";
+import { translate } from "translation-system";
 
 interface ITableProps<T> {
   /*
@@ -74,15 +75,22 @@ const translations = {
 };
 const ordersType = ["default", "asc", "desc"] as const;
 
-type TGenericRecord = Record<string, string | number>;
-type TGenericRecordWArray = Record<string, string | number | TGenericRecord[]>;
-
 export type TTableConstraints<T> = {
-  [K in keyof T]:
-  | string
-  | number
-  | { [S in keyof T[K]]: string | number }
-  | Record<string, string | number | TGenericRecord | TGenericRecordWArray>;
+  [K in keyof T]: T[K] extends string
+  ? string
+  : T[K] extends number
+  ? number
+  : T[K] extends (infer U)[]
+  ? U extends Record<string, string | number>
+  ? TTableConstraints<U>[]
+  : never
+  : {
+    [S in keyof T[K]]:
+    | string
+    | number
+    | Record<string, string | number>
+    | Record<string, string | number>[];
+  };
 };
 
 const Table = <T extends TTableConstraints<T>>({
@@ -157,7 +165,7 @@ const Table = <T extends TTableConstraints<T>>({
     <div className="table-full">
       <div className="group rounded-box no-print">
         <label className="bg-primary" htmlFor="find-all-table">
-          Buscar
+          {translate("common.search")}
         </label>
         <input
           className="input input-neutral ring-info"
@@ -175,14 +183,6 @@ const Table = <T extends TTableConstraints<T>>({
         >
           <Icon icon="mdi:filter" />
         </button>
-        {/*<Select
-          items={["scroll", "pagination"]}
-          currentSelected={mode}
-          onChange={(_, item) => {
-            if (item === undefined) return;
-            setCurrentMode(item as TKeyModes);
-          }}
-        /> */}
       </div>
       <TableMode mode={currentMode} data={orderedItems()}>
         {({ data }) => {
@@ -222,115 +222,133 @@ const Table = <T extends TTableConstraints<T>>({
                         />
                       );
                     })}
-                    {loading && (<th />)}
-                  {action && <th>Ação</th>}
+                  {loading && <th />}
+                  {action && <th>{translate("common.action")}</th>}
                 </tr>
               </thead>
               <tbody ref={tBodyRef}>
-                {loading && <h2 className="subtitle" style={{ margin: "auto", marginTop: "1rem", width: "fit-content"}}>Carregando...</h2>}
-                {data.map((row, rowIndex) => {
-                  return (
-                    <tr tabIndex={0} key={rowIndex}>
-                      {(
-                        Object.entries(row) as [
-                          keyof T,
-                          number | string | Record<string, string | number>,
-                        ][]
-                      ).map(([column, item], itemIndex) => {
-                        let value: ReactNode | string | number;
+                {loading && (
+                  <h2
+                    className="subtitle"
+                    style={{
+                      margin: "auto",
+                      marginTop: "1rem",
+                      width: "fit-content",
+                    }}
+                  >
+                    {translate("common.loading")}...
+                  </h2>
+                )}
+                {!loading &&
+                  data.map((row, rowIndex) => {
+                    return (
+                      <tr tabIndex={0} key={rowIndex}>
+                        {(
+                          Object.entries(row) as [
+                            keyof T,
+                            number | string | Record<string, string | number>,
+                          ][]
+                        ).map(([column, item], itemIndex) => {
+                          let value: ReactNode | string | number;
 
-                        if (hideColumn.includes(column)) return null;
+                          if (hideColumn.includes(column)) return null;
 
-                        if (
-                          typeof item === "object" &&
-                          dataConfig?.[column] === undefined
-                        ) {
-                          value = Object.values(item)[0];
-                        } else if (
-                          Object.hasOwnProperty.call(dataConfig ?? {}, column)
-                        ) {
-                          value = dataConfig?.[column]?.(
-                            item as T[keyof T],
-                            row,
-                          );
-                        } else {
-                          value = item as string | number;
-                        }
+                          if (
+                            typeof item === "object" &&
+                            dataConfig?.[column] === undefined
+                          ) {
+                            value = Object.values(item)[0];
+                          } else if (
+                            Object.hasOwnProperty.call(dataConfig ?? {}, column)
+                          ) {
+                            value = dataConfig?.[column]?.(
+                              item as T[keyof T],
+                              row,
+                            );
+                          } else {
+                            value = item as string | number;
+                          }
 
-                        return (
-                          <td
-                            title="Click to copy"
-                            key={itemIndex}
-                            style={{ width: "auto" }}
-                          >
-                            {typeof item !== "object" ||
-                              !showObject?.[column] ? (
-                              value
-                            ) : (
-                              <div className="cell-container">
-                                <div className="cell-container--header">
-                                  {value}
-                                  <button
-                                    className="btn btn-primary btn-icon btn-xs btn-square"
-                                    onClick={(e) => {
-                                      const currentCellContainer = (
-                                        e.currentTarget as HTMLButtonElement
-                                      ).parentNode
-                                        ?.parentNode as HTMLDivElement;
+                          return (
+                            <td
+                              title="Click to copy"
+                              key={itemIndex}
+                              style={{ width: "auto" }}
+                            >
+                              {typeof item !== "object" ||
+                                !showObject?.[column] ? (
+                                value
+                              ) : (
+                                <div className="cell-container">
+                                  <div className="cell-container--header">
+                                    {value}
+                                    <button
+                                      className="btn btn-primary btn-icon btn-xs btn-square"
+                                      onClick={(e) => {
+                                        const currentCellContainer = (
+                                          e.currentTarget as HTMLButtonElement
+                                        ).parentNode
+                                          ?.parentNode as HTMLDivElement;
 
-                                      if (currentCellContainer === null) return;
+                                        if (currentCellContainer === null)
+                                          return;
 
-                                      if (
-                                        (
-                                          currentCellContainer.lastChild as HTMLUListElement
-                                        ).className === "content"
-                                      ) {
-                                        currentCellContainer.removeChild(
-                                          currentCellContainer.lastChild!,
+                                        if (
+                                          (
+                                            currentCellContainer.lastChild as HTMLUListElement
+                                          ).className === "content"
+                                        ) {
+                                          currentCellContainer.removeChild(
+                                            currentCellContainer.lastChild!,
+                                          );
+                                          return;
+                                        }
+
+                                        const listContainer =
+                                          document.createElement("ul");
+
+                                        listContainer.className = "content";
+
+                                        Object.entries(item).forEach(
+                                          ([itemColumn, itemValue]) => {
+                                            const listItem =
+                                              document.createElement("li");
+                                            listItem.innerText = `${translation(
+                                              itemColumn,
+                                            )}: ${itemValue}`;
+
+                                            listContainer.appendChild(listItem);
+                                          },
                                         );
-                                        return;
-                                      }
 
-                                      const listContainer =
-                                        document.createElement("ul");
-
-                                      listContainer.className = "content";
-
-                                      Object.entries(item).forEach(
-                                        ([itemColumn, itemValue]) => {
-                                          const listItem =
-                                            document.createElement("li");
-                                          listItem.innerText = `${translation(
-                                            itemColumn,
-                                          )}: ${itemValue}`;
-
-                                          listContainer.appendChild(listItem);
-                                        },
-                                      );
-
-                                      currentCellContainer.appendChild(
-                                        listContainer,
-                                      );
-                                    }}
-                                  >
-                                    <Icon icon="eva:arrow-down-fill" />
-                                  </button>
+                                        currentCellContainer.appendChild(
+                                          listContainer,
+                                        );
+                                      }}
+                                    >
+                                      <Icon icon="eva:arrow-down-fill" />
+                                    </button>
+                                  </div>
                                 </div>
-                              </div>
-                            )}
-                          </td>
-                        );
-                      })}
-                      {action && action(row, rowIndex)}
-                    </tr>
-                  );
-                })}
+                              )}
+                            </td>
+                          );
+                        })}
+                        {action && action(row, rowIndex)}
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           );
         }}
       </TableMode>
-      <TableConfigModal config={Object.keys(data[0])} closeModal={closeModal} />
+      {!loading && (
+        <TableConfigModal
+          config={Object.keys(data[0])}
+          closeModal={closeModal}
+        />
+      )}
     </div>
   );
 };

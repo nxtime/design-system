@@ -196,7 +196,7 @@ const Sidebar = ({
         <button
           type="button"
           className="sidebar-settings-action ring-info"
-          onClick={onLogout}
+          onClick={onSettings}
         >
           <Icon icon="ph:gear-six-fill" height={16} />
           {isOpen && <span>Settings</span>}

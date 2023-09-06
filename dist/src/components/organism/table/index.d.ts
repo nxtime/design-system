@@ -17,12 +17,10 @@ interface ITableProps<T> {
     mode?: TKeyModes;
     action?: (item: T, index: number) => ReactNode;
 }
-type TGenericRecord = Record<string, string | number>;
-type TGenericRecordWArray = Record<string, string | number | TGenericRecord[]>;
 export type TTableConstraints<T> = {
-    [K in keyof T]: string | number | {
-        [S in keyof T[K]]: string | number;
-    } | Record<string, string | number | TGenericRecord | TGenericRecordWArray>;
+    [K in keyof T]: T[K] extends string ? string : T[K] extends number ? number : T[K] extends (infer U)[] ? U extends Record<string, string | number> ? TTableConstraints<U>[] : never : {
+        [S in keyof T[K]]: string | number | Record<string, string | number> | Record<string, string | number>[];
+    };
 };
 declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, showObject, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Table;

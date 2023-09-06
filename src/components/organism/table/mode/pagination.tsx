@@ -2,6 +2,7 @@ import Select from "../../../molecule/select";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode, useCallback, useState } from "react";
 import { TTableConstraints } from "..";
+import { translate } from "translation-system";
 
 interface ITablePagination<T> {
   children: (_options: { data: T[] }) => ReactNode;
@@ -54,7 +55,7 @@ const TablePagination = <T extends TTableConstraints<T>>({
           <Icon hFlip={true} icon="ic:round-skip-next" />
         </button>
         <span>
-          Página <span className="page">{page}</span> de{" "}
+          {translate('table.page')} <span className="page">{page}</span> {translate('table.of')}{" "}
           <span className="page">
             {Math.ceil(dataLength() / currentItemsPerPage)}
           </span>
@@ -62,7 +63,7 @@ const TablePagination = <T extends TTableConstraints<T>>({
         <Select
           items={possibleItemsPerPage}
           currentSelected={itemsPerPage}
-          labelExtractor={(item) => `Por página ${item}`}
+          labelExtractor={(item) => `${translate('table.per-page')} ${item}`}
           keyExtractor={(item) => item}
           showQty={3}
           position="bottom"
@@ -107,7 +108,10 @@ const TablePagination = <T extends TTableConstraints<T>>({
         >
           <Icon icon="ic:round-fast-forward" />
         </button>
-        <span>{dataLength()} itens</span>
+        <span>
+          {dataLength()}
+          {translate("table.items")}
+        </span>
       </footer>
     </>
   );

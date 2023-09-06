@@ -45,6 +45,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
+    "translation-system": "github:nxtime/translation-system",
     "vite-pages-theme-doc": "^4.1.6",
     "vite-plugin-react-pages": "^4.1.4",
     "vite-tsconfig-paths": "^4.2.0"

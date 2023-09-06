@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Table } from "../../src";
+import { initAppTranslation } from "translation-system";
 
 const tableData = [
   {
@@ -16,7 +17,29 @@ const tableData = [
   },
 ];
 
+type TBreak = {
+  _id: string;
+  start: string;
+  finish: string;
+  type: number;
+};
+
+type TTimeScale = {
+  login: string;
+  logout: string;
+  breaks: TBreak[];
+};
+
+interface IScalegroupReturn {
+  _id: string;
+  timeScale: TTimeScale;
+  workGroups: Array<Record<string, number>>;
+}
+
+const scalegroup = [] as IScalegroupReturn[];
+
 const TablePageDemo = () => {
+  initAppTranslation({ language: "en" });
   const [isLoading, setIsLoading] = useState(true);
   return (
     <>
@@ -26,7 +49,15 @@ const TablePageDemo = () => {
       >
         Carregar
       </button>
-      <Table data={tableData} loading={isLoading} />
+      <Table
+        data={scalegroup}
+        dataConfig={{
+          timeScale: (timescale) => {
+            return `${timescale.breaks[0].finish}`;
+          },
+        }}
+        loading={isLoading}
+      />
     </>
   );
 };
