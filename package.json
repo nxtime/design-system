@@ -34,8 +34,7 @@
     "@iconify/react": "^4.1.1",
     "moment": "^2.29.4",
     "sass": "^1.64.2",
-    "zustand": "^4.4.1",
-    "translation-system": "github:nxtime/translation-system"
+    "zustand": "^4.4.1"
   },
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
@@ -47,6 +46,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
     "vite-pages-theme-doc": "^4.1.6",
+    "translation-system": "github:nxtime/translation-system",
     "vite-plugin-react-pages": "^4.1.4",
     "vite-tsconfig-paths": "^4.2.0"
   },
