@@ -1,10 +1,10 @@
 import { Dispatch, MutableRefObject, RefObject, SetStateAction } from "react";
-import { TTableConstraints } from "..";
+import { TTableConstraints, TTableTranslation } from "..";
 interface IColumnProps<T> {
     index: number;
     column: string;
     columns: string[];
-    translation: (_value: string) => string;
+    translation: TTableTranslation;
     ordersType: readonly ["default", "asc", "desc"];
     order: number;
     setOrder: Dispatch<SetStateAction<number>>;

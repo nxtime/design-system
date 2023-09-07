@@ -1,7 +1,7 @@
 import "./styles/global.scss";
 // Atoms
 // Charts
-import Chart from "./components/atom/chart/index";
+import * as Chart from "./components/atom/chart/index";
 
 // Textfields
 import Textfield from "./components/atom/textfield";
@@ -42,6 +42,9 @@ import { changeDesignLanguage, initDesignTranslator } from "./utils/translator";
 
 export {
   Chart,
+  // Line,
+  // Bar,
+  // Time,
   Textfield,
   ShowPassword,
   DateRangePicker,

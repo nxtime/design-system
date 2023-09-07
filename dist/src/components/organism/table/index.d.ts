@@ -3,6 +3,7 @@ import { TKeyModes } from "./mode";
 interface ITableProps<T> {
     headers?: Record<keyof T, string>[] | string[];
     data: T[];
+    translation: TTableTranslation;
     hideColumn?: (keyof T)[];
     showObject?: {
         [K in keyof T]: boolean;
@@ -22,6 +23,7 @@ export type TTableConstraints<T> = {
         [S in keyof T[K]]: string | number | Record<string, string | number> | Record<string, string | number>[];
     };
 };
-declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, showObject, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
+export type TTableTranslation = "services" | "workgroups" | "calls" | "scalegroups" | "workgroups" | "scales";
+declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, showObject, translation, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Table;
 //# sourceMappingURL=index.d.ts.map

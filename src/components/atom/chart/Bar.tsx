@@ -1,4 +1,6 @@
 import { RefObject } from "react";
+import { TChartTranslation } from ".";
+import { translate } from "translation-system";
 
 interface IBarProps extends Partial<SVGGElement> {
   x: number;
@@ -23,6 +25,7 @@ const Bar = ({
   width,
   ...barProps
 }: IBarProps) => {
+  if (barProps.value === 0) return null;
   const valueLength = String(barProps.value).length * 4;
   const valueWidth = width / 2 - valueLength;
 
@@ -53,6 +56,7 @@ const BarChart = <T extends Record<string, number>>({
   showOnly,
   tooltipRef,
   groupBy,
+  translation,
   maxItemValue,
 }: {
   width: number;
@@ -61,6 +65,7 @@ const BarChart = <T extends Record<string, number>>({
   showOnly?: keyof T;
   tooltipRef: RefObject<HTMLDivElement>;
   groupBy: keyof T;
+  translation: TChartTranslation;
   maxItemValue: number;
 }) => {
   console.log(data);
@@ -103,19 +108,30 @@ const BarChart = <T extends Record<string, number>>({
           currentItemIteration * ((itemWidth + itemMargin) / (itemsQty - 1));
 
         let textDistance = itemIndex > 0 ? itemDistance / 2 : itemDistance;
-        textDistance += String(item[groupBy]).length * 6
+        textDistance += String(item[groupBy]).length * 6;
 
         const groupItem = (itemWidth + itemMargin) * itemsQty;
+
+        let currentCount = 0;
 
         if (!showOnly) {
           const groupDistance =
             (width - itemMargin * (data.length - 1)) / data.length;
-          textDistance = groupDistance * itemIndex + groupDistance / 2 - String(item[groupBy]).length * 8;
+          textDistance =
+            groupDistance * itemIndex +
+            groupDistance / 2 -
+            String(item[groupBy]).length * 8;
         }
+
+        console.log(translate(`data.workgroups.name`));
 
         return (
           <g key={itemIndex}>
-            {Object.entries(newItem).map(([name, value], index) => {
+            {Object.entries(newItem).map(([name, value]) => {
+              const index = currentCount;
+
+              if (value === 0) return null;
+
               const currentItemIteration = index * itemsQty;
 
               itemDistance =
@@ -131,6 +147,7 @@ const BarChart = <T extends Record<string, number>>({
               const itemHeight = value * proportion;
 
               iteration += 1;
+              currentCount += 1;
 
               return (
                 <Bar
@@ -148,7 +165,9 @@ const BarChart = <T extends Record<string, number>>({
                   itemIndex={itemIndex}
                   width={itemWidth}
                   height={itemHeight}
-                  label={name}
+                  label={translate(
+                    `data.${translation}.${name}` as unknown as "data.workgroups.name",
+                  )}
                 />
               );
             })}
@@ -156,7 +175,11 @@ const BarChart = <T extends Record<string, number>>({
               y={height - 4}
               x={
                 textDistance +
-                (itemWidth - itemMargin - String(item[groupBy]).length * 8) / 2
+                (itemWidth -
+                  itemMargin -
+                  itemWidth * (itemsQty - 3) -
+                  String(item[groupBy]).length * 8) /
+                2
               }
             >
               {item[groupBy]}

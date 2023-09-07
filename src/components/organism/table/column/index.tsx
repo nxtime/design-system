@@ -1,12 +1,13 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Dispatch, MutableRefObject, RefObject, SetStateAction } from "react";
-import { TTableConstraints } from "..";
+import { TTableConstraints, TTableTranslation } from "..";
+import { translate } from "translation-system";
 
 interface IColumnProps<T> {
   index: number;
   column: string;
   columns: string[];
-  translation: (_value: string) => string;
+  translation: TTableTranslation;
   ordersType: readonly ["default", "asc", "desc"];
   order: number;
   setOrder: Dispatch<SetStateAction<number>>;
@@ -34,7 +35,11 @@ const Column = <T extends TTableConstraints<T>>({
   return (
     <th>
       <div className="table-column">
-        <span>{translation(column)}</span>
+        <span>
+          {translate(
+            `data.${translation}.${column}` as unknown as "data.workgroups.name",
+          )}
+        </span>
         <div className="group-vertical rounded-box no-print">
           <button
             className={`btn btn-square btn-xs ${ordersType[order] === "asc" && orderedHeader.current === column

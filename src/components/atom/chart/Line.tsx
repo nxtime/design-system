@@ -1,4 +1,6 @@
 import { RefObject } from "react";
+import { translate } from "translation-system";
+import { TChartTranslation } from ".";
 
 const makePath = (
   positions: Record<string, number[]>,
@@ -43,6 +45,7 @@ interface ILineProps<T> {
   filled?: boolean;
   tooltipRef: RefObject<HTMLDivElement>;
   maxItemValue: number;
+  translation: TChartTranslation;
   lineRef: RefObject<SVGLineElement>;
 }
 
@@ -50,8 +53,9 @@ const LineChart = <T extends Record<string, number>>({
   data,
   width,
   height,
-  filled = true,
+  filled = false,
   tooltipRef,
+  translation,
   maxItemValue,
   lineRef,
 }: ILineProps<T>) => {
@@ -125,7 +129,10 @@ const LineChart = <T extends Record<string, number>>({
                     const labels = Object.entries(
                       data[closestPositionIndex] ?? [],
                     ).reduce((acc, current) => {
-                      acc += `<span>${current[0]}: ${current[1]}</span>`;
+                      acc += `<span>${translate(
+                        `data.${translation}.${current[0]}` as unknown as "data.workgroups.name",
+                      )}: ${current[1]}</span>`;
+
                       return acc;
                     }, "");
 

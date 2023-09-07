@@ -23,7 +23,7 @@ function debounce<T extends (...args: any[]) => void>(
   timeout = 300,
 ): DebounceFunction<T> {
   let timer: ReturnType<typeof setTimeout>;
-  return function (this: ThisParameterType<T>, ...args: Parameters<T>): void {
+  return function(this: ThisParameterType<T>, ...args: Parameters<T>): void {
     clearTimeout(timer);
     timer = setTimeout(() => {
       func.apply(this, args);
@@ -59,12 +59,21 @@ const setViewBox = (
   }));
 };
 
+export type TChartTranslation =
+  | "services"
+  | "workgroups"
+  | "calls"
+  | "scalegroups"
+  | "workgroups"
+  | "scales";
+
 interface IChartProps<T> {
   width?: number;
   hide?: (keyof T)[];
   height?: number;
   type: "bar" | "line" | string;
   data: T[];
+  translation: TChartTranslation;
   snap?: boolean;
   children: (item: {
     currentSize: { width: number; height: number };
@@ -72,6 +81,7 @@ interface IChartProps<T> {
     data: T[];
     maxItemValue: number;
     lineRef: RefObject<SVGLineElement>;
+    translation: TChartTranslation;
   }) => ReactNode;
 }
 const Chart = <T extends Record<string, number>>({
@@ -81,6 +91,7 @@ const Chart = <T extends Record<string, number>>({
   hide,
   data,
   children,
+  translation = "workgroups",
   snap = false,
 }: IChartProps<T>) => {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -117,12 +128,14 @@ const Chart = <T extends Record<string, number>>({
 
     return () =>
       parent?.removeEventListener("resize", () =>
-        setViewBox(parent, svgRef, () => {}, height !== undefined),
+        setViewBox(parent, svgRef, () => { }, height !== undefined),
       );
   }, [setCurrentSize, width, height]);
 
   const maxItemValue = Math.max(
-    ...data.map((item) => Math.max(...Object.values(item))),
+    ...filteredData().map((item) => {
+      return Math.max(...Object.values(item));
+    }),
   );
 
   return (
@@ -146,6 +159,7 @@ const Chart = <T extends Record<string, number>>({
             const top = svgRef.current.getBoundingClientRect().top;
 
             lineStyle.opacity = "1";
+
             if (snap) {
               const centralize = currentSize.width / (data.length * 4);
               const cursorDistanceToPositions = Array.from({
@@ -153,9 +167,9 @@ const Chart = <T extends Record<string, number>>({
               }).map((_, index) => {
                 return Math.abs(
                   x -
-                    left -
-                    centralize * index -
-                    (currentSize.width / data.length) * index,
+                  left -
+                  centralize * index -
+                  (currentSize.width / data.length) * index,
                 );
               });
 
@@ -186,9 +200,9 @@ const Chart = <T extends Record<string, number>>({
 
             if (
               tooltipRef.current.offsetLeft +
-                tooltipOffset +
-                tooltipWidth +
-                20 >
+              tooltipOffset +
+              tooltipWidth +
+              20 >
               window.innerWidth
             ) {
               positionX = tooltipOffset - tooltipWidth - 20;
@@ -212,6 +226,7 @@ const Chart = <T extends Record<string, number>>({
           data: filteredData(),
           maxItemValue,
           lineRef,
+          translation,
         })}
         <line
           ref={lineRef}

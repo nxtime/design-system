@@ -24,6 +24,7 @@ interface ITableProps<T> {
    * Each key is a header by default
    */
   data: T[];
+  translation: TTableTranslation;
   /*
    * If a key from data is specified,
    * the whole column is going to be hidden
@@ -61,18 +62,6 @@ interface ITableProps<T> {
   action?: (item: T, index: number) => ReactNode;
 }
 
-const translations = {
-  qty: "Quantidade",
-  name: "Nome",
-  product: "Produto",
-  person: "Pessoa",
-  address: "Endereço",
-  age: "Idade",
-  page: "Página",
-  "per-page": "Por página",
-  of: "de",
-  items: "Itens",
-};
 const ordersType = ["default", "asc", "desc"] as const;
 
 export type TTableConstraints<T> = {
@@ -93,24 +82,27 @@ export type TTableConstraints<T> = {
   };
 };
 
+export type TTableTranslation =
+  | "services"
+  | "workgroups"
+  | "calls"
+  | "scalegroups"
+  | "workgroups"
+  | "scales";
+
 const Table = <T extends TTableConstraints<T>>({
   headers,
   data,
   dataConfig,
   showObject,
   // headersConfig,
+  translation = "workgroups",
   action,
   loading = false,
   hideColumn = [],
   mode = "pagination",
 }: ITableProps<T>) => {
   const { closeModal, openModal } = useModal();
-  const translation = (v: string) => {
-    if (Object.hasOwnProperty.call(translations, v)) {
-      return translations[v as keyof typeof translations];
-    }
-    return v;
-  };
   const [currentMode] = useState<TKeyModes>(mode);
   const [order, setOrder] = useState<number>(0);
   const orderedHeader = useRef<keyof (typeof data)[number] | null>(null);
@@ -313,8 +305,8 @@ const Table = <T extends TTableConstraints<T>>({
                                           ([itemColumn, itemValue]) => {
                                             const listItem =
                                               document.createElement("li");
-                                            listItem.innerText = `${translation(
-                                              itemColumn,
+                                            listItem.innerText = `${translate(
+                                              `data.${translation}.${itemColumn}` as unknown as "data.workgroups.name",
                                             )}: ${itemValue}`;
 
                                             listContainer.appendChild(listItem);

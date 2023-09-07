@@ -1,4 +1,4 @@
-import Chart from "./components/atom/chart/index";
+import * as Chart from "./components/atom/chart/index";
 import Textfield from "./components/atom/textfield";
 import ShowPassword from "./components/molecule/textfield/ShowPassword";
 import DateRangePicker from "./components/molecule/picker/date-range";

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Table } from "../../src";
+import React from "react";
+import { Chart } from "../../src";
 import { initAppTranslation } from "translation-system";
 
 const data = [
@@ -77,26 +77,29 @@ const data = [
   },
 ];
 
-const TablePageDemo = () => {
+const ChartsPage = () => {
   initAppTranslation({ language: "pt-BR" });
-  const [isLoading, setIsLoading] = useState(false);
   return (
-    <>
-      <button
-        className="btn btn-primary"
-        onClick={() => setIsLoading((s) => !s)}
-      >
-        Carregar
-      </button>
-      <Table
-        hideColumn={["service_id"]}
+    <div className="container row" style={{ flex: 1, height: "100%" }}>
+      <Chart.default
+        hide={["average_service_time", "service_id"]}
+        type="bar line"
         data={data}
-        translation="services"
-        dataConfig={{}}
-        loading={isLoading}
-      />
-    </>
+        translation={"services"}
+        width={1200}
+        height={800}
+      >
+        {({ currentSize, ...props }) => {
+          return (
+            <>
+              <Chart.Line {...currentSize} {...props} />
+              <Chart.Bar groupBy="hour" {...currentSize} {...props} />
+            </>
+          );
+        }}
+      </Chart.default>
+    </div>
   );
 };
 
-export default TablePageDemo;
+export default ChartsPage;
