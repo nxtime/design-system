@@ -40,7 +40,7 @@ dependencies:
     version: 1.66.1
   translation-system:
     specifier: github:nxtime/translation-system
-    version: github.com/nxtime/translation-system/2ca792731325ed8ecbbc4ddef3fb9de7e5679ef8(i18next@23.4.9)(react-i18next@13.2.2)(vite@4.4.9)
+    version: github.com/nxtime/translation-system/d4197e8a92f92e29e4794dea4484e65f5d73fe60(i18next@23.4.9)(react-i18next@13.2.2)(vite@4.4.9)
   vite-pages-theme-doc:
     specifier: ^4.1.6
     version: 4.1.6
@@ -5433,9 +5433,9 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/nxtime/translation-system/2ca792731325ed8ecbbc4ddef3fb9de7e5679ef8(i18next@23.4.9)(react-i18next@13.2.2)(vite@4.4.9):
-    resolution: {tarball: https://codeload.github.com/nxtime/translation-system/tar.gz/2ca792731325ed8ecbbc4ddef3fb9de7e5679ef8}
-    id: github.com/nxtime/translation-system/2ca792731325ed8ecbbc4ddef3fb9de7e5679ef8
+  github.com/nxtime/translation-system/d4197e8a92f92e29e4794dea4484e65f5d73fe60(i18next@23.4.9)(react-i18next@13.2.2)(vite@4.4.9):
+    resolution: {tarball: https://codeload.github.com/nxtime/translation-system/tar.gz/d4197e8a92f92e29e4794dea4484e65f5d73fe60}
+    id: github.com/nxtime/translation-system/d4197e8a92f92e29e4794dea4484e65f5d73fe60
     name: translation-system
     version: 0.0.1
     peerDependencies:

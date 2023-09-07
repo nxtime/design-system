@@ -109,7 +109,7 @@ const TablePagination = <T extends TTableConstraints<T>>({
           <Icon icon="ic:round-fast-forward" />
         </button>
         <span>
-          {dataLength()}
+          {dataLength()}{" "}
           {translate("table.items")}
         </span>
       </footer>

@@ -17,7 +17,7 @@ const animals = [
 ];
 
 const SelectComponent = () => {
-  const [currentSelected, changeSelected] = useState(1);
+  const [currentSelected, changeSelected] = useState(0);
   return (
     <div>
       <h2 className="title">Current selected Animal: {animals[currentSelected].name}</h2> 

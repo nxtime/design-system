@@ -335,7 +335,7 @@ const Table = <T extends TTableConstraints<T>>({
           );
         }}
       </TableMode>
-      {!loading && (
+      {!loading && data.length > 0 && (
         <TableConfigModal
           config={Object.keys(data[0])}
           closeModal={closeModal}

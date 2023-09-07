@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
 import { handleSelectKeyDown } from "./events";
+import { translate } from "translation-system";
 
 type TColorVariants =
   | "base-200"
@@ -71,11 +72,13 @@ const Select = <T extends string | number | Record<string, string | number>>({
 }: ISelectProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [internalSelected, changeInternalSelected] = useState(
-    items.findIndex((item) =>
-      selector
-        ? item[selector] === currentSelected?.[selector]
-        : item === currentSelected,
-    ),
+    selected !== undefined
+      ? selected
+      : items.findIndex((item) =>
+        selector
+          ? item[selector] === currentSelected?.[selector]
+          : item === currentSelected,
+      ),
   );
 
   useEffect(() => {
@@ -93,7 +96,7 @@ const Select = <T extends string | number | Record<string, string | number>>({
   return (
     <div
       className={`select ${isOpen ? "shadow-md" : ""} ${position}`}
-      onBlur={() => {}}
+      onBlur={() => { }}
       style={style}
     >
       <button
@@ -113,9 +116,9 @@ const Select = <T extends string | number | Record<string, string | number>>({
         {
           <span className={internalSelected === -1 ? "not-selected" : ""}>
             {internalSelected === -1
-              ? "Selecione uma das opções"
+              ? translate("select.select-one")
               : labelExtractor?.(items[internalSelected]) ??
-                keyExtractor(items[internalSelected])}
+              keyExtractor(items[internalSelected])}
           </span>
         }
         <Icon icon="eva:arrow-down-fill" vFlip={isOpen} />
@@ -136,9 +139,8 @@ const Select = <T extends string | number | Record<string, string | number>>({
       />
       {isOpen && (
         <ul
-          className={`select-items${
-            items.length > 4 ? " custom-scroll " : " "
-          }bg-${variant} shadow-md`}
+          className={`select-items${items.length > 4 ? " custom-scroll " : " "
+            }bg-${variant} shadow-md`}
           style={{ "--select-items": showQty } as CSSProperties}
         >
           {items.map((item, index) => {
