@@ -44,18 +44,32 @@ interface ISelectProps<T> {
   labelExtractor?: (_item: T) => string | number | ReactNode;
 }
 
-const defaultKeyExtractor = <
-  T extends number | string | Record<string, string | number>,
->(
-  value: T,
-) => {
+type TPossibleObject<T> = {
+  [K in keyof T]: T[K] extends string
+    ? string
+    : T[K] extends number
+    ? number
+    : T[K] extends (infer U)[]
+    ? U extends Record<string, string | number>
+      ? TPossibleObject<U>[]
+      : never
+    : {
+        [S in keyof T[K]]:
+          | string
+          | number
+          | Record<string, string | number>
+          | Record<string, string | number>[];
+      };
+};
+
+const defaultKeyExtractor = <T extends TPossibleObject<T>>(value: T) => {
   if (typeof value === "object") {
-    return <span>{Object.values(value)[0]}</span>;
+    return <span>{Object.values(value)[0] as string}</span>;
   }
   return <span>{value}</span>;
 };
 
-const Select = <T extends string | number | Record<string, string | number>>({
+const Select = <T extends TPossibleObject<T>>({
   items,
   selected,
   currentSelected,
@@ -75,10 +89,10 @@ const Select = <T extends string | number | Record<string, string | number>>({
     selected !== undefined
       ? selected
       : items.findIndex((item) =>
-        selector
-          ? item[selector] === currentSelected?.[selector]
-          : item === currentSelected,
-      ),
+          selector
+            ? item[selector] === currentSelected?.[selector]
+            : item === currentSelected,
+        ),
   );
 
   useEffect(() => {
@@ -96,7 +110,7 @@ const Select = <T extends string | number | Record<string, string | number>>({
   return (
     <div
       className={`select ${isOpen ? "shadow-md" : ""} ${position}`}
-      onBlur={() => { }}
+      onBlur={() => {}}
       style={style}
     >
       <button
@@ -118,7 +132,7 @@ const Select = <T extends string | number | Record<string, string | number>>({
             {internalSelected === -1
               ? translate("select.select-one")
               : labelExtractor?.(items[internalSelected]) ??
-              keyExtractor(items[internalSelected])}
+                keyExtractor(items[internalSelected])}
           </span>
         }
         <Icon icon="eva:arrow-down-fill" vFlip={isOpen} />
@@ -132,6 +146,13 @@ const Select = <T extends string | number | Record<string, string | number>>({
           height: 1,
           pointerEvents: "none",
         }}
+        defaultValue={
+          typeof currentSelected === "object" && selector
+            ? (currentSelected?.[selector] as string)
+            : typeof currentSelected === "string"
+            ? currentSelected
+            : ""
+        }
         autoComplete="new-password"
         name={name}
         ref={inputRef}
@@ -139,8 +160,9 @@ const Select = <T extends string | number | Record<string, string | number>>({
       />
       {isOpen && (
         <ul
-          className={`select-items${items.length > 4 ? " custom-scroll " : " "
-            }bg-${variant} shadow-md`}
+          className={`select-items${
+            items.length > 4 ? " custom-scroll " : " "
+          }bg-${variant} shadow-md`}
           style={{ "--select-items": showQty } as CSSProperties}
         >
           {items.map((item, index) => {

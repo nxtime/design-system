@@ -7115,6 +7115,7 @@ const YF = () => "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (r) => 
               height: 1,
               pointerEvents: "none"
             },
+            defaultValue: typeof l == "object" && c ? l == null ? void 0 : l[c] : typeof l == "string" ? l : "",
             autoComplete: "new-password",
             name: C,
             ref: K,
