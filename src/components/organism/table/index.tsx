@@ -66,20 +66,22 @@ const ordersType = ["default", "asc", "desc"] as const;
 
 export type TTableConstraints<T> = {
   [K in keyof T]: T[K] extends string
-  ? string
-  : T[K] extends number
-  ? number
-  : T[K] extends (infer U)[]
-  ? U extends Record<string, string | number>
-  ? TTableConstraints<U>[]
-  : never
-  : {
-    [S in keyof T[K]]:
-    | string
-    | number
-    | Record<string, string | number>
-    | Record<string, string | number>[];
-  };
+    ? string
+    : T[K] extends number
+    ? number
+    : T[K] extends boolean
+    ? boolean
+    : T[K] extends (infer U)[]
+    ? U extends Record<string, string | number | boolean | string[] | number[]>
+      ? TTableConstraints<U>[]
+      : never
+    : {
+        [S in keyof T[K]]:
+          | string
+          | number
+          | Record<string, string | number | boolean | string[] | number[]>
+          | Record<string, string | number | boolean | string[] | number[]>[];
+      };
 };
 
 export type TTableTranslation =
@@ -88,7 +90,8 @@ export type TTableTranslation =
   | "calls"
   | "scalegroups"
   | "workgroups"
-  | "scales";
+  | "scales"
+  | "users";
 
 const Table = <T extends TTableConstraints<T>>({
   headers,
@@ -268,7 +271,7 @@ const Table = <T extends TTableConstraints<T>>({
                               style={{ width: "auto" }}
                             >
                               {typeof item !== "object" ||
-                                !showObject?.[column] ? (
+                              !showObject?.[column] ? (
                                 value
                               ) : (
                                 <div className="cell-container">

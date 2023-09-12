@@ -6838,7 +6838,7 @@ const YF = () => "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (r) => 
     $F,
     {
       ...o,
-      className: "textfield-password",
+      className: `textfield-password ${(o == null ? void 0 : o.className) ?? ""}`,
       type: l ? "text" : "password",
       autoComplete: "new-password",
       children: /* @__PURE__ */ A.jsx(

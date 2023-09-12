@@ -31,8 +31,8 @@ interface ISelectProps<T> {
     labelExtractor?: (_item: T) => string | number | ReactNode;
 }
 type TPossibleObject<T> = {
-    [K in keyof T]: T[K] extends string ? string : T[K] extends number ? number : T[K] extends (infer U)[] ? U extends Record<string, string | number> ? TPossibleObject<U>[] : never : {
-        [S in keyof T[K]]: string | number | Record<string, string | number> | Record<string, string | number>[];
+    [K in keyof T]: T[K] extends string ? string : T[K] extends number ? number : T[K] extends boolean ? boolean : T[K] extends (infer U)[] ? U extends Record<string, string | number | boolean | string[] | number[]> ? TPossibleObject<U>[] : never : {
+        [S in keyof T[K]]: string | number | Record<string, string | number | boolean | string[] | number[]> | Record<string, string | number | boolean | string[] | number[]>[];
     };
 };
 declare const Select: <T extends TPossibleObject<T>>({ items, selected, currentSelected, selector, onChange, labelExtractor, required, showQty, style, name, position, variant, keyExtractor, }: ISelectProps<T>) => import("react/jsx-runtime").JSX.Element;

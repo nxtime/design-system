@@ -15,7 +15,7 @@ const ShowPassword = ({
     <>
       <Textfield
         {...textfieldProps}
-        className="textfield-password"
+        className={`textfield-password ${textfieldProps?.className ?? ""}`}
         type={showPassword ? "text" : "password"}
         autoComplete="new-password"
       >

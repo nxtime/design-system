@@ -49,16 +49,18 @@ type TPossibleObject<T> = {
     ? string
     : T[K] extends number
     ? number
+    : T[K] extends boolean
+    ? boolean
     : T[K] extends (infer U)[]
-    ? U extends Record<string, string | number>
+    ? U extends Record<string, string | number | boolean | string[] | number[]>
       ? TPossibleObject<U>[]
       : never
     : {
         [S in keyof T[K]]:
           | string
           | number
-          | Record<string, string | number>
-          | Record<string, string | number>[];
+          | Record<string, string | number | boolean | string[] | number[]>
+          | Record<string, string | number | boolean | string[] | number[]>[];
       };
 };
 
