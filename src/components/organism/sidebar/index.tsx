@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Fragment, ReactNode, useRef, useState } from "react";
 import { onKeyDown, onMenuOut, onMenuOver } from "./events";
+import { translate } from "translation-system";
 
 interface ISidebarProps {
   /*
@@ -116,6 +117,7 @@ const Sidebar = ({
                       : index,
                     0,
                     isOpen,
+                    translate
                   )
                 }
                 onClick={() => {
@@ -129,7 +131,7 @@ const Sidebar = ({
                 <div className="sidebar-item--icon">
                   {itemLink({
                     icon: item.icon,
-                    label: item.label,
+                    label: translate(`sidebar.${item.label as "home"}`),
                     route: item.route,
                     isOpen,
                     props: {
@@ -173,12 +175,15 @@ const Sidebar = ({
                             index,
                             submenuIndex + 1,
                             isOpen,
+                            translate
                           )
                         }
                       >
                         {itemLink({
                           icon: submenu.icon,
-                          label: submenu.label,
+                          label: translate(
+                            `sidebar.${submenu.label as "home"}`,
+                          ),
                           route: `${item.route}${submenu.route}`,
                           isOpen,
                           props: { className: "" },
@@ -199,7 +204,7 @@ const Sidebar = ({
           onClick={onSettings}
         >
           <Icon icon="ph:gear-six-fill" height={16} />
-          {isOpen && <span>Settings</span>}
+          {isOpen && <span>{translate("common.settings")}</span>}
         </button>
       )}
       {onLogout && (
@@ -209,7 +214,7 @@ const Sidebar = ({
           onClick={onLogout}
         >
           <Icon icon="mingcute:exit-fill" height={16} />
-          {isOpen && <span>Logout</span>}
+          {isOpen && <span>{translate("common.logout")}</span>}
         </button>
       )}
     </aside>

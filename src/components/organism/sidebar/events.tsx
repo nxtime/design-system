@@ -58,6 +58,7 @@ const onMenuOver = (
   index: number,
   submenuIndex = 0,
   isOpen: boolean,
+  translate: any,
 ) => {
   if (itemHandlerRef.current === null || tooltipRef.current === null) return;
 
@@ -74,7 +75,7 @@ const onMenuOver = (
   if (!isOpen) {
     tooltipRef.current.innerHTML = `
       <div className="sidebar-tooltip-container">
-        <span>${item.label}</span>
+        <span>${translate(item.label)}</span>
       </div>
     `;
     tooltipRef.current.style.opacity = "1";
