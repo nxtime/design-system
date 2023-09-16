@@ -11,7 +11,7 @@ interface IBarProps extends Partial<SVGGElement> {
   itemIndex: number;
   label?: string;
   labelHeight?: number;
-  onMouseEnter?: (_e: { label: string | undefined; value: number }) => void;
+  onMouseEnter?: (_e: { label: string | undefined; value: number | string }) => void;
   onMouseMove?: (_e: { y: number; x: number }) => void;
 }
 
@@ -34,7 +34,7 @@ const Bar = ({
       onMouseEnter={() =>
         onMouseEnter?.({
           label,
-          value: barProps.value,
+          value: Number(barProps.value),
         })
       }
       onMouseMove={(e) =>
@@ -49,7 +49,7 @@ const Bar = ({
   );
 };
 
-const BarChart = <T extends Record<string, number>>({
+const BarChart = <T extends Record<string, number | string>>({
   width,
   height,
   data,
@@ -144,7 +144,7 @@ const BarChart = <T extends Record<string, number>>({
                 itemDistance /= 2;
               }
 
-              const itemHeight = value * proportion;
+              const itemHeight = Number(value) * proportion;
 
               iteration += 1;
               currentCount += 1;
@@ -152,8 +152,8 @@ const BarChart = <T extends Record<string, number>>({
               return (
                 <Bar
                   key={`${name}-${itemIndex}`}
-                  x={itemDistance}
-                  value={value}
+                  x={itemDistance + 16}
+                  value={Number(value)}
                   y={height - 20 - itemHeight}
                   onMouseEnter={({ label, value }) => {
                     if (tooltipRef.current) {
@@ -174,12 +174,12 @@ const BarChart = <T extends Record<string, number>>({
             <text
               y={height - 4}
               x={
-                textDistance +
+                (textDistance +
                 (itemWidth -
                   itemMargin -
                   itemWidth * (itemsQty - 3) -
                   String(item[groupBy]).length * 8) /
-                2
+                2) + 16
               }
             >
               {item[groupBy]}

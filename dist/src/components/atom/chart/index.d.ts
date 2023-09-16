@@ -23,7 +23,7 @@ interface IChartProps<T> {
         translation: TChartTranslation;
     }) => ReactNode;
 }
-declare const Chart: <T extends Record<string, number>>({ type, width, height, hide, data, children, translation, snap, }: IChartProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Chart: <T extends Record<string, string | number>>({ type, width, height, hide, data, children, translation, snap, }: IChartProps<T>) => import("react/jsx-runtime").JSX.Element;
 export { LineChart as Line, BarChart as Bar, TimeChart as Time };
 export default Chart;
 //# sourceMappingURL=index.d.ts.map

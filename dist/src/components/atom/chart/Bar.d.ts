@@ -1,6 +1,6 @@
 import { RefObject } from "react";
 import { TChartTranslation } from ".";
-declare const BarChart: <T extends Record<string, number>>({ width, height, data, showOnly, tooltipRef, groupBy, translation, maxItemValue, }: {
+declare const BarChart: <T extends Record<string, string | number>>({ width, height, data, showOnly, tooltipRef, groupBy, translation, maxItemValue, }: {
     width: number;
     height: number;
     data: T[];

@@ -83,7 +83,7 @@ export type TTableConstraints<T> = {
           | Record<string, string | number | boolean | string[] | number[]>[];
       };
 };
-
+//
 export type TTableTranslation =
   | "services"
   | "workgroups"
@@ -223,7 +223,7 @@ const Table = <T extends TTableConstraints<T>>({
               </thead>
               <tbody ref={tBodyRef}>
                 {loading && (
-                  <h2
+                  <span
                     className="subtitle"
                     style={{
                       margin: "auto",
@@ -232,7 +232,7 @@ const Table = <T extends TTableConstraints<T>>({
                     }}
                   >
                     {translate("common.loading")}...
-                  </h2>
+                  </span>
                 )}
                 {!loading &&
                   data.map((row, rowIndex) => {

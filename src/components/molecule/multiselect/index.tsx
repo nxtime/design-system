@@ -256,14 +256,12 @@ const MultiSelect = <
                   ref={(el) => (itemsRef.current[index + 1] = el!)}
                   tabIndex={0}
                   onClick={() => {
-                    changeInternalSelected((previous) => {
-                      if (itemIncluded) {
-                        return previous.filter((checked) => checked !== index);
-                      }
-                      return [...previous, index];
-                    });
+
+                  const currentSelected = itemIncluded ? internalSelected.filter((checked) => checked !== index) : [...internalSelected, index];
+                    changeInternalSelected(currentSelected);
+
                     if (onChange !== undefined) {
-                      onChange(index, items[index]);
+                      onChange(index, items[index], currentSelected);
                     }
                     if (inputRef.current && selector) {
                       inputRef.current.value = String(items[index][selector]);
