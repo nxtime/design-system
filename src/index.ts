@@ -39,12 +39,11 @@ import useToast from "./stores/useToast";
 // ** UTILS **
 import { debounce } from "./utils/helpers/debounce";
 import { changeDesignLanguage, initDesignTranslator } from "./utils/translator";
+import GenericChart from "./components/atom/chart/Generic";
 
 export {
   Chart,
-  // Line,
-  // Bar,
-  // Time,
+  GenericChart,
   Textfield,
   ShowPassword,
   DateRangePicker,
