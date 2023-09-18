@@ -39,14 +39,16 @@
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
     "@storybook/react": "^7.3.2",
+    "apexcharts": "^3.42.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
     "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
-    "vite-pages-theme-doc": "^4.1.6",
     "translation-system": "github:nxtime/translation-system",
+    "vite-pages-theme-doc": "^4.1.6",
     "vite-plugin-react-pages": "^4.1.4",
     "vite-tsconfig-paths": "^4.2.0"
   },
