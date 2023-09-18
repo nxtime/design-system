@@ -12,8 +12,20 @@ const dataToGenericCharts = <T extends Record<string, string | number>>({
   groupByFormatter?: (_value: string | number) => string | number;
   labels?: string[];
   hidden?: (keyof T)[];
-}): { series: { name: string; data: number[] }[]; labels: string[] } => {
+}): {
+  series: { name: string; data: number[] }[];
+  labels: string[];
+} => {
   if (data?.length === 0) return { series: [], labels: [] };
+  const columnsWithoutData = [] as (keyof T)[];
+
+  data.forEach((item) => {
+    Object.keys(item).forEach((key) => {
+      if (item[key] === 0) {
+        columnsWithoutData.push(key);
+      }
+    });
+  });
 
   const series = [] as { name: string; data: number[] }[];
   const seriesIndex = {} as { index: number };
@@ -21,7 +33,12 @@ const dataToGenericCharts = <T extends Record<string, string | number>>({
   const currentLabels = [] as (string | number)[];
 
   Object.keys(data[0]).forEach((name) => {
-    if (hidden.includes(name as keyof T) || groupBy === name) return;
+    if (
+      hidden.includes(name as keyof T) ||
+      groupBy === name ||
+      columnsWithoutData.includes(name)
+    )
+      return;
     series.push({ name, data: [] });
     seriesIndex[name as "index"] = currentIndex;
     currentIndex++;
@@ -34,14 +51,15 @@ const dataToGenericCharts = <T extends Record<string, string | number>>({
           groupByFormatter(possibleValue as string | number) ?? "",
         );
       }
-      if (hidden.includes(name)) return;
+      if (hidden.includes(name) || columnsWithoutData.includes(name)) return;
+
       let value = 0;
+
       if (typeof possibleValue === "number") value = possibleValue;
+
       series[seriesIndex[name as "index"]]?.data?.push(value);
     });
   });
-
-  console.log({ series, labels: currentLabels });
 
   return { series, labels: (currentLabels as unknown as string[]) ?? labels };
 };

@@ -96,6 +96,17 @@ ul {
   }
 }
 
+tspan {
+  fill: var(--text-neutral-content);
+}
+
+.apexcharts-tooltip,
+.apexcharts-menu {
+  * {
+    color: #222;
+  }
+}
+
 @media print {
   .no-print,
   .no-print * {
