@@ -1,6 +1,6 @@
 {
   "name": "design-system",
-  "version": "0.0.1",
+  "version": "1.0.8",
   "private": "true",
   "type": "module",
   "main": "./dist/design-system.umd.js",

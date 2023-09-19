@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, splitVendorChunkPlugin } from "vite";
 import { resolve } from "path";
 import react from "@vitejs/plugin-react";
 import tsConfigPaths from "vite-tsconfig-paths";
@@ -12,8 +12,10 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
     }),
+    splitVendorChunkPlugin() 
   ],
   build: {
+    minify: "esbuild",
     lib: {
       entry: resolve("src", "index.ts"),
       name: "DesignSystem",
@@ -21,10 +23,16 @@ export default defineConfig({
       fileName: (format) => `design-system.${format}.js`,
     },
     rollupOptions: {
-      external: ["react"],
+      external: ["react", "translation", "moment"],
       output: {
+        // inlineDynamicImports: false,
+        // manualChunks: {
+        //   "charts-lib": ["apexcharts", "react-apexcharts"],
+        // },
         globals: {
           react: "React",
+          "translation" :"translation-system",
+          moment: "moment"
         },
       },
     },

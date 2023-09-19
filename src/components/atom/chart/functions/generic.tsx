@@ -99,7 +99,16 @@ const genericChartsOptions = ({
           borderRadiusApplication: "around",
         },
       },
-      colors: ["var(--info)", "var(--info-hover)"],
+      colors: [
+        "var(--info)",
+        "var(--info-hover)",
+        "var(--danger)",
+        "var(--danger-hover)",
+        "var(--warning)",
+        "var(--warning-hover)",
+        "var(--primary)",
+        "var(--primary-hover)",
+      ],
       grid: {
         show: false,
       },
