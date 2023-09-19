@@ -2,51 +2,53 @@ import React from "react";
 import { Sidebar } from "../../src/index";
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { initAppTranslation } from "translation-system";
 
 const demoSidebarData = [
   {
-    label: "Home",
+    label: "home",
     route: "/",
     icon: "fluent:home-20-filled",
   },
   {
-    label: "Dashboard",
+    label: "dashboard",
     route: "/dashboard",
     icon: "bi:people-fill",
     submenus: [
       {
-        label: "Services",
+        label: "services",
         route: "/services",
         icon: "typcn:group",
       },
       {
-        label: "Calls",
+        label: "calls",
         route: "/calls",
         icon: "majesticons:clock",
       },
       {
-        label: "Reports",
+        label: "general",
         route: "/reports",
         icon: "majesticons:clock",
       },
     ],
   },
   {
-    label: "Real Time",
-    route: "/real-timee",
+    label: "real-time",
+    route: "/real-time",
     icon: "ic:outline-preview",
   },
 ];
 
 const SidebarPage = () => {
   const { pathname } = useLocation();
+  initAppTranslation({ language: "pt-BR" });
 
   console.log(pathname);
   return (
     <div style={{ height: "100%" }}>
       <Sidebar
         data={demoSidebarData}
-        prefix="#hello/"
+        // prefix="#hello/"
         pathname={pathname}
         itemLink={({ route, icon, isOpen, label }) => {
           return (

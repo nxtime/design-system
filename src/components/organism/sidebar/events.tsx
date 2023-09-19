@@ -75,7 +75,7 @@ const onMenuOver = (
   if (!isOpen) {
     tooltipRef.current.innerHTML = `
       <div className="sidebar-tooltip-container">
-        <span>${translate(item.label)}</span>
+        <span>${translate(`sidebar.${item.label}`)}</span>
       </div>
     `;
     tooltipRef.current.style.opacity = "1";

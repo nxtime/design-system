@@ -7941,7 +7941,7 @@ const MY = {
 }, CT = (s, u, h, v, w, A = 0, T, F) => {
   s.current === null || u.current === null || (v.route === h && s.current.classList.add("active"), s.current.classList.contains("active") && v.route !== h && s.current.classList.remove("active"), T || (u.current.innerHTML = `
       <div className="sidebar-tooltip-container">
-        <span>${F(v.label)}</span>
+        <span>${F(`sidebar.${v.label}`)}</span>
       </div>
     `, u.current.style.opacity = "1", u.current.style.top = `calc(48px * ${w + A})`), s.current.style.top = `calc(48px * ${w + A})`);
 }, PY = (s, u, h, v, w, A, T) => {
