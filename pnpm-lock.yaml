@@ -46,7 +46,7 @@ dependencies:
     version: 1.66.1
   translation-system:
     specifier: github:nxtime/translation-system
-    version: github.com/nxtime/translation-system/b4523c7332186e9f30aa1d9afdfe6ea73d895100(i18next@23.5.1)(react-i18next@13.2.2)(vite@4.4.9)
+    version: github.com/nxtime/translation-system/b719798466b8d7118892789bf1766d1b414b2543(i18next@23.5.1)(react-i18next@13.2.2)(vite@4.4.9)
   vite-pages-theme-doc:
     specifier: ^4.1.6
     version: 4.1.6
@@ -102,7 +102,7 @@ devDependencies:
     version: 5.1.6
   vite:
     specifier: ^4.4.9
-    version: 4.4.9(sass@1.66.1)
+    version: 4.4.9
   vite-plugin-dts:
     specifier: ^3.5.2
     version: 3.5.2(rollup@3.29.2)(typescript@5.1.6)(vite@4.4.9)
@@ -1305,7 +1305,7 @@ packages:
       '@babel/plugin-transform-react-jsx-self': 7.22.5(@babel/core@7.22.11)
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.22.11)
       react-refresh: 0.14.0
-      vite: 4.4.9(sass@1.66.1)
+      vite: 4.4.9
     transitivePeerDependencies:
       - supports-color
 
@@ -1456,6 +1456,7 @@ packages:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
+    dev: false
 
   /apexcharts@3.42.0:
     resolution: {integrity: sha512-hYhzZqh2Efny9uiutkGU2M/EarJ4Nn8s6dxZ0C7E7N+SV4d1xjTioXi2NLn4UKVJabZkb3HnpXDoumXgtAymwg==}
@@ -1581,6 +1582,7 @@ packages:
   /binary-extensions@2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
+    dev: false
 
   /bplist-parser@0.2.0:
     resolution: {integrity: sha512-z0M+byMThzQmD9NILRniCUXYsYpjwnlO8N5uCFaCqIOpqRsJCrQL9NK3JsD67CN5a08nF5oIL2bD6loTdHOuKw==}
@@ -1695,6 +1697,7 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.3
+    dev: false
 
   /clean-css@5.3.2:
     resolution: {integrity: sha512-JVJbM+f3d3Q704rF4bqQ5UUyTtuJ0JRKNbTKVEeujCCBoMdkEi+V+e8oktO9qGQNSvHrFTM6JZRXrUvGR1czww==}
@@ -2785,6 +2788,7 @@ packages:
 
   /immutable@4.3.3:
     resolution: {integrity: sha512-808ZFYMsIRAjLAu5xkKo0TsbY9LBy9H5MazTKIEHerNkg0ymgilGfBPMR/3G7d/ihGmuK2Hw8S1izY2d3kd3wA==}
+    dev: false
 
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -2861,6 +2865,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       binary-extensions: 2.2.0
+    dev: false
 
   /is-boolean-object@1.1.2:
     resolution: {integrity: sha512-gDYaKHJmnj4aWxyj6YHyXVpdQawtVLHU5cb+eztPGczf6cjuTdwve5ZIEfgXqH4e57An1D1AKf8CZ3kYrQRqYA==}
@@ -3993,6 +3998,7 @@ packages:
   /normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /npm-run-path@4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
@@ -4412,6 +4418,7 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+    dev: false
 
   /reflect.getprototypeof@1.0.3:
     resolution: {integrity: sha512-TTAOZpkJ2YLxl7mVHWrNo3iDMEkYlva/kgFcXndqMgbo/AZUmmavEkdXV+hXtE4P8xdyEKRzalaFqZVuwIk/Nw==}
@@ -4634,6 +4641,7 @@ packages:
       chokidar: 3.5.3
       immutable: 4.3.3
       source-map-js: 1.0.2
+    dev: false
 
   /scheduler@0.23.0:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
@@ -5238,7 +5246,7 @@ packages:
       debug: 4.3.4
       kolorist: 1.8.0
       typescript: 5.1.6
-      vite: 4.4.9(sass@1.66.1)
+      vite: 4.4.9
       vue-tsc: 1.8.8(typescript@5.1.6)
     transitivePeerDependencies:
       - '@types/node'
@@ -5277,7 +5285,7 @@ packages:
       ts-morph: 18.0.0
       typescript: 5.1.6
       unist-util-visit: 4.1.2
-      vite: 4.4.9(sass@1.66.1)
+      vite: 4.4.9
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
@@ -5310,13 +5318,13 @@ packages:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 2.1.2(typescript@5.1.6)
-      vite: 4.4.9(sass@1.66.1)
+      vite: 4.4.9
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: false
 
-  /vite@4.4.9(sass@1.66.1):
+  /vite@4.4.9:
     resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -5347,7 +5355,6 @@ packages:
       esbuild: 0.18.20
       postcss: 8.4.28
       rollup: 3.28.1
-      sass: 1.66.1
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -5513,9 +5520,9 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/nxtime/translation-system/b4523c7332186e9f30aa1d9afdfe6ea73d895100(i18next@23.5.1)(react-i18next@13.2.2)(vite@4.4.9):
-    resolution: {tarball: https://codeload.github.com/nxtime/translation-system/tar.gz/b4523c7332186e9f30aa1d9afdfe6ea73d895100}
-    id: github.com/nxtime/translation-system/b4523c7332186e9f30aa1d9afdfe6ea73d895100
+  github.com/nxtime/translation-system/b719798466b8d7118892789bf1766d1b414b2543(i18next@23.5.1)(react-i18next@13.2.2)(vite@4.4.9):
+    resolution: {tarball: https://codeload.github.com/nxtime/translation-system/tar.gz/b719798466b8d7118892789bf1766d1b414b2543}
+    id: github.com/nxtime/translation-system/b719798466b8d7118892789bf1766d1b414b2543
     name: translation-system
     version: 0.0.1
     peerDependencies:

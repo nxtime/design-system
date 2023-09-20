@@ -115,7 +115,8 @@ export type TTableTranslation =
   | "scalegroups"
   | "workgroups"
   | "scales"
-  | "users";
+  | "users"
+  | "adherence";
 
 const Table = <T extends TTableConstraints<T>>({
   headers,
@@ -217,11 +218,28 @@ const Table = <T extends TTableConstraints<T>>({
               <thead className={noWrap ? "no-wrap" : ""}>
                 <tr>
                   {headers &&
-                    headers.map((column, columnIndex) => {
-                      if (hideColumn.includes(column as keyof T)) return null;
-                      columnIndex++;
+                    headers.map((column, index) => {
                       return (
-                        <th key={columnIndex}>{column as unknown as string}</th>
+                        <Column
+                          key={columnIndex - 1}
+                          tBodyRef={tBodyRef}
+                          mousePosition={mousePosition}
+                          lastIndex={
+                            Object.keys(data[0]).length -
+                            hideColumn.length -
+                            1 ===
+                            index
+                          }
+                          orderedHeader={
+                            orderedHeader as MutableRefObject<string | null>
+                          }
+                          order={order}
+                          setOrder={setOrder}
+                          column={column as string}
+                          index={columnIndex - 1}
+                          ordersType={ordersType}
+                          translation={translation}
+                        />
                       );
                     })}
                   {headers === undefined &&
@@ -234,7 +252,12 @@ const Table = <T extends TTableConstraints<T>>({
                           key={columnIndex - 1}
                           tBodyRef={tBodyRef}
                           mousePosition={mousePosition}
-                          lastIndex={Object.keys(data[0]).length - 1 === index}
+                          lastIndex={
+                            Object.keys(data[0]).length -
+                            hideColumn.length -
+                            1 ===
+                            index
+                          }
                           orderedHeader={
                             orderedHeader as MutableRefObject<string | null>
                           }
@@ -282,7 +305,11 @@ const Table = <T extends TTableConstraints<T>>({
                             typeof item === "object" &&
                             dataConfig?.[column] === undefined
                           ) {
-                            value = Object.values(item)[0];
+                            if (item?.length) {
+                              value = item.length;
+                            } else {
+                              value = Object.values(item)[0];
+                            }
                           } else if (
                             Object.hasOwnProperty.call(dataConfig ?? {}, column)
                           ) {

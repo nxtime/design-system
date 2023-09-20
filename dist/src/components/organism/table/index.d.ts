@@ -34,7 +34,7 @@ export type TTableConstraints<T> = {
         [S in keyof T[K]]: string | number | Record<string, string | number | boolean | string[] | number[]> | Record<string, string | number | boolean | string[] | number[]>[];
     };
 };
-export type TTableTranslation = "services" | "workgroups" | "calls" | "scalegroups" | "workgroups" | "scales" | "users";
+export type TTableTranslation = "services" | "workgroups" | "calls" | "scalegroups" | "workgroups" | "scales" | "users" | "adherence";
 declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, tableConfig, showObject, noWrap, translation, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Table;
 //# sourceMappingURL=index.d.ts.map
