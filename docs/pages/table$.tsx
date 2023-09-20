@@ -121,7 +121,7 @@ const TablePageDemo = () => {
       </button>
       <Table
         hideColumn={["groupId", "agents"]}
-        data={data2}
+        data={[]}
         headers={[
           "groupName",
           "agents",

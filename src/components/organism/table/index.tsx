@@ -216,63 +216,65 @@ const Table = <T extends TTableConstraints<T>>({
           return (
             <table className="table">
               <thead className={noWrap ? "no-wrap" : ""}>
-                <tr>
-                  {headers &&
-                    headers.map((column, index) => {
-                      return (
-                        <Column
-                          key={columnIndex - 1}
-                          tBodyRef={tBodyRef}
-                          mousePosition={mousePosition}
-                          lastIndex={
-                            Object.keys(data[0]).length -
-                            hideColumn.length -
-                            1 ===
-                            index
-                          }
-                          orderedHeader={
-                            orderedHeader as MutableRefObject<string | null>
-                          }
-                          order={order}
-                          setOrder={setOrder}
-                          column={column as string}
-                          index={columnIndex - 1}
-                          ordersType={ordersType}
-                          translation={translation}
-                        />
-                      );
-                    })}
-                  {headers === undefined &&
-                    data.length > 0 &&
-                    Object.keys(data[0]).map((column, index) => {
-                      if (hideColumn.includes(column as keyof T)) return null;
-                      columnIndex++;
-                      return (
-                        <Column
-                          key={columnIndex - 1}
-                          tBodyRef={tBodyRef}
-                          mousePosition={mousePosition}
-                          lastIndex={
-                            Object.keys(data[0]).length -
-                            hideColumn.length -
-                            1 ===
-                            index
-                          }
-                          orderedHeader={
-                            orderedHeader as MutableRefObject<string | null>
-                          }
-                          order={order}
-                          setOrder={setOrder}
-                          column={column}
-                          index={columnIndex - 1}
-                          ordersType={ordersType}
-                          translation={translation}
-                        />
-                      );
-                    })}
-                  {loading && <th />}
-                  {action && <th>{translate("common.action")}</th>}
-                </tr>
+                {loading || data.length === 0 ? null : (
+                  <tr>
+                    {headers &&
+                      headers.map((column, index) => {
+                        return (
+                          <Column
+                            key={columnIndex - 1}
+                            tBodyRef={tBodyRef}
+                            mousePosition={mousePosition}
+                            lastIndex={
+                              Object.keys(data[0]).length -
+                              hideColumn.length -
+                              1 ===
+                              index
+                            }
+                            orderedHeader={
+                              orderedHeader as MutableRefObject<string | null>
+                            }
+                            order={order}
+                            setOrder={setOrder}
+                            column={column as string}
+                            index={columnIndex - 1}
+                            ordersType={ordersType}
+                            translation={translation}
+                          />
+                        );
+                      })}
+                    {headers === undefined &&
+                      data.length > 0 &&
+                      Object.keys(data[0]).map((column, index) => {
+                        if (hideColumn.includes(column as keyof T)) return null;
+                        columnIndex++;
+                        return (
+                          <Column
+                            key={columnIndex - 1}
+                            tBodyRef={tBodyRef}
+                            mousePosition={mousePosition}
+                            lastIndex={
+                              Object.keys(data[0]).length -
+                              hideColumn.length -
+                              1 ===
+                              index
+                            }
+                            orderedHeader={
+                              orderedHeader as MutableRefObject<string | null>
+                            }
+                            order={order}
+                            setOrder={setOrder}
+                            column={column}
+                            index={columnIndex - 1}
+                            ordersType={ordersType}
+                            translation={translation}
+                          />
+                        );
+                      })}
+                    {loading && <th />}
+                    {action && <th>{translate("common.action")}</th>}
+                  </tr>
+                )}
               </thead>
               <tbody ref={tBodyRef}>
                 {loading && (
