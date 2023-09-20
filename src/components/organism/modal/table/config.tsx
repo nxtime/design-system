@@ -7,13 +7,15 @@ import { defaultColors } from "../../../../utils/colors";
 
 const conditionsTypes = [
   "none",
-  "above",
-  "aboveOrEqual",
-  "less",
-  "lessOrEqual",
+  "greater",
+  "greaterOrEqual",
+  "lesser",
+  "lesserOrEqual",
   "equal",
   "different",
 ] as const;
+
+export type TConditionTypes = (typeof conditionsTypes)[number];
 
 const conditions = conditionsTypes.map((condition) => ({ type: condition }));
 
@@ -69,6 +71,7 @@ const TableConfigModal = <T extends TTableConfig<T>>({
                 type="checkbox"
                 name={item as string}
                 id={item as string}
+                checked={internalConfig[item].enabled}
                 className="checkbox checkbox-base-200"
                 onChange={() =>
                   updateConfigProp(item, {
@@ -87,14 +90,26 @@ const TableConfigModal = <T extends TTableConfig<T>>({
               selector={"type"}
               style={{ width: "20ch" }}
               variant="neutral"
+              keyExtractor={(item) => translate(`conditions.${item.type}`)}
               items={conditions}
+              onChange={(_, condition) => {
+                updateConfigProp(item, {
+                  condition: condition?.type,
+                });
+              }}
               disabled={!internalConfig[item].enabled}
             />
             <input
               type="number"
               className="input input-base-200"
+              defaultValue={internalConfig[item].value}
               style={{ color: "var(--text-content)" }}
               placeholder="Ex:. 200"
+              onChange={(e) => {
+                updateConfigProp(item, {
+                  value: Number(e.target.value),
+                });
+              }}
             />
             <Select
               selected={currentColor}
@@ -113,6 +128,11 @@ const TableConfigModal = <T extends TTableConfig<T>>({
                   }}
                 />
               )}
+              onChange={(_, color) => {
+                updateConfigProp(item, {
+                  color,
+                });
+              }}
               disabled={!internalConfig[item].enabled}
             />
           </div>

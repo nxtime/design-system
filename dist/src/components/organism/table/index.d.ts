@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { TKeyModes } from "./mode";
+import { TConditionTypes } from "../modal/table/config";
 interface ITableProps<T> {
     headers?: Record<keyof T, string>[] | string[];
     data: T[];
@@ -27,7 +28,7 @@ export type TTableConfigProps = {
     enabled: boolean;
     value: number | string;
     color: string;
-    condition: "none" | "above" | "aboveOrEqual" | "less" | "lessOrEqual" | "equal" | "different";
+    condition: TConditionTypes;
 };
 export type TTableConstraints<T> = {
     [K in keyof T]: T[K] extends string ? string : T[K] extends number ? number : T[K] extends boolean ? boolean : T[K] extends (infer U)[] ? U extends Record<string, string | number | boolean | string[] | number[]> ? TTableConstraints<U>[] : never : {
@@ -35,6 +36,6 @@ export type TTableConstraints<T> = {
     };
 };
 export type TTableTranslation = "services" | "workgroups" | "calls" | "scalegroups" | "workgroups" | "scales" | "users" | "adherence";
-declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, tableConfig, showObject, noWrap, translation, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, tableConfig, noWrap, translation, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Table;
 //# sourceMappingURL=index.d.ts.map

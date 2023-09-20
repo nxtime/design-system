@@ -1,4 +1,5 @@
 import { TTableConfig, TTableConstraints } from "..";
+import { TConditionTypes } from "../../modal/table/config";
 
 const initializeTableConfig: <T extends TTableConstraints<T>>(
   _items: T[],
@@ -26,4 +27,29 @@ const initializeTableConfig: <T extends TTableConstraints<T>>(
   return tableConfig;
 };
 
-export { initializeTableConfig };
+const evaluateCondition = (
+  conditionType: TConditionTypes,
+  conditionValue: number,
+  actualValue: number,
+): boolean => {
+  switch (conditionType) {
+    case "none":
+      return true;
+    case "greater":
+      return actualValue > conditionValue;
+    case "greaterOrEqual":
+      return actualValue >= conditionValue;
+    case "lesser":
+      return actualValue < conditionValue;
+    case "lesserOrEqual":
+      return actualValue <= conditionValue;
+    case "equal":
+      return actualValue === conditionValue;
+    case "different":
+      return actualValue !== conditionValue;
+    default:
+      throw new Error("Invalid condition type");
+  }
+};
+
+export { initializeTableConfig, evaluateCondition };

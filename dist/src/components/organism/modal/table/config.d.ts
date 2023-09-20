@@ -1,5 +1,7 @@
 import type { TTableConfig } from "../../table";
 import { Dispatch, SetStateAction } from "react";
+declare const conditionsTypes: readonly ["none", "greater", "greaterOrEqual", "lesser", "lesserOrEqual", "equal", "different"];
+export type TConditionTypes = (typeof conditionsTypes)[number];
 declare const TableConfigModal: <T extends TTableConfig<T>>({ closeModal, config, updateConfig, hidden, translation, }: {
     closeModal: () => void;
     config: TTableConfig<T>;
@@ -8,4 +10,4 @@ declare const TableConfigModal: <T extends TTableConfig<T>>({ closeModal, config
     translation: string;
 }) => import("react/jsx-runtime").JSX.Element;
 export default TableConfigModal;
-//# sourceMappingURL=filter.d.ts.map
+//# sourceMappingURL=config.d.ts.map

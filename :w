@@ -106,7 +106,6 @@ const TablePageDemo = () => {
       </button>
       <Table
         data={data}
-        hideColumn={["service_id"]}
         translation="services"
         loading={isLoading}
       />

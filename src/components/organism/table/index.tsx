@@ -7,13 +7,16 @@ import {
 } from "react";
 import TableMode, { TKeyModes } from "./mode";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import TableConfigModal from "../modal/table/filter";
+import TableConfigModal, { TConditionTypes } from "../modal/table/config";
 import useModal from "../../../stores/useModal";
 import Column from "./column";
 import { sortByKey } from "./functions/sort";
 import { debounce } from "../../../utils/helpers/debounce.tsx";
 import { translate } from "translation-system";
-import { initializeTableConfig } from "./functions/table-config.ts";
+import {
+  initializeTableConfig,
+  evaluateCondition,
+} from "./functions/table-config.ts";
 
 interface ITableProps<T> {
   /*
@@ -76,14 +79,7 @@ export type TTableConfigProps = {
   enabled: boolean;
   value: number | string;
   color: string;
-  condition:
-  | "none"
-  | "above"
-  | "aboveOrEqual"
-  | "less"
-  | "lessOrEqual"
-  | "equal"
-  | "different";
+  condition: TConditionTypes
 };
 
 const ordersType = ["default", "asc", "desc"] as const;
@@ -123,7 +119,7 @@ const Table = <T extends TTableConstraints<T>>({
   data,
   dataConfig,
   tableConfig,
-  showObject,
+  // showObject,
   noWrap = true,
   // headersConfig,
   translation = "workgroups",
@@ -147,7 +143,11 @@ const Table = <T extends TTableConstraints<T>>({
 
   const [currentTableConfig, updateCurrentTableConfig] = useState<
     TTableConfig<T>
-  >(tableConfig === undefined ? initializeTableConfig(data, hideColumn) : tableConfig);
+  >(
+    tableConfig === undefined
+      ? initializeTableConfig(data, hideColumn)
+      : tableConfig,
+  );
 
   const [currentFilter, changeCurrentFilter] = useState("");
 
@@ -324,6 +324,24 @@ const Table = <T extends TTableConstraints<T>>({
                           } else {
                             value = item as string | number;
                           }
+                          const isCustomEnabled =
+                            currentTableConfig[column].enabled &&
+                            evaluateCondition(
+                              currentTableConfig[column].condition,
+                              currentTableConfig[column].value as number,
+                              value as number,
+                            );
+
+                          if (isCustomEnabled) {
+                            console.log({
+                              column,
+                              rowIndex,
+                              itemIndex,
+                              value,
+                              isCustomEnabled,
+                              currentTableConfig: currentTableConfig[column]
+                            });
+                          }
 
                           return (
                             <td
@@ -331,9 +349,23 @@ const Table = <T extends TTableConstraints<T>>({
                               key={itemIndex}
                               style={{ width: "auto" }}
                             >
-                              {typeof item !== "object" ||
-                                !showObject?.[column] ? (
-                                value
+                              {typeof item !== "object" ? (
+                                isCustomEnabled ? (
+                                  <span
+                                    className="btn btn-xs no-bounce"
+                                    style={{
+                                      backgroundColor:
+                                        `var(--${currentTableConfig[column].color})`,
+                                        width: "fit-content",
+                                        marginInline: "auto",
+                                        cursor: "unset"
+                                    }}
+                                  >
+                                    {value}
+                                  </span>
+                                ) : (
+                                  value
+                                )
                               ) : (
                                 <div className="cell-container">
                                   <div className="cell-container--header">
