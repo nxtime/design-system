@@ -160,6 +160,7 @@ const Table = <T extends TTableConstraints<T>>({
 
       const rowIncludes = Object.entries(row).some(([keyName, item]) => {
         if (hideColumn.includes(keyName as keyof T)) return false;
+        if (item === null) return false;
 
         if (
           typeof item === "object" &&
@@ -309,6 +310,8 @@ const Table = <T extends TTableConstraints<T>>({
                           ) {
                             if (item?.length) {
                               value = item.length;
+                            } else if (item === null) {
+                              value = 0;
                             } else {
                               value = Object.values(item)[0];
                             }
@@ -347,7 +350,7 @@ const Table = <T extends TTableConstraints<T>>({
                               key={itemIndex}
                               style={{ width: "auto" }}
                             >
-                              {typeof item !== "object" && !showObject ? (
+                              {typeof item !== "object" || !showObject ? (
                                 isCustomEnabled ? (
                                   <span
                                     className="btn btn-xs no-bounce"

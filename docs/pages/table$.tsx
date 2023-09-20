@@ -23,7 +23,7 @@ const data = [
     hour: 10,
     service_id: 46,
     attempts: 32,
-    answereds: 6,
+    answereds: null,
     average_service_time: 19167,
     contact_right_person: 0,
     loggeds_agents: 2,
