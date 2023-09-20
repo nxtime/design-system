@@ -79,7 +79,7 @@ export type TTableConfigProps = {
   enabled: boolean;
   value: number | string;
   color: string;
-  condition: TConditionTypes
+  condition: TConditionTypes;
 };
 
 const ordersType = ["default", "asc", "desc"] as const;
@@ -119,7 +119,7 @@ const Table = <T extends TTableConstraints<T>>({
   data,
   dataConfig,
   tableConfig,
-  // showObject,
+  showObject,
   noWrap = true,
   // headersConfig,
   translation = "workgroups",
@@ -229,8 +229,7 @@ const Table = <T extends TTableConstraints<T>>({
                             mousePosition={mousePosition}
                             lastIndex={
                               Object.keys(data[0]).length -
-                              hideColumn.length -
-                              1 ===
+                              hideColumn.length ===
                               index
                             }
                             orderedHeader={
@@ -257,8 +256,7 @@ const Table = <T extends TTableConstraints<T>>({
                             mousePosition={mousePosition}
                             lastIndex={
                               Object.keys(data[0]).length -
-                              hideColumn.length -
-                              1 ===
+                              hideColumn.length ===
                               index
                             }
                             orderedHeader={
@@ -339,7 +337,7 @@ const Table = <T extends TTableConstraints<T>>({
                               itemIndex,
                               value,
                               isCustomEnabled,
-                              currentTableConfig: currentTableConfig[column]
+                              currentTableConfig: currentTableConfig[column],
                             });
                           }
 
@@ -349,16 +347,15 @@ const Table = <T extends TTableConstraints<T>>({
                               key={itemIndex}
                               style={{ width: "auto" }}
                             >
-                              {typeof item !== "object" ? (
+                              {typeof item !== "object" && !showObject ? (
                                 isCustomEnabled ? (
                                   <span
                                     className="btn btn-xs no-bounce"
                                     style={{
-                                      backgroundColor:
-                                        `var(--${currentTableConfig[column].color})`,
-                                        width: "fit-content",
-                                        marginInline: "auto",
-                                        cursor: "unset"
+                                      backgroundColor: `var(--${currentTableConfig[column].color})`,
+                                      width: "fit-content",
+                                      marginInline: "auto",
+                                      cursor: "unset",
                                     }}
                                   >
                                     {value}

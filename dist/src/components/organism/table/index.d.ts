@@ -36,6 +36,6 @@ export type TTableConstraints<T> = {
     };
 };
 export type TTableTranslation = "services" | "workgroups" | "calls" | "scalegroups" | "workgroups" | "scales" | "users" | "adherence";
-declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, tableConfig, noWrap, translation, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, tableConfig, showObject, noWrap, translation, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Table;
 //# sourceMappingURL=index.d.ts.map

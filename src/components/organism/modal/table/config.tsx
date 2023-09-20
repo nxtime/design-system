@@ -4,6 +4,7 @@ import { translate } from "translation-system";
 import type { TTableConfig, TTableConfigProps } from "../../table";
 import { Dispatch, SetStateAction, useState } from "react";
 import { defaultColors } from "../../../../utils/colors";
+import { Icon } from "@iconify/react";
 
 const conditionsTypes = [
   "none",
@@ -17,7 +18,20 @@ const conditionsTypes = [
 
 export type TConditionTypes = (typeof conditionsTypes)[number];
 
-const conditions = conditionsTypes.map((condition) => ({ type: condition }));
+const conditionIcons: { [K in TConditionTypes]: string } = {
+  greater: "ic:round-greater-than",
+  greaterOrEqual: "ic:round-greater-than-equal",
+  lesser: "ic:round-less-than",
+  lesserOrEqual: "ic:round-less-than-equal",
+  different: "ic:round-not-equal",
+  equal: "iconamoon:sign-equal-bold",
+  none: "mdi:border-none-variant",
+};
+
+const conditions = conditionsTypes.map((condition) => ({
+  type: condition,
+  icon: conditionIcons[condition],
+}));
 
 const TableConfigModal = <T extends TTableConfig<T>>({
   closeModal,
@@ -89,8 +103,13 @@ const TableConfigModal = <T extends TTableConfig<T>>({
               selected={currentCondition}
               selector={"type"}
               style={{ width: "20ch" }}
-              variant="neutral"
-              keyExtractor={(item) => translate(`conditions.${item.type}`)}
+              variant="primary"
+              keyExtractor={(item) => (
+                <div className="container row center">
+                  <Icon icon={item.icon} />
+                  <span>{translate(`conditions.${item.type}`)}</span>
+                </div>
+              )}
               items={conditions}
               onChange={(_, condition) => {
                 updateConfigProp(item, {
