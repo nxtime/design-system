@@ -224,7 +224,7 @@ const Table = <T extends TTableConstraints<T>>({
                       headers.map((column, index) => {
                         return (
                           <Column
-                            key={columnIndex - 1}
+                            key={index}
                             tBodyRef={tBodyRef}
                             mousePosition={mousePosition}
                             lastIndex={
@@ -252,7 +252,7 @@ const Table = <T extends TTableConstraints<T>>({
                         columnIndex++;
                         return (
                           <Column
-                            key={columnIndex - 1}
+                            key={index}
                             tBodyRef={tBodyRef}
                             mousePosition={mousePosition}
                             lastIndex={
