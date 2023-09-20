@@ -13,6 +13,7 @@ import Column from "./column";
 import { sortByKey } from "./functions/sort";
 import { debounce } from "../../../utils/helpers/debounce.tsx";
 import { translate } from "translation-system";
+import { initializeTableConfig } from "./functions/table-config.ts";
 
 interface ITableProps<T> {
   /*
@@ -60,28 +61,51 @@ interface ITableProps<T> {
    * for custom actions, it receives a component as a child
    */
   action?: (item: T, index: number) => ReactNode;
+  /*
+   * Show compact headers
+   */
+  noWrap?: boolean;
+  tableConfig?: TTableConfig<T>;
 }
+
+export type TTableConfig<T> = {
+  [K in keyof T]: TTableConfigProps;
+};
+
+export type TTableConfigProps = {
+  enabled: boolean;
+  value: number | string;
+  color: string;
+  condition:
+  | "none"
+  | "above"
+  | "aboveOrEqual"
+  | "less"
+  | "lessOrEqual"
+  | "equal"
+  | "different";
+};
 
 const ordersType = ["default", "asc", "desc"] as const;
 
 export type TTableConstraints<T> = {
   [K in keyof T]: T[K] extends string
-    ? string
-    : T[K] extends number
-    ? number
-    : T[K] extends boolean
-    ? boolean
-    : T[K] extends (infer U)[]
-    ? U extends Record<string, string | number | boolean | string[] | number[]>
-      ? TTableConstraints<U>[]
-      : never
-    : {
-        [S in keyof T[K]]:
-          | string
-          | number
-          | Record<string, string | number | boolean | string[] | number[]>
-          | Record<string, string | number | boolean | string[] | number[]>[];
-      };
+  ? string
+  : T[K] extends number
+  ? number
+  : T[K] extends boolean
+  ? boolean
+  : T[K] extends (infer U)[]
+  ? U extends Record<string, string | number | boolean | string[] | number[]>
+  ? TTableConstraints<U>[]
+  : never
+  : {
+    [S in keyof T[K]]:
+    | string
+    | number
+    | Record<string, string | number | boolean | string[] | number[]>
+    | Record<string, string | number | boolean | string[] | number[]>[];
+  };
 };
 //
 export type TTableTranslation =
@@ -97,7 +121,9 @@ const Table = <T extends TTableConstraints<T>>({
   headers,
   data,
   dataConfig,
+  tableConfig,
   showObject,
+  noWrap = true,
   // headersConfig,
   translation = "workgroups",
   action,
@@ -115,6 +141,10 @@ const Table = <T extends TTableConstraints<T>>({
     currentPosition: 0,
     endPosition: 0,
   });
+
+  const [currentTableConfig, updateCurrentTableConfig] = useState<
+    TTableConfig<T>
+  >(tableConfig ?? initializeTableConfig(data, hideColumn));
 
   const [currentFilter, changeCurrentFilter] = useState("");
 
@@ -176,7 +206,7 @@ const Table = <T extends TTableConstraints<T>>({
           style={{ flex: "0" }}
           onClick={() => openModal("table-config-modal")}
         >
-          <Icon icon="mdi:filter" />
+          <Icon icon="mdi:gear" />
         </button>
       </div>
       <TableMode mode={currentMode} data={orderedItems()}>
@@ -184,7 +214,7 @@ const Table = <T extends TTableConstraints<T>>({
           let columnIndex = 0;
           return (
             <table className="table">
-              <thead>
+              <thead className={noWrap ? "no-wrap" : ""}>
                 <tr>
                   {headers &&
                     headers.map((column, columnIndex) => {
@@ -196,7 +226,7 @@ const Table = <T extends TTableConstraints<T>>({
                     })}
                   {headers === undefined &&
                     data.length > 0 &&
-                    Object.keys(data[0]).map((column) => {
+                    Object.keys(data[0]).map((column, index) => {
                       if (hideColumn.includes(column as keyof T)) return null;
                       columnIndex++;
                       return (
@@ -204,6 +234,7 @@ const Table = <T extends TTableConstraints<T>>({
                           key={columnIndex - 1}
                           tBodyRef={tBodyRef}
                           mousePosition={mousePosition}
+                          lastIndex={Object.keys(data[0]).length - 1 === index}
                           orderedHeader={
                             orderedHeader as MutableRefObject<string | null>
                           }
@@ -211,7 +242,6 @@ const Table = <T extends TTableConstraints<T>>({
                           setOrder={setOrder}
                           column={column}
                           index={columnIndex - 1}
-                          columns={Object.keys(data[0])}
                           ordersType={ordersType}
                           translation={translation}
                         />
@@ -271,7 +301,7 @@ const Table = <T extends TTableConstraints<T>>({
                               style={{ width: "auto" }}
                             >
                               {typeof item !== "object" ||
-                              !showObject?.[column] ? (
+                                !showObject?.[column] ? (
                                 value
                               ) : (
                                 <div className="cell-container">
@@ -340,8 +370,11 @@ const Table = <T extends TTableConstraints<T>>({
       </TableMode>
       {!loading && data.length > 0 && (
         <TableConfigModal
-          config={Object.keys(data[0])}
+          translation={translation}
+          config={currentTableConfig}
+          updateConfig={updateCurrentTableConfig}
           closeModal={closeModal}
+          hidden={hideColumn}
         />
       )}
     </div>

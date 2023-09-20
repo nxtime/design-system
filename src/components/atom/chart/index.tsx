@@ -65,7 +65,8 @@ export type TChartTranslation =
   | "calls"
   | "scalegroups"
   | "workgroups"
-  | "scales";
+  | "scales"
+  | "charts";
 
 interface IChartProps<T> {
   width?: number;

@@ -17,13 +17,24 @@ interface ITableProps<T> {
     };
     mode?: TKeyModes;
     action?: (item: T, index: number) => ReactNode;
+    noWrap?: boolean;
+    tableConfig?: TTableConfig<T>;
 }
+export type TTableConfig<T> = {
+    [K in keyof T]: TTableConfigProps;
+};
+export type TTableConfigProps = {
+    enabled: boolean;
+    value: number | string;
+    color: string;
+    condition: "none" | "above" | "aboveOrEqual" | "less" | "lessOrEqual" | "equal" | "different";
+};
 export type TTableConstraints<T> = {
     [K in keyof T]: T[K] extends string ? string : T[K] extends number ? number : T[K] extends boolean ? boolean : T[K] extends (infer U)[] ? U extends Record<string, string | number | boolean | string[] | number[]> ? TTableConstraints<U>[] : never : {
         [S in keyof T[K]]: string | number | Record<string, string | number | boolean | string[] | number[]> | Record<string, string | number | boolean | string[] | number[]>[];
     };
 };
 export type TTableTranslation = "services" | "workgroups" | "calls" | "scalegroups" | "workgroups" | "scales" | "users";
-declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, showObject, translation, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, tableConfig, showObject, noWrap, translation, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Table;
 //# sourceMappingURL=index.d.ts.map

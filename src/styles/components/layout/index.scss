@@ -8,6 +8,21 @@
 
   &.row {
     flex-direction: row;
+
+    &-disabled {
+      opacity: 0.5;
+    }
+
+    &-selectable {
+      background-color: var(--neutral);
+      padding-inline: var(--spacing-xs);
+      height: calc(var(--spacing-2xl));
+      border-radius: var(--rounded-box);
+
+      &:hover {
+        background-color: var(--neutral-hover);
+      }
+    }
   }
 
   &.container-lg {

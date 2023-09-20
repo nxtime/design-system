@@ -1,10 +1,15 @@
 #modal-root {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 50;
   width: 100vw;
   height: 100vh;
+
+  &.shown {
+    display: block;
+  }
 
   &.closed {
     .modal:last-of-type {
@@ -18,8 +23,8 @@
     }
   }
 
-  &:not(:has(.modal)) {
-    display: none;
+  &:not(:has(div)) {
+    display: none !important;
   }
 
   .modal {

@@ -27,13 +27,15 @@ const Modal = ({
   useEffect(() => {
     if (currentOpen.length > 0 && modalContentRef.current) {
       modalContentRef.current.focus();
-      modalRoot.style.display = "block";
+      modalRoot.classList.add("shown");
     }
-    if (currentOpen.length === 0) {
-      modalRoot.style.display = "none";
+    if (
+      currentOpen.length === 0 ||
+      modalContentRef.current?.childNodes.length === 0
+    ) {
+      modalRoot.classList.remove("shown");
     }
   }, [currentOpen, modalRoot]);
-
 
   if (!currentOpen.includes(currentName)) return null;
 

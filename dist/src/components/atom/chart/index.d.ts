@@ -2,7 +2,7 @@ import { ReactNode, RefObject } from "react";
 import LineChart from "./Line";
 import BarChart from "./Bar";
 import TimeChart from "./Time";
-export type TChartTranslation = "services" | "workgroups" | "calls" | "scalegroups" | "workgroups" | "scales";
+export type TChartTranslation = "services" | "workgroups" | "calls" | "scalegroups" | "workgroups" | "scales" | "charts";
 interface IChartProps<T> {
     width?: number;
     hide?: (keyof T)[];

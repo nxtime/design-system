@@ -6,7 +6,6 @@ import { translate } from "translation-system";
 interface IColumnProps<T> {
   index: number;
   column: string;
-  columns: string[];
   translation: TTableTranslation;
   ordersType: readonly ["default", "asc", "desc"];
   order: number;
@@ -18,11 +17,12 @@ interface IColumnProps<T> {
     currentPosition: number;
     endPosition: number;
   }>;
+  lastIndex: boolean;
 }
 
 const Column = <T extends TTableConstraints<T>>({
   index,
-  columns,
+  lastIndex,
   translation,
   column,
   ordersType,
@@ -70,7 +70,7 @@ const Column = <T extends TTableConstraints<T>>({
             <Icon icon="eva:arrow-down-fill" />
           </button>
         </div>
-        {columns.length - 1 !== index && (
+        {!lastIndex && (
           <button
             className="handler"
             title="Resize Column"

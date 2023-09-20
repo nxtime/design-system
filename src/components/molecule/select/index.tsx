@@ -23,6 +23,7 @@ interface ISelectProps<T> {
   selected?: number;
   currentSelected?: T;
   required?: boolean;
+  disabled?: boolean;
   name?: string;
   position?: "top" | "bottom";
   onChange?: (_index: number, _value?: T) => void;
@@ -40,8 +41,8 @@ interface ISelectProps<T> {
   /**
    * A function to extract and format item visualization
    */
-  keyExtractor?: (_item: T) => string | number | ReactNode;
-  labelExtractor?: (_item: T) => string | number | ReactNode;
+  keyExtractor?: (_item: T, _index: number) => string | number | ReactNode;
+  labelExtractor?: (_item: T, _index: number) => string | number | ReactNode;
 }
 
 type TPossibleObject<T> = {
@@ -78,6 +79,7 @@ const Select = <T extends TPossibleObject<T>>({
   selector,
   onChange,
   labelExtractor,
+  disabled = false,
   required = true,
   showQty = 4,
   style = {},
@@ -117,6 +119,7 @@ const Select = <T extends TPossibleObject<T>>({
     >
       <button
         type="button"
+        disabled={disabled}
         className={`btn btn-${variant} btn-select ${isOpen ? "active" : ""}`}
         onClick={() => {
           setIsOpen((s) => !s);
@@ -133,8 +136,8 @@ const Select = <T extends TPossibleObject<T>>({
           <span className={internalSelected === -1 ? "not-selected" : ""}>
             {internalSelected === -1
               ? translate("select.select-one")
-              : labelExtractor?.(items[internalSelected]) ??
-                keyExtractor(items[internalSelected])}
+              : labelExtractor?.(items[internalSelected], -1) ??
+                keyExtractor(items[internalSelected], -1)}
           </span>
         }
         <Icon icon="eva:arrow-down-fill" vFlip={isOpen} />
@@ -203,7 +206,7 @@ const Select = <T extends TPossibleObject<T>>({
                     )
                   }
                 >
-                  {keyExtractor(item)}
+                  {keyExtractor(item, index)}
                 </button>
               </li>
             );

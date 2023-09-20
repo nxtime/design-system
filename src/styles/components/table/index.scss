@@ -68,6 +68,13 @@ th {
     top: 0;
     z-index: 1;
 
+
+    &.no-wrap {
+      span {
+        white-space: nowrap;
+      }
+    }
+
     & > tr {
       height: var(--spacing-2xl);
       & > th {

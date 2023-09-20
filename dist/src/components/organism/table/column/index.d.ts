@@ -3,7 +3,6 @@ import { TTableConstraints, TTableTranslation } from "..";
 interface IColumnProps<T> {
     index: number;
     column: string;
-    columns: string[];
     translation: TTableTranslation;
     ordersType: readonly ["default", "asc", "desc"];
     order: number;
@@ -15,7 +14,8 @@ interface IColumnProps<T> {
         currentPosition: number;
         endPosition: number;
     }>;
+    lastIndex: boolean;
 }
-declare const Column: <T extends TTableConstraints<T>>({ index, columns, translation, column, ordersType, orderedHeader, order, setOrder, tBodyRef, mousePosition, }: IColumnProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Column: <T extends TTableConstraints<T>>({ index, lastIndex, translation, column, ordersType, orderedHeader, order, setOrder, tBodyRef, mousePosition, }: IColumnProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Column;
 //# sourceMappingURL=index.d.ts.map
