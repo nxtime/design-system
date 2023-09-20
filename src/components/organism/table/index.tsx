@@ -143,9 +143,11 @@ const Table = <T extends TTableConstraints<T>>({
     endPosition: 0,
   });
 
+  console.log("Current Data - line 146: ", data);
+
   const [currentTableConfig, updateCurrentTableConfig] = useState<
     TTableConfig<T>
-  >(tableConfig ?? initializeTableConfig(data, hideColumn));
+  >(tableConfig === undefined ? initializeTableConfig(data, hideColumn) : tableConfig);
 
   const [currentFilter, changeCurrentFilter] = useState("");
 

@@ -29785,7 +29785,9 @@ const ZA = (s) => {
     startPosition: 0,
     currentPosition: 0,
     endPosition: 0
-  }), [we, Re] = dr(m ?? fj(u, B)), [re, me] = dr(""), Oe = Mu(() => Y ? [] : u.filter((Ye) => {
+  });
+  console.log("Current Data - line 146: ", u);
+  const [we, Re] = dr(m === void 0 ? fj(u, B) : m), [re, me] = dr(""), Oe = Mu(() => Y ? [] : u.filter((Ye) => {
     if (re.trim() === "")
       return u;
     const Ve = re.toLowerCase().trim();

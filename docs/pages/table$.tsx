@@ -3,36 +3,21 @@ import { Table } from "../../src";
 import { initAppTranslation } from "translation-system";
 
 const data2 = [
-  {},
   {
-    groupId: "636c1851d2ec2865818e3209",
-    groupName: "Grupo de Operador 1",
-    agents: [
-      {
-        _id: "635afb9bfcb757708201c0ed",
-        firstName: "cicero",
-        lastName: "Dev",
-        baseUserId: "cicero",
-        email: "cicero@comunikime.local",
-      },
-      {
-        _id: "647e01d0e9db28bca091e293",
-        firstName: "Abner",
-        lastName: "Fernando Gomes Laso Rodrigues",
-        baseUserId: "abnerrodrigues",
-        email: "abnerrodrigues@brascobra.com.br",
-      },
-    ],
-    agentsLength: 2,
-    totalOperationLoggedTime: 0,
-    totalOperationBreakWorkedTime: 0,
-    totalOperationScaledTime: 0,
-    totalOperationBreakScaledTime: 0,
-    breakAdherence: 100,
-    adherence: 100,
+    _id: "635afb9bfcb757708201c0ed",
+    firstName: "cicero",
+    lastName: "Dev",
+    baseUserId: "cicero",
+    email: "cicero@comunikime.local",
+  },
+  {
+    _id: "647e01d0e9db28bca091e293",
+    firstName: "Abner",
+    lastName: "Fernando Gomes Laso Rodrigues",
+    baseUserId: "abnerrodrigues",
+    email: "abnerrodrigues@brascobra.com.br",
   },
 ];
-
 const data = [
   {
     hour: 10,
@@ -120,23 +105,8 @@ const TablePageDemo = () => {
         Carregar
       </button>
       <Table
-        hideColumn={["groupId", "agents"]}
         data={[]}
-        headers={[
-          "groupName",
-          "agents",
-          "totalOperationLoggedTime",
-          "totalOperationBreakWorkedTime",
-          "totalOperationScaledTime",
-          "totalOperationBreakScaledTime",
-          "breakAdherence",
-          "adherence",
-        ]}
         translation="adherence"
-        dataConfig={{
-          breakAdherence: (item) => `${item}%`,
-          adherence: (item) => `${item}%`,
-        }}
         loading={isLoading}
       />
     </>
