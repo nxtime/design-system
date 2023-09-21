@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import moment, { Moment } from "moment";
 import { RefObject, useState } from "react";
+import { translate } from "translation-system";
 
 const shortWeekDays = ["Su", "Mo", "Tu", "We", "Th", "Fri", "Sa"];
 
@@ -21,7 +22,7 @@ const DateDropdown = ({
   onClose,
 }: IDateDropDown) => {
   const [currentShowMonth, setCurrentShowMonth] = useState(
-    defaultSelected?.end === undefined ? moment() : defaultSelected.end,
+    defaultSelected?.start === undefined ? moment() : defaultSelected.start,
   );
 
   const [currentSelectedDate, setCurrentSelectedDate] = useState<{
@@ -128,8 +129,7 @@ const DateDropdown = ({
               ? "between"
               : "";
 
-            currentClassName +=
-              isOnMonth + isDaySelected + isBetween ;
+            currentClassName += isOnMonth + isDaySelected + isBetween;
 
             return (
               <li key={index}>
@@ -194,7 +194,7 @@ const DateDropdown = ({
           className="btn btn-sm btn-primary"
           style={{ alignSelf: "end" }}
         >
-          Done
+          {translate("common.ok")}
         </button>
       </div>
     </div>

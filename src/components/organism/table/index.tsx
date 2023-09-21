@@ -104,15 +104,7 @@ export type TTableConstraints<T> = {
   };
 };
 //
-export type TTableTranslation =
-  | "services"
-  | "workgroups"
-  | "calls"
-  | "scalegroups"
-  | "workgroups"
-  | "scales"
-  | "users"
-  | "adherence";
+export type TTableTranslation = string;
 
 const Table = <T extends TTableConstraints<T>>({
   headers,

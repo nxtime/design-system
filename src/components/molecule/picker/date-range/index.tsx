@@ -2,6 +2,7 @@ import { HTMLProps, ReactNode, useRef, useState } from "react";
 import { handleEndDateFocus, handleStartDateFocus } from "./functions";
 import DateDropdown from "./dropdown";
 import moment, { Moment } from "moment";
+import { translate } from "translation-system";
 
 type TChildrenResponse = {
   startDateProps: HTMLProps<HTMLInputElement>;
@@ -92,7 +93,9 @@ const DateRangerPicker = ({
       >
         <div className="group rounded-box">
           {children({ startDateProps, endDateProps })}
-          <button className="btn btn-primary ring-info">Search</button>
+          <button className="btn btn-primary ring-info">
+            {translate("common.search")}
+          </button>
         </div>
         {showDropdown && (
           <DateDropdown
