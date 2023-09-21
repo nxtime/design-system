@@ -322,19 +322,11 @@ const Table = <T extends TTableConstraints<T>>({
                             evaluateCondition(
                               currentTableConfig[column].condition,
                               currentTableConfig[column].value as number,
-                              value as number,
+                              typeof currentTableConfig[column].value ===
+                                "number"
+                                ? Number(value)
+                                : (value as number),
                             );
-
-                          if (isCustomEnabled) {
-                            console.log({
-                              column,
-                              rowIndex,
-                              itemIndex,
-                              value,
-                              isCustomEnabled,
-                              currentTableConfig: currentTableConfig[column],
-                            });
-                          }
 
                           return (
                             <td
