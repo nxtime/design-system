@@ -296,6 +296,23 @@ const Table = <T extends TTableConstraints<T>>({
 
                           if (hideColumn.includes(column)) return null;
 
+                          const isCustomEnabled =
+                            currentTableConfig[column].enabled &&
+                            evaluateCondition(
+                              currentTableConfig[column].condition,
+                              currentTableConfig[column].value as number,
+                              typeof value === "object"
+                                ? (value as number[])?.length
+                                  ? (value as number[]).length
+                                  : Object.keys(
+                                    value as unknown as Record<
+                                      string,
+                                      string
+                                    >,
+                                  ).length
+                                : Number(),
+                            );
+
                           if (
                             typeof item === "object" &&
                             dataConfig?.[column] === undefined
@@ -317,16 +334,6 @@ const Table = <T extends TTableConstraints<T>>({
                           } else {
                             value = item as string | number;
                           }
-                          const isCustomEnabled =
-                            currentTableConfig[column].enabled &&
-                            evaluateCondition(
-                              currentTableConfig[column].condition,
-                              currentTableConfig[column].value as number,
-                              typeof currentTableConfig[column].value ===
-                                "number"
-                                ? Number(value)
-                                : (value as number),
-                            );
 
                           return (
                             <td
