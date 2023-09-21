@@ -86,22 +86,22 @@ const ordersType = ["default", "asc", "desc"] as const;
 
 export type TTableConstraints<T> = {
   [K in keyof T]: T[K] extends string
-  ? string
-  : T[K] extends number
-  ? number
-  : T[K] extends boolean
-  ? boolean
-  : T[K] extends (infer U)[]
-  ? U extends Record<string, string | number | boolean | string[] | number[]>
-  ? TTableConstraints<U>[]
-  : never
-  : {
-    [S in keyof T[K]]:
-    | string
-    | number
-    | Record<string, string | number | boolean | string[] | number[]>
-    | Record<string, string | number | boolean | string[] | number[]>[];
-  };
+    ? string
+    : T[K] extends number
+    ? number
+    : T[K] extends boolean
+    ? boolean
+    : T[K] extends (infer U)[]
+    ? U extends Record<string, string | number | boolean | string[] | number[]>
+      ? TTableConstraints<U>[]
+      : never
+    : {
+        [S in keyof T[K]]:
+          | string
+          | number
+          | Record<string, string | number | boolean | string[] | number[]>
+          | Record<string, string | number | boolean | string[] | number[]>[];
+      };
 };
 //
 export type TTableTranslation = string;
@@ -130,8 +130,6 @@ const Table = <T extends TTableConstraints<T>>({
     currentPosition: 0,
     endPosition: 0,
   });
-
-  console.log("Current Data - line 146: ", data);
 
   const [currentTableConfig, updateCurrentTableConfig] = useState<
     TTableConfig<T>
@@ -222,7 +220,7 @@ const Table = <T extends TTableConstraints<T>>({
                             mousePosition={mousePosition}
                             lastIndex={
                               Object.keys(data[0]).length -
-                              hideColumn.length ===
+                                hideColumn.length ===
                               index
                             }
                             orderedHeader={
@@ -249,7 +247,7 @@ const Table = <T extends TTableConstraints<T>>({
                             mousePosition={mousePosition}
                             lastIndex={
                               Object.keys(data[0]).length -
-                              hideColumn.length ===
+                                hideColumn.length ===
                               index
                             }
                             orderedHeader={
@@ -301,16 +299,7 @@ const Table = <T extends TTableConstraints<T>>({
                             evaluateCondition(
                               currentTableConfig[column].condition,
                               currentTableConfig[column].value as number,
-                              typeof value === "object"
-                                ? (value as number[])?.length
-                                  ? (value as number[]).length
-                                  : Object.keys(
-                                    value as unknown as Record<
-                                      string,
-                                      string
-                                    >,
-                                  ).length
-                                : Number(),
+                              item as number,
                             );
 
                           if (

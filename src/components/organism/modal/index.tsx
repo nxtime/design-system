@@ -8,13 +8,15 @@ const Modal = ({
   currentName,
   variant = "neutral",
   size = "normal",
+  className = "",
   closeButton = false,
-  onClose = () => { },
+  onClose = () => {},
 }: {
   children: ReactNode;
   currentName: string;
   variant?: string;
   onClose?: () => void;
+  className?: string;
   closeButton?: boolean;
   size?: "normal" | "fill";
 }) => {
@@ -41,44 +43,44 @@ const Modal = ({
 
   return modalRoot
     ? createPortal(
-      <div
-        tabIndex={0}
-        ref={modalContentRef}
-        onKeyDown={(e) => {
-          if (e.key === "Escape") {
-            onClose();
-            closeModal();
-          }
-        }}
-        className="modal"
-      >
         <div
-          className="modal-overlay"
-          onClick={() => {
-            onClose();
-            closeModal();
+          tabIndex={0}
+          ref={modalContentRef}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              onClose();
+              closeModal();
+            }
           }}
-        />
-        <div
-          className={`modal-body container rounded-box bg-${variant} ${size}`}
+          className="modal"
         >
-          {closeButton && (
-            <button
-              type="button"
-              className="close-btn"
-              onClick={() => {
-                onClose();
-                closeModal();
-              }}
-            >
-              <Icon icon="mingcute:close-fill" height={16} />
-            </button>
-          )}
-          {children}
-        </div>
-      </div>,
-      modalRoot,
-    )
+          <div
+            className="modal-overlay"
+            onClick={() => {
+              onClose();
+              closeModal();
+            }}
+          />
+          <div
+            className={`modal-body container rounded-box bg-${variant} ${size} ${className}`}
+          >
+            {closeButton && (
+              <button
+                type="button"
+                className="close-btn"
+                onClick={() => {
+                  onClose();
+                  closeModal();
+                }}
+              >
+                <Icon icon="mingcute:close-fill" height={16} />
+              </button>
+            )}
+            {children}
+          </div>
+        </div>,
+        modalRoot,
+      )
     : null;
 };
 

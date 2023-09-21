@@ -30,8 +30,29 @@ const initializeTableConfig: <T extends TTableConstraints<T>>(
 const evaluateCondition = (
   conditionType: TConditionTypes,
   conditionValue: number,
-  actualValue: number,
+  currentValue:
+    | number
+    | string
+    | Record<string, string>
+    | Record<string, string>[],
 ): boolean => {
+  let actualValue = 0;
+  if (typeof currentValue === "object") {
+    if ((currentValue as Record<string, string>[])?.length > -1) {
+      actualValue = currentValue.length as number;
+    } else {
+      actualValue = Object.keys(currentValue).length;
+    }
+  } else if (typeof currentValue === "string") {
+    const possibleNumber = Number(currentValue);
+
+    if (isNaN(possibleNumber)) {
+      actualValue = 0;
+    } else {
+      actualValue = possibleNumber;
+    }
+  }
+
   switch (conditionType) {
     case "none":
       return true;
