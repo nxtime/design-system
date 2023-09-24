@@ -2157,6 +2157,7 @@ const nr = (s, u) => Ma.t(s, u), uP = {
     data: "Data",
     settings: "Settings",
     period: "Period",
+    confirm: "Confirm",
     dates: "Dates",
     home: "Home",
     user: "User",
@@ -2295,6 +2296,7 @@ const nr = (s, u) => Ma.t(s, u), uP = {
   },
   sidebar: {
     general: "General",
+    other: "Other",
     agents: "Agents",
     users: "Users",
     services: "Services",
@@ -2340,6 +2342,7 @@ const nr = (s, u) => Ma.t(s, u), uP = {
     workgroups: {
       name: "Name",
       agents: "Agents",
+      weekWorkDays: "Week Work Days",
       workGroups: "Work Groups",
       timeScale: "Time Scale",
       supervisor: "Supervisor"
@@ -2382,6 +2385,10 @@ const nr = (s, u) => Ma.t(s, u), uP = {
       absenteeism: "Absenteeism",
       topAdherenceOffenders: "Top Adherence Offenders",
       mediumWorkGroupsAdherence: "Medium WorkGroups Adherence",
+      totalOperationBreakWorkedTime: "Total Operation Break Worked Time",
+      totalOperationBreakScaledTime: "Total Operation Break Scaled Time",
+      totalOperationLoggedTime: "Total Operation Logged Time",
+      totalOperationScaledTime: "Total Operation Scaled Time",
       totalWorkGroupsExtraHours: "Total Work Groups Extra Hours",
       mediumWorkGroupsBreaksTimes: "Medium Work Groups Breaks Times",
       mediumWorkGroupsLoggedTimes: "Medium Work Groups Logged Times"
@@ -2427,6 +2434,28 @@ const nr = (s, u) => Ma.t(s, u), uP = {
       breakAdherence: "Break Adherence",
       adherence: "Adherence"
     },
+    "workgroup-adherence": {
+      date: "Date",
+      totalAgents: "Total Agents",
+      averageServiceTime: "Average Service Time",
+      occupancyRate: "Occupancy Rate",
+      productivityRate: "Productivity Rate",
+      availabilityFee: "Availability Fee",
+      averageTimeLoggedIn: "Average Time Logged In",
+      averageTimeSpoken: "Average Time Spoken",
+      averageIdleTime: "Average Idle Time",
+      averageRestBreak: "Average Rest Break",
+      mediumBreakSnackOrLunch: "Medium Break (Snack or Lunch)",
+      averageTrainingBreak: "Average Training Break",
+      averageFeedbackBreak: "Average Feedback Break",
+      answereds: "Answereds",
+      contactRightPerson: "Contact Right Person",
+      notContactRightPerson: "Not Contact Right Person",
+      errands: "Errands",
+      errandsPerContactRightPerson: "Errands per Contact Right Person",
+      contactRightPersonPerAnswereds: "Contact Right Person per Answereds",
+      percentageIdleTime: "Percentage Idle Time"
+    },
     forecast: {
       hour: "Hour",
       answereds: "Answereds",
@@ -2442,6 +2471,7 @@ const nr = (s, u) => Ma.t(s, u), uP = {
 }, cP = {
   common: {
     ok: "Aceptar",
+    confirm: "Confirm",
     dates: "Datas",
     "accumulated-in-day": "Acumulado no dia",
     data: "Dados",
@@ -2588,6 +2618,7 @@ const nr = (s, u) => Ma.t(s, u), uP = {
     general: "General",
     agents: "Agentes",
     users: "Usuarios",
+    other: "Otro",
     services: "Servicios",
     calls: "Llamadas",
     "contact-right-person": "Contactar a la Persona Correcta",
@@ -2629,6 +2660,7 @@ const nr = (s, u) => Ma.t(s, u), uP = {
       active: "Activo"
     },
     workgroups: {
+      weekWorkDays: "Dias del Semana",
       name: "Nombre",
       agents: "Agentes",
       workGroups: "Grupos de Trabajo",
@@ -2663,6 +2695,10 @@ const nr = (s, u) => Ma.t(s, u), uP = {
       hitRate: "Tasa de Éxito"
     },
     charts: {
+      totalOperationBreakWorkedTime: "Total de Pausa Trabalhada da Operação",
+      totalOperationLoggedTime: "Total de Tempo Logado da Operação",
+      totalOperationScaledTime: "Total de Tempo Escala da Operação",
+      totalOperationBreakScaledTime: "Total de Pausa Escalada da Operação",
       absenteeism: "Absentismo",
       topAdherenceOffenders: "Principales Infractores de Adhesión",
       mediumWorkGroupsAdherence: "Adhesión Media de Grupos de Trabajo",
@@ -2718,6 +2754,28 @@ const nr = (s, u) => Ma.t(s, u), uP = {
       email: "Email",
       baseUserId: "Usuário Base"
     },
+    "workgroup-adherence": {
+      date: "Data",
+      totalAgents: "Total de Agentes",
+      averageServiceTime: "Tiempo Promedio de Servicio",
+      occupancyRate: "Tasa de Ocupación",
+      productivityRate: "Tasa de Productividad",
+      availabilityFee: "Tarifa de Disponibilidad",
+      averageTimeLoggedIn: "Tiempo Promedio Conectado",
+      averageTimeSpoken: "Tiempo Promedio Hablado",
+      averageIdleTime: "Tiempo Promedio de Inactividad",
+      averageRestBreak: "Tiempo Promedio de Descanso",
+      mediumBreakSnackOrLunch: "Tiempo Medio de Descanso (Refrigerio o Almuerzo)",
+      averageTrainingBreak: "Tiempo Promedio de Descanso por Capacitación",
+      averageFeedbackBreak: "Tiempo Promedio de Descanso por Retroalimentación",
+      answereds: "Atendidas",
+      contactRightPerson: "Contactar a la Persona Correcta",
+      notContactRightPerson: "No Contactar a la Persona Correcta",
+      errands: "Tareas",
+      errandsPerContactRightPerson: "Tareas por Contactar a la Persona Correcta",
+      contactRightPersonPerAnswereds: "Contactar a la Persona Correcta por Atendidas",
+      percentageIdleTime: "Porcentaje de Tiempo Inactivo"
+    },
     forecast: {
       hour: "Hora",
       answereds: "Respostas",
@@ -2733,6 +2791,7 @@ const nr = (s, u) => Ma.t(s, u), uP = {
 }, dP = {
   common: {
     ok: "Ok",
+    confirm: "Confirmar",
     workgroup: "Grupo de Trabalho",
     period: "Periodo",
     dates: "Datas",
@@ -2878,6 +2937,7 @@ const nr = (s, u) => Ma.t(s, u), uP = {
   sidebar: {
     general: "Geral",
     agents: "Agentes",
+    other: "Outro",
     users: "Usuários",
     services: "Serviços",
     calls: "Chamadas",
@@ -2928,6 +2988,7 @@ const nr = (s, u) => Ma.t(s, u), uP = {
     },
     workgroups: {
       name: "Nome",
+      weekWorkDays: "Dias da Semana",
       agents: "Agentes",
       workGroups: "Grupos de Trabalho",
       timeScale: "Escala de Tempo",
@@ -2963,6 +3024,10 @@ const nr = (s, u) => Ma.t(s, u), uP = {
     charts: {
       absenteeism: "Absenteísmo",
       topAdherenceOffenders: "Principais Infratores de Adesão",
+      totalOperationBreakWorkedTime: "Total de Pausa Trabalhada da Operação",
+      totalOperationLoggedTime: "Total de Tempo Logado da Operação",
+      totalOperationScaledTime: "Total de Tempo Escala da Operação",
+      totalOperationBreakScaledTime: "Total de Pausa Escalada da Operação",
       mediumWorkGroupsAdherence: "Adesão Média dos Grupos de Trabalho",
       totalWorkGroupsExtraHours: "Total de Horas Extras dos Grupos de Trabalho",
       mediumWorkGroupsBreaksTimes: "Tempo Médio de Pausas dos Grupos de Trabalho",
@@ -3008,6 +3073,28 @@ const nr = (s, u) => Ma.t(s, u), uP = {
       totalOperationBreakScaledTime: "Tempo Total de Pausa Escala da Operação",
       breakAdherence: "Pausa em Aderência",
       adherence: "Aderência"
+    },
+    "workgroup-adherence": {
+      date: "Data",
+      totalAgents: "Total de Agentes",
+      averageServiceTime: "Tempo Médio de Serviço",
+      occupancyRate: "Taxa de Ocupação",
+      productivityRate: "Taxa de Produtividade",
+      availabilityFee: "Taxa de Disponibilidade",
+      averageTimeLoggedIn: "Tempo Médio Logado",
+      averageTimeSpoken: "Tempo Médio Falado",
+      averageIdleTime: "Tempo Médio de Inatividade",
+      averageRestBreak: "Tempo Médio de Descanso",
+      mediumBreakSnackOrLunch: "Intervalo Médio (Lanche ou Almoço)",
+      averageTrainingBreak: "Intervalo Médio de Treinamento",
+      averageFeedbackBreak: "Intervalo Médio de Feedback",
+      answereds: "Atendimentos",
+      contactRightPerson: "Contato com a Pessoa Certa",
+      notContactRightPerson: "Não Contato com a Pessoa Certa",
+      errands: "Tarefas",
+      errandsPerContactRightPerson: "Tarefas por Contato com a Pessoa Certa",
+      contactRightPersonPerAnswereds: "Contato com a Pessoa Certa por Atendimentos",
+      percentageIdleTime: "Percentual de Tempo Inativo"
     },
     forecast: {
       hour: "Hora",

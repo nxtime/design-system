@@ -46,13 +46,13 @@ dependencies:
     version: 1.66.1
   translation-system:
     specifier: github:nxtime/translation-system
-    version: github.com/nxtime/translation-system/3353c68267829e289fc11278236017f832841392(i18next@23.5.1)(react-i18next@13.2.2)(vite@4.4.9)
+    version: github.com/nxtime/translation-system/a807a5f506e646990bdb9345755aa9e4df2f35ba(i18next@23.5.1)(react-i18next@13.2.2)(vite@4.4.9)
   vite-pages-theme-doc:
     specifier: ^4.1.6
     version: 4.1.6
   vite-plugin-react-pages:
     specifier: ^4.1.4
-    version: 4.1.4(@babel/core@7.22.11)(react@18.2.0)(rollup@3.29.2)(vite@4.4.9)
+    version: 4.1.4(@babel/core@7.22.11)(react@18.2.0)(rollup@3.29.3)(vite@4.4.9)
   vite-tsconfig-paths:
     specifier: ^4.2.0
     version: 4.2.0(typescript@5.1.6)(vite@4.4.9)
@@ -105,7 +105,7 @@ devDependencies:
     version: 4.4.9
   vite-plugin-dts:
     specifier: ^3.5.2
-    version: 3.5.2(rollup@3.29.2)(typescript@5.1.6)(vite@4.4.9)
+    version: 3.5.2(rollup@3.29.3)(typescript@5.1.6)(vite@4.4.9)
   vite-plugin-sass:
     specifier: ^0.1.0
     version: 0.1.0
@@ -643,14 +643,14 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@mdx-js/rollup@2.3.0(rollup@3.29.2):
+  /@mdx-js/rollup@2.3.0(rollup@3.29.3):
     resolution: {integrity: sha512-wLvRfJS/M4UmdqTd+WoaySEE7q4BIejYf1xAHXYvtT1du/1Tl/z2450Gg2+Hu7fh05KwRRiehiTP9Yc/Dtn0fA==}
     peerDependencies:
       rollup: '>=2'
     dependencies:
       '@mdx-js/mdx': 2.3.0
-      '@rollup/pluginutils': 5.0.3(rollup@3.29.2)
-      rollup: 3.29.2
+      '@rollup/pluginutils': 5.0.3(rollup@3.29.3)
+      rollup: 3.29.3
       source-map: 0.7.4
       vfile: 5.3.7
     transitivePeerDependencies:
@@ -742,7 +742,7 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: false
 
-  /@rollup/pluginutils@5.0.3(rollup@3.29.2):
+  /@rollup/pluginutils@5.0.3(rollup@3.29.3):
     resolution: {integrity: sha512-hfllNN4a80rwNQ9QCxhxuHCGHMAvabXqxNdaChUSSadMre7t4iEUI6fFAhBOn/eIYTgYVhBv7vCLsAJ4u3lf3g==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -754,7 +754,7 @@ packages:
       '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 3.29.2
+      rollup: 3.29.3
 
   /@rushstack/node-core-library@3.59.7:
     resolution: {integrity: sha512-ln1Drq0h+Hwa1JVA65x5mlSgUrBa1uHL+V89FqVWQgXd1vVIMhrtqtWGQrhTnFHxru5ppX+FY39VWELF/FjQCw==}
@@ -4589,8 +4589,8 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /rollup@3.29.2:
-    resolution: {integrity: sha512-CJouHoZ27v6siztc21eEQGo0kIcE5D1gVPA571ez0mMYb25LGYGKnVNXpEj5MGlepmDWGXNjDB5q7uNiPHC11A==}
+  /rollup@3.29.3:
+    resolution: {integrity: sha512-T7du6Hum8jOkSWetjRgbwpM6Sy0nECYrYRSmZjayFcOddtKJWU4d17AC3HNUk7HRuqy4p+G7aEZclSHytqUmEg==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -5230,7 +5230,7 @@ packages:
     resolution: {integrity: sha512-qqrcWT4wbpU9amdegDtTDLVZw2VAySsfP6LOkD+0Y2fWT5U4x1tSWGD+/ourrm9H2/+KY38h0XpjJXWBecS/pw==}
     dev: false
 
-  /vite-plugin-dts@3.5.2(rollup@3.29.2)(typescript@5.1.6)(vite@4.4.9):
+  /vite-plugin-dts@3.5.2(rollup@3.29.3)(typescript@5.1.6)(vite@4.4.9):
     resolution: {integrity: sha512-iKc851+jdHEoN1ifbOEsoMs+/Zg26PE1EyO2Jc+4apOWRoaeK2zRJnaStgUuJaVaEcAjTqWzpNgCAMq7iO6DWA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -5241,7 +5241,7 @@ packages:
         optional: true
     dependencies:
       '@microsoft/api-extractor': 7.36.4
-      '@rollup/pluginutils': 5.0.3(rollup@3.29.2)
+      '@rollup/pluginutils': 5.0.3(rollup@3.29.3)
       '@vue/language-core': 1.8.8(typescript@5.1.6)
       debug: 4.3.4
       kolorist: 1.8.0
@@ -5254,13 +5254,13 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-react-pages@4.1.4(@babel/core@7.22.11)(react@18.2.0)(rollup@3.29.2)(vite@4.4.9):
+  /vite-plugin-react-pages@4.1.4(@babel/core@7.22.11)(react@18.2.0)(rollup@3.29.3)(vite@4.4.9):
     resolution: {integrity: sha512-OsFW0Cj3G/II3H9IuwyKZ9deyLlEBiYqTqcVKNSMK+ldkOn6LrJ3mE2rw7t3TizUIwVP3PZ3Npm6wnV21UoJrQ==}
     hasBin: true
     peerDependencies:
       vite: ^4.2.1
     dependencies:
-      '@mdx-js/rollup': 2.3.0(rollup@3.29.2)
+      '@mdx-js/rollup': 2.3.0(rollup@3.29.3)
       chalk: 4.1.2
       chokidar: 3.5.3
       dequal: 2.0.3
@@ -5520,9 +5520,9 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/nxtime/translation-system/3353c68267829e289fc11278236017f832841392(i18next@23.5.1)(react-i18next@13.2.2)(vite@4.4.9):
-    resolution: {tarball: https://codeload.github.com/nxtime/translation-system/tar.gz/3353c68267829e289fc11278236017f832841392}
-    id: github.com/nxtime/translation-system/3353c68267829e289fc11278236017f832841392
+  github.com/nxtime/translation-system/a807a5f506e646990bdb9345755aa9e4df2f35ba(i18next@23.5.1)(react-i18next@13.2.2)(vite@4.4.9):
+    resolution: {tarball: https://codeload.github.com/nxtime/translation-system/tar.gz/a807a5f506e646990bdb9345755aa9e4df2f35ba}
+    id: github.com/nxtime/translation-system/a807a5f506e646990bdb9345755aa9e4df2f35ba
     name: translation-system
     version: 0.0.1
     peerDependencies:
