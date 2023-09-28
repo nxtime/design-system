@@ -30,6 +30,11 @@ const demoSidebarData = [
         route: "/reports",
         icon: "majesticons:clock",
       },
+      {
+        label: "other",
+        route: "/reports",
+        icon: "majesticons:clock",
+      },
     ],
   },
   {
