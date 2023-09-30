@@ -28,7 +28,8 @@ interface ITableProps<T> {
    * Each key is a header by default
    */
   data: T[];
-  translation: TTableTranslation;
+  translation?: TTableTranslation;
+  translationPrefix?: string;
   /*
    * If a key from data is specified,
    * the whole column is going to be hidden
@@ -114,9 +115,10 @@ const Table = <T extends TTableConstraints<T>>({
   showObject,
   noWrap = true,
   // headersConfig,
-  translation = "workgroups",
   action,
   loading = false,
+  translation,
+  translationPrefix = "data",
   hideColumn = [],
   mode = "pagination",
 }: ITableProps<T>) => {
@@ -232,6 +234,7 @@ const Table = <T extends TTableConstraints<T>>({
                             index={columnIndex - 1}
                             ordersType={ordersType}
                             translation={translation}
+                            translationPrefix={translationPrefix}
                           />
                         );
                       })}
@@ -259,6 +262,7 @@ const Table = <T extends TTableConstraints<T>>({
                             index={columnIndex - 1}
                             ordersType={ordersType}
                             translation={translation}
+                            translationPrefix={translationPrefix}
                           />
                         );
                       })}
@@ -295,10 +299,10 @@ const Table = <T extends TTableConstraints<T>>({
                           if (hideColumn.includes(column)) return null;
 
                           const isCustomEnabled =
-                            currentTableConfig[column].enabled &&
+                            currentTableConfig[column]?.enabled &&
                             evaluateCondition(
-                              currentTableConfig[column].condition,
-                              currentTableConfig[column].value as number,
+                              currentTableConfig[column]?.condition,
+                              currentTableConfig[column]?.value as number,
                               item as number,
                             );
 
@@ -381,7 +385,7 @@ const Table = <T extends TTableConstraints<T>>({
                                           ([itemColumn, itemValue]) => {
                                             const listItem =
                                               document.createElement("li");
-                                            listItem.innerText = `${translate(
+                                            listItem.innerText = `${translation ?? translate(
                                               `data.${translation}.${itemColumn}` as unknown as "data.workgroups.name",
                                             )}: ${itemValue}`;
 
@@ -414,6 +418,7 @@ const Table = <T extends TTableConstraints<T>>({
       {!loading && data.length > 0 && (
         <TableConfigModal
           translation={translation}
+          translationPrefix={translationPrefix}
           config={currentTableConfig}
           updateConfig={updateCurrentTableConfig}
           closeModal={closeModal}

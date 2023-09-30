@@ -6,7 +6,8 @@ import { translate } from "translation-system";
 interface IColumnProps<T> {
   index: number;
   column: string;
-  translation: TTableTranslation;
+  translation?: TTableTranslation;
+  translationPrefix?: string
   ordersType: readonly ["default", "asc", "desc"];
   order: number;
   setOrder: Dispatch<SetStateAction<number>>;
@@ -24,6 +25,7 @@ const Column = <T extends TTableConstraints<T>>({
   index,
   lastIndex,
   translation,
+  translationPrefix,
   column,
   ordersType,
   orderedHeader,
@@ -36,8 +38,8 @@ const Column = <T extends TTableConstraints<T>>({
     <th>
       <div className="table-column">
         <span>
-          {translate(
-            `data.${translation}.${column}` as unknown as "data.workgroups.name",
+          {translation ?? translate(
+            `${translationPrefix}.${translation}.${column}` as unknown as "data.workgroups.name",
           )}
         </span>
         <div className="group-vertical rounded-box no-print">

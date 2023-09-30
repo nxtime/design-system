@@ -4,7 +4,8 @@ import { TConditionTypes } from "../modal/table/config";
 interface ITableProps<T> {
     headers?: Record<keyof T, string>[] | string[];
     data: T[];
-    translation: TTableTranslation;
+    translation?: TTableTranslation;
+    translationPrefix?: string;
     hideColumn?: (keyof T)[];
     showObject?: {
         [K in keyof T]: boolean;
@@ -36,6 +37,6 @@ export type TTableConstraints<T> = {
     };
 };
 export type TTableTranslation = string;
-declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, tableConfig, showObject, noWrap, translation, action, loading, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Table: <T extends TTableConstraints<T>>({ headers, data, dataConfig, tableConfig, showObject, noWrap, action, loading, translation, translationPrefix, hideColumn, mode, }: ITableProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Table;
 //# sourceMappingURL=index.d.ts.map

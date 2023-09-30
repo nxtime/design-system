@@ -38,13 +38,15 @@ const TableConfigModal = <T extends TTableConfig<T>>({
   config,
   updateConfig,
   hidden,
+  translationPrefix,
   translation,
 }: {
   closeModal: () => void;
   config: TTableConfig<T>;
   updateConfig: Dispatch<SetStateAction<TTableConfig<T>>>;
   hidden: (keyof T)[];
-  translation: string;
+  translation?: string;
+  translationPrefix?: string;
 }) => {
   const [internalConfig, updateInternalConfig] = useState(config);
 
@@ -102,8 +104,8 @@ const TableConfigModal = <T extends TTableConfig<T>>({
                   }
                 />
                 <label htmlFor={item as string}>
-                  {translate(
-                    `data.${translation}.${item as string}` as "common.ok",
+                  {translation ?? translate(
+                    `${translationPrefix}.${translation}.${item as string}` as "common.ok",
                   )}
                 </label>
               </div>
