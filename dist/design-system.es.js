@@ -29910,7 +29910,7 @@ const ZA = (s) => {
   tBodyRef: j,
   mousePosition: V
 }) => /* @__PURE__ */ ce.jsx("th", { children: /* @__PURE__ */ ce.jsxs("div", { className: "table-column", children: [
-  /* @__PURE__ */ ce.jsx("span", { children: h ?? nr(
+  /* @__PURE__ */ ce.jsx("span", { children: h === void 0 ? w : nr(
     `${m}.${h}.${w}`
   ) }),
   /* @__PURE__ */ ce.jsxs("div", { className: "group-vertical rounded-box no-print", children: [

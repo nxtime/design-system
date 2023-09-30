@@ -38,7 +38,7 @@ const Column = <T extends TTableConstraints<T>>({
     <th>
       <div className="table-column">
         <span>
-          {translation ?? translate(
+          {translation === undefined ? column : translate(
             `${translationPrefix}.${translation}.${column}` as unknown as "data.workgroups.name",
           )}
         </span>
