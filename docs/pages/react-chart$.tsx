@@ -1,5 +1,6 @@
 import React from "react";
 import GenericChart from "../../src/components/atom/chart/Generic";
+import { initAppTranslation, translate } from "translation-system";
 
 const data = [
   {
@@ -77,6 +78,12 @@ const data = [
 ];
 
 const ReactChartPage = () => {
+  initAppTranslation({
+    language: "pt-BR",
+  });
+
+  console.log(translate("data.charts.adherence"))
+
   return (
     <GenericChart
       translation="data.services"

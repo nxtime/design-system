@@ -63,6 +63,8 @@ const TableConfigModal = <T extends TTableConfig<T>>({
     }));
   };
 
+  console.log("Translation: ", translation, translationPrefix);
+
   return (
     <Modal currentName="table-config-modal">
       <div className="table-config custom-scroll">
@@ -104,7 +106,7 @@ const TableConfigModal = <T extends TTableConfig<T>>({
                   }
                 />
                 <label htmlFor={item as string}>
-                  {translation ?? translate(
+                  {translate(
                     `${translationPrefix}.${translation}.${item as string}` as "common.ok",
                   )}
                 </label>

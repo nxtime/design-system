@@ -2367,6 +2367,10 @@ const nr = (s, u) => Da.t(s, u), uP = {
     scales: {
       firstName: "First Name",
       lastName: "Last Name",
+      login: "Login",
+      logout: "Logout",
+      breaks: "Breaks",
+      extraHours: "Extra Hours",
       baseUserId: "Base User ID"
     },
     scalesgroups: {
@@ -2378,6 +2382,7 @@ const nr = (s, u) => Da.t(s, u), uP = {
     services: {
       attempts: "Attempts",
       hour: "Hour",
+      date: "Data",
       answereds: "Answereds",
       contact_right_person: "Contact Right Person",
       contactRightPerson: "Contact Right Person",
@@ -2395,7 +2400,10 @@ const nr = (s, u) => Da.t(s, u), uP = {
       hitRate: "Hit Rate"
     },
     charts: {
+      adherence: "Adherence",
+      name: "Name",
       absenteeism: "Absenteeism",
+      totalExtraHours: "Total Extra Hours",
       topAdherenceOffenders: "Top Adherence Offenders",
       mediumWorkGroupsAdherence: "Medium WorkGroups Adherence",
       totalOperationBreakWorkedTime: "Total Operation Break Worked Time",
@@ -2692,6 +2700,10 @@ const nr = (s, u) => Da.t(s, u), uP = {
     },
     scales: {
       firstName: "Nombre",
+      login: "Início",
+      logout: "Fim",
+      breaks: "Pausas",
+      extraHours: "Horas Extras",
       lastName: "Apellido",
       baseUserId: "ID del Usuario Base"
     },
@@ -2702,6 +2714,7 @@ const nr = (s, u) => Da.t(s, u), uP = {
       breaks: "Descansos"
     },
     services: {
+      date: "Data",
       attempts: "Intentos",
       hour: "Hora",
       answereds: "Atendidas",
@@ -2721,6 +2734,9 @@ const nr = (s, u) => Da.t(s, u), uP = {
       hitRate: "Tasa de Éxito"
     },
     charts: {
+      adherence: "Aderência",
+      name: "Nome",
+      totalExtraHours: "Total de Horas Extras",
       totalOperationBreakWorkedTime: "Total de Pausa Trabalhada da Operação",
       totalOperationLoggedTime: "Total de Tempo Logado da Operação",
       totalOperationScaledTime: "Total de Tempo Escala da Operação",
@@ -3033,6 +3049,10 @@ const nr = (s, u) => Da.t(s, u), uP = {
     scales: {
       firstName: "Primeiro Nome",
       lastName: "Sobrenome",
+      login: "Início",
+      logout: "Fim",
+      breaks: "Pausas",
+      extraHours: "Horas Extras",
       baseUserId: "ID do Usuário Base"
     },
     scalesgroups: {
@@ -3043,6 +3063,7 @@ const nr = (s, u) => Da.t(s, u), uP = {
     },
     services: {
       attempts: "Tentativas",
+      date: "Data",
       hour: "Hora",
       answereds: "Atendidas",
       contact_right_person: "Contatar a Pessoa Certa",
@@ -3061,7 +3082,10 @@ const nr = (s, u) => Da.t(s, u), uP = {
       hitRate: "Taxa de Acerto"
     },
     charts: {
+      adherence: "Aderência",
+      name: "Nome",
       absenteeism: "Absenteísmo",
+      totalExtraHours: "Total de Horas Extras",
       topAdherenceOffenders: "Principais Infratores de Adesão",
       totalOperationBreakWorkedTime: "Total de Pausa Trabalhada da Operação",
       totalOperationLoggedTime: "Total de Tempo Logado da Operação",
@@ -29813,7 +29837,7 @@ const ZA = (s) => {
       }
     }));
   };
-  return /* @__PURE__ */ ue.jsxs(nj, { currentName: "table-config-modal", children: [
+  return console.log("Translation: ", T, w), /* @__PURE__ */ ue.jsxs(nj, { currentName: "table-config-modal", children: [
     /* @__PURE__ */ ue.jsx("div", { className: "table-config custom-scroll", children: Object.keys(A).map((j, V) => {
       if (m.includes(j))
         return null;
@@ -29841,7 +29865,7 @@ const ZA = (s) => {
                   })
                 }
               ),
-              /* @__PURE__ */ ue.jsx("label", { htmlFor: j, children: T ?? nr(
+              /* @__PURE__ */ ue.jsx("label", { htmlFor: j, children: nr(
                 `${w}.${T}.${j}`
               ) })
             ] }),
