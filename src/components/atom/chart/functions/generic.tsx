@@ -131,7 +131,7 @@ const genericChartsOptions = ({
       },
       dataLabels: {
         enabled: true,
-        // formatter: dataLabelFormatter,
+        formatter: dataFormatter,
       },
       tooltip: {
         x: {},

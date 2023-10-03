@@ -125,6 +125,9 @@ const Table = <T extends TTableConstraints<T>>({
   const { closeModal, openModal } = useModal();
   const [currentMode] = useState<TKeyModes>(mode);
   const [order, setOrder] = useState<number>(0);
+  const [hiddenColumns, updateHiddenColumns] = useState<
+    (keyof (typeof data)[number])[]
+  >([]);
   const orderedHeader = useRef<keyof (typeof data)[number] | null>(null);
   const tBodyRef = useRef<HTMLTableSectionElement>(null);
   const mousePosition = useRef({
@@ -151,7 +154,11 @@ const Table = <T extends TTableConstraints<T>>({
       const filter = currentFilter.toLowerCase().trim();
 
       const rowIncludes = Object.entries(row).some(([keyName, item]) => {
-        if (hideColumn.includes(keyName as keyof T)) return false;
+        if (
+          hideColumn.includes(keyName as keyof T) ||
+          hiddenColumns.includes(keyName as keyof T)
+        )
+          return false;
         if (item === null) return false;
 
         if (
@@ -176,7 +183,7 @@ const Table = <T extends TTableConstraints<T>>({
 
       return rowIncludes;
     });
-  }, [currentFilter, hideColumn, data, dataConfig, loading]);
+  }, [currentFilter, hideColumn, hiddenColumns, data, dataConfig, loading]);
 
   const orderedItems = useCallback(() => {
     return sortByKey(filteredItems(), orderedHeader.current, ordersType[order]);
@@ -241,7 +248,11 @@ const Table = <T extends TTableConstraints<T>>({
                     {headers === undefined &&
                       data.length > 0 &&
                       Object.keys(data[0]).map((column, index) => {
-                        if (hideColumn.includes(column as keyof T)) return null;
+                        if (
+                          hideColumn.includes(column as keyof T) ||
+                          hiddenColumns.includes(column as keyof T)
+                        )
+                          return null;
                         columnIndex++;
                         return (
                           <Column
@@ -296,7 +307,11 @@ const Table = <T extends TTableConstraints<T>>({
                         ).map(([column, item], itemIndex) => {
                           let value: ReactNode | string | number;
 
-                          if (hideColumn.includes(column)) return null;
+                          if (
+                            hideColumn.includes(column) ||
+                            hiddenColumns.includes(column)
+                          )
+                            return null;
 
                           const isCustomEnabled =
                             currentTableConfig[column]?.enabled &&
@@ -385,9 +400,12 @@ const Table = <T extends TTableConstraints<T>>({
                                           ([itemColumn, itemValue]) => {
                                             const listItem =
                                               document.createElement("li");
-                                            listItem.innerText = `${translation ?? translate(
-                                              `data.${translation}.${itemColumn}` as unknown as "data.workgroups.name",
-                                            )}: ${itemValue}`;
+                                            listItem.innerText = `${
+                                              translation ??
+                                              translate(
+                                                `data.${translation}.${itemColumn}` as unknown as "data.workgroups.name",
+                                              )
+                                            }: ${itemValue}`;
 
                                             listContainer.appendChild(listItem);
                                           },
@@ -422,6 +440,8 @@ const Table = <T extends TTableConstraints<T>>({
           config={currentTableConfig}
           updateConfig={updateCurrentTableConfig}
           closeModal={closeModal}
+          updateHiddenColumns={updateHiddenColumns}
+          hiddenColumns={hiddenColumns}
           hidden={hideColumn}
         />
       )}

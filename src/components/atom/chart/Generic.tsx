@@ -7,6 +7,7 @@ const GenericChart = <T extends Record<string, number | string>>({
   dataFormatter,
   labelFormatter,
   groupBy,
+  showToolbar,
   translation = "common",
   type = "bar",
   hidden = [],
@@ -17,6 +18,7 @@ const GenericChart = <T extends Record<string, number | string>>({
   translation?: string;
   groupBy?: keyof T;
   hidden?: (keyof T)[];
+  showToolbar?: boolean;
   color?: "neutral" | "neutral-content" | "content";
   labelFormatter?: (_item: string | number) => string | number;
   dataFormatter?: (_item: string | number) => string | number;
@@ -29,6 +31,7 @@ const GenericChart = <T extends Record<string, number | string>>({
         type,
         labelFormatter,
         dataFormatter,
+        showToolbar,
         dataLabelFormatter: (value) =>
           translate(`${translation}.${value}` as "common.ok"),
         foreColor: `var(--${color})`,
