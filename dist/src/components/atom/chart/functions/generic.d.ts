@@ -20,10 +20,12 @@ interface IGenericChartOptions {
         name: string;
         data: number[];
     }[];
+    dataFormatter?: (_value: string | number) => string | number;
     labelFormatter?: (_value: string | number) => string | number;
     dataLabelFormatter: (_value: string | number) => string | number;
     labels: string[];
+    showToolbar?: boolean;
 }
-declare const genericChartsOptions: ({ type, foreColor, id, labelFormatter, dataLabelFormatter, series, labels, }: IGenericChartOptions) => ApexOptions;
+declare const genericChartsOptions: ({ type, foreColor, id, labelFormatter, dataFormatter, dataLabelFormatter, series, labels, showToolbar }: IGenericChartOptions) => ApexOptions;
 export { genericChartsOptions, dataToGenericCharts };
 //# sourceMappingURL=generic.d.ts.map

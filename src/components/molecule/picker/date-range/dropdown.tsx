@@ -31,9 +31,9 @@ const DateDropdown = ({
   }>(
     defaultSelected === undefined
       ? {
-        start: null,
-        end: null,
-      }
+          start: null,
+          end: null,
+        }
       : defaultSelected,
   );
 
@@ -50,8 +50,12 @@ const DateDropdown = ({
     daysOfMonth.push(firstDayOfMonth.clone().subtract(i, "days"));
   }
 
+  const subtractedDays = daysOfMonth.length;
+
   for (
-    let currentDay = firstDayOfMonth.clone().add(1, "day");
+    let currentDay = firstDayOfMonth
+      .clone()
+      .add(subtractedDays > 0 ? 1 : 0, "day");
     currentDay.isSameOrBefore(lastDayOfMonth);
     currentDay.add(1, "day")
   ) {
@@ -114,12 +118,12 @@ const DateDropdown = ({
               .isSame(day)
               ? "selected start"
               : currentSelectedDate.end?.startOf("day")?.isSame(day)
-                ? "selected end"
-                : "";
+              ? "selected end"
+              : "";
 
             const isOnMonth =
               day.format("MM") !== currentShowSelectedDate.format("MM")
-                ? "not-current"
+                ? "not-current "
                 : "";
 
             const isBetween = day.isBetween(
@@ -190,7 +194,21 @@ const DateDropdown = ({
         </ul>
         <button
           type="button"
-          onClick={onClose}
+          onClick={() => {
+            if (currentSelectedDate.start && currentSelectedDate.end === null) {
+              setCurrentSelectedDate((previousDate) => ({
+                start: previousDate.start,
+                end: previousDate.start,
+              }));
+
+              if (endDateRef.current && startDateRef.current) {
+                endDateRef.current.value = startDateRef.current.value;
+              }
+            }
+
+            setTimeout(() => console.log(currentSelectedDate), 10);
+            onClose();
+          }}
           className="btn btn-sm btn-primary"
           style={{ alignSelf: "end" }}
         >

@@ -94,6 +94,7 @@
 
             &:hover {
               background-color: var(--secondary);
+              color: var(--text-neutral-content);
             }
           }
 
@@ -104,15 +105,18 @@
 
           &.between {
             background-color: var(--neutral);
+            color: var(--text-neutral-content);
             border-radius: 0px;
 
             &:hover {
               background-color: var(--primary-hover);
+              color: var(--text-neutral-content);
             }
           }
 
           &:not(:disabled):hover {
             background-color: var(--neutral);
+            color: var(--text-neutral-content);
           }
         }
       }

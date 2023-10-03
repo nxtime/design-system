@@ -85,6 +85,7 @@ const ReactChartPage = () => {
       hidden={["average_service_time"]}
       data={data}
       labelFormatter={(hour) => hour + "h"}
+      dataFormatter={(data) => data + " atendidas"}
     />
   );
 };

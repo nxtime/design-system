@@ -4,6 +4,7 @@ import { initAppTranslation, translate } from "translation-system";
 
 const GenericChart = <T extends Record<string, number | string>>({
   data,
+  dataFormatter,
   labelFormatter,
   groupBy,
   translation = "common",
@@ -18,6 +19,7 @@ const GenericChart = <T extends Record<string, number | string>>({
   hidden?: (keyof T)[];
   color?: "neutral" | "neutral-content" | "content";
   labelFormatter?: (_item: string | number) => string | number;
+  dataFormatter?: (_item: string | number) => string | number;
 }) => {
   initAppTranslation({ language: "pt-BR" });
   return (
@@ -26,6 +28,7 @@ const GenericChart = <T extends Record<string, number | string>>({
       {...genericChartsOptions({
         type,
         labelFormatter,
+        dataFormatter,
         dataLabelFormatter: (value) =>
           translate(`${translation}.${value}` as "common.ok"),
         foreColor: `var(--${color})`,

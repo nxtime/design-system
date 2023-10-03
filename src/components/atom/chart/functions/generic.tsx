@@ -69,9 +69,11 @@ interface IGenericChartOptions {
   foreColor?: string;
   id?: string;
   series: { name: string; data: number[] }[];
+  dataFormatter?: (_value: string | number) => string | number;
   labelFormatter?: (_value: string | number) => string | number;
   dataLabelFormatter: (_value: string | number) => string | number;
   labels: string[];
+  showToolbar?: boolean
 }
 
 const genericChartsOptions = ({
@@ -79,9 +81,11 @@ const genericChartsOptions = ({
   foreColor = "var(--neutral-content)",
   id = "any",
   labelFormatter = (v) => v,
+  dataFormatter = (v) => v,
   dataLabelFormatter = (v) => v,
   series = [],
   labels = [],
+  showToolbar = false
 }: IGenericChartOptions) => {
   return {
     options: {
@@ -90,7 +94,7 @@ const genericChartsOptions = ({
         type,
         foreColor,
         toolbar: {
-          show: true,
+          show: showToolbar,
         },
       },
       plotOptions: {
@@ -132,6 +136,7 @@ const genericChartsOptions = ({
       tooltip: {
         x: {},
         y: {
+          formatter: dataFormatter,
           title: {
             formatter: dataLabelFormatter,
           },
