@@ -96,7 +96,7 @@ const DateDropdown = ({
               disabled={currentShowMonth
                 .clone()
                 .add(1, "month")
-                .isSameOrAfter(moment())}
+                .isAfter(moment())}
             >
               <Icon icon="ep:arrow-left-bold" hFlip={true} />
             </button>

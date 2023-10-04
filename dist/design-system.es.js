@@ -5040,7 +5040,7 @@ const CN = () => "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (s) => 
                 (ie) => ie.clone().add(1, "month")
               );
             },
-            disabled: w.clone().add(1, "month").isSameOrAfter(rr()),
+            disabled: w.clone().add(1, "month").isAfter(rr()),
             children: /* @__PURE__ */ ue.jsx(ma, { icon: "ep:arrow-left-bold", hFlip: !0 })
           }
         )
